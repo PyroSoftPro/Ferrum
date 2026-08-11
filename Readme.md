@@ -76,9 +76,8 @@ that installs and drives the whole Windows-gaming stack so you don't have to.
 
 ## Licensing
 
-Ferrum is **proprietary, closed-source software**. The macOS port — the driver in
-`Source/DarwinDriver/` and the work around it — is not open source, and no
-open-source license is granted by its presence here. See
+Ferrum is **proprietary, closed-source software**. The macOS port is not open
+source, and nothing in this repository grants an open-source license to it. See
 [`LICENSE`](LICENSE).
 
 You can license it two ways:
