@@ -40,10 +40,58 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 
 <!--progress-->
 <p align="center">
-  <img src="docs/assets/progress.svg" alt="Ferrum progress — 68% toward playable gameplay, 79% of the substrate" width="100%">
+  <img src="docs/assets/progress.svg" width="100%" alt="Ferrum progress — 68% toward playable gameplay, 79% of the substrate, 437 checks passing">
 </p>
 
-**≈68% toward playable gameplay · ≈79% of the substrate · 415 checks passing · milestone m162**<!--/progress-->
+<table>
+<tr>
+<td width="30%"><a href="docs/progress.md#windows-programs-run">Windows programs run</a></td>
+<td width="58%"><a href="docs/progress.md#windows-programs-run"><img src="docs/assets/bars/programs.svg" width="320" height="14" alt="99 percent"></a></td>
+<td width="12%" align="right"><b>99%</b></td>
+</tr>
+<tr>
+<td width="30%"><a href="docs/progress.md#the-vulkan-graphics-bridge">Vulkan graphics bridge</a></td>
+<td width="58%"><a href="docs/progress.md#the-vulkan-graphics-bridge"><img src="docs/assets/bars/vulkan.svg" width="320" height="14" alt="92 percent"></a></td>
+<td width="12%" align="right"><b>92%</b></td>
+</tr>
+<tr>
+<td width="30%"><a href="docs/progress.md#game-windows-and-input">Game windows and input</a></td>
+<td width="58%"><a href="docs/progress.md#game-windows-and-input"><img src="docs/assets/bars/windows.svg" width="320" height="14" alt="90 percent"></a></td>
+<td width="12%" align="right"><b>90%</b></td>
+</tr>
+<tr>
+<td width="30%"><a href="docs/progress.md#drawing-to-the-screen">Drawing to the screen</a></td>
+<td width="58%"><a href="docs/progress.md#drawing-to-the-screen"><img src="docs/assets/bars/pixels.svg" width="320" height="14" alt="88 percent"></a></td>
+<td width="12%" align="right"><b>88%</b></td>
+</tr>
+<tr>
+<td width="30%"><a href="docs/progress.md#speed">Speed</a></td>
+<td width="58%"><a href="docs/progress.md#speed"><img src="docs/assets/bars/speed.svg" width="320" height="14" alt="82 percent"></a></td>
+<td width="12%" align="right"><b>82%</b></td>
+</tr>
+<tr>
+<td width="30%"><a href="docs/progress.md#directx-11">DirectX 11</a></td>
+<td width="58%"><a href="docs/progress.md#directx-11"><img src="docs/assets/bars/d3d.svg" width="320" height="14" alt="68 percent"></a></td>
+<td width="12%" align="right"><b>68%</b></td>
+</tr>
+<tr>
+<td width="30%"><a href="docs/progress.md#2-d-drawing-for-menus-and-huds">2-D drawing (menus, HUD)</a></td>
+<td width="58%"><a href="docs/progress.md#2-d-drawing-for-menus-and-huds"><img src="docs/assets/bars/gdi.svg" width="320" height="14" alt="64 percent"></a></td>
+<td width="12%" align="right"><b>64%</b></td>
+</tr>
+<tr>
+<td width="30%"><a href="docs/progress.md#sound">Sound</a></td>
+<td width="58%"><a href="docs/progress.md#sound"><img src="docs/assets/bars/sound.svg" width="320" height="14" alt="55 percent"></a></td>
+<td width="12%" align="right"><b>55%</b></td>
+</tr>
+<tr>
+<td width="30%"><a href="docs/progress.md#installers-and-saves">Installers and saves</a></td>
+<td width="58%"><a href="docs/progress.md#installers-and-saves"><img src="docs/assets/bars/installers.svg" width="320" height="14" alt="38 percent"></a></td>
+<td width="12%" align="right"><b>38%</b></td>
+</tr>
+</table>
+
+<sub>Every row links to <a href="docs/progress.md">what earned that number</a> — in plain English, no code. Orange is the critical path to a game running. <b>437 automated checks</b> pass; each one fails if its capability is removed.</sub><!--/progress-->
 
 Real DXVK runs on this port and creates an **`ID3D11Device` at feature level 11_0**.
 A **GPU-rendered frame reaches a real macOS window** through a genuine
@@ -60,6 +108,7 @@ only** — no source code. Development happens in a private repository.
 - **[How it works](docs/how-it-works.md)** — the four translations, in plain English
 - **[Questions people actually ask](docs/faq.md)** — will my games work, do I need
   Windows, is it legal, how fast is it
+- **[Progress in detail](docs/progress.md)** — what earned each number on the chart
 - **[Roadmap](docs/roadmap.md)** — what stands up, what doesn't, what's next
 
 ## Bourbon 26
