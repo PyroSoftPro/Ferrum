@@ -1,0 +1,76 @@
+Ferrum Commercial License
+=========================
+
+Copyright (c) 2026 PyroSoft / Mike Rodriguez. All rights reserved.
+
+WHAT THIS COVERS
+----------------
+
+This license covers the Ferrum macOS/Apple Silicon port — the original work in
+this repository authored by PyroSoft, including but not limited to:
+
+  * Source/DarwinDriver/          the macOS driver, its Vulkan/Metal bridge,
+                                  the NT syscall and Win32 surfaces, and its
+                                  fixtures and gates
+  * BOURBON_PORT.md               the engineering record
+  * docs/assets/                  the Ferrum marks
+
+It does NOT cover the upstream FEX-Emu code this repository is forked from, nor
+any third-party component. Those keep their own licenses — see THIRD-PARTY below.
+
+TERMS
+-----
+
+This is proprietary, closed-source software. It is NOT open source, and no
+open-source license is granted by its presence in this repository.
+
+You may not copy, modify, merge, publish, distribute, sublicense, sell, host,
+reverse engineer, decompile, or create derivative works of the covered work, in
+whole or in part, except as expressly permitted by a written license from
+PyroSoft.
+
+No right or license is granted by implication, estoppel, or otherwise.
+
+HOW TO OBTAIN A LICENSE
+-----------------------
+
+Two routes:
+
+1. AS PART OF BOURBON. End users receive a license to use Ferrum as an
+   integrated component of Bourbon, under Bourbon's own end-user terms. Using
+   Bourbon requires no separate Ferrum license.
+
+       https://mikethetech.itch.io/bourbon26
+
+2. COMMERCIAL LICENSING. Separate licensing — for use outside Bourbon, for
+   redistribution, for embedding in another product, or for source access — is
+   available. Terms are negotiated per engagement.
+
+       contact@mikethetech.com
+
+THIRD-PARTY COMPONENTS
+----------------------
+
+Ferrum is a fork of FEX-Emu and builds on other people's work. Their licenses
+govern their code, and nothing here overrides them:
+
+  * FEX-Emu      MIT      Copyright (c) 2019 Ryan Houdek and contributors.
+                          See LICENSE. The MIT notice is retained as required,
+                          and the upstream project remains MIT for everyone.
+  * Wine         LGPL     Loaded at runtime; not modified and not redistributed
+                          from this repository.
+  * DXVK         zlib     Direct3D to Vulkan.
+  * MoltenVK     Apache-2.0  Vulkan to Metal.
+
+Where a file carries its own SPDX-License-Identifier, that identifier governs
+that file.
+
+NO WARRANTY
+-----------
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
