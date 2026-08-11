@@ -38,6 +38,13 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 
 ## Status
 
+<!--progress-->
+<p align="center">
+  <img src="docs/assets/progress.svg" alt="Ferrum progress — 68% toward playable gameplay, 79% of the substrate" width="100%">
+</p>
+
+**≈68% toward playable gameplay · ≈79% of the substrate · 415 checks passing · milestone m162**<!--/progress-->
+
 Real DXVK runs on this port and creates an **`ID3D11Device` at feature level 11_0**.
 A **GPU-rendered frame reaches a real macOS window** through a genuine
 `VK_KHR_swapchain`. Audio plays through CoreAudio. Translated code costs about

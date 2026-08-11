@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="378" viewBox="0 0 720 378" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" role="img" aria-label="Ferrum progress: 68 percent toward playable gameplay, 79 percent of the substrate">
+<text x="16" y="34" font-size="30" font-weight="600" fill="#2a78d6">68%</text>
+<text x="88" y="34" font-size="13" fill="#8b8b86">toward playable gameplay</text>
+<text x="16" y="66" font-size="30" font-weight="600" fill="#8b8b86">79%</text>
+<text x="88" y="66" font-size="13" fill="#8b8b86">of the substrate</text>
+<text x="16" y="105" font-size="12.5" fill="#8b8b86">Windows programs run</text>
+<rect x="200" y="92" width="436" height="18" rx="4" fill="#c9c9c4" fill-opacity="0.35"/>
+<rect x="200" y="92" width="431" height="18" rx="4" fill="#2a78d6"/>
+<text x="646" y="105" font-size="12.5" font-weight="600" fill="#8b8b86">99%</text>
+<text x="16" y="135" font-size="12.5" fill="#8b8b86">Vulkan graphics bridge</text>
+<rect x="200" y="122" width="436" height="18" rx="4" fill="#c9c9c4" fill-opacity="0.35"/>
+<rect x="200" y="122" width="401" height="18" rx="4" fill="#2a78d6"/>
+<text x="646" y="135" font-size="12.5" font-weight="600" fill="#8b8b86">92%</text>
+<text x="16" y="165" font-size="12.5" fill="#8b8b86">Game windows &amp; input</text>
+<rect x="200" y="152" width="436" height="18" rx="4" fill="#c9c9c4" fill-opacity="0.35"/>
+<rect x="200" y="152" width="392" height="18" rx="4" fill="#2a78d6"/>
+<text x="646" y="165" font-size="12.5" font-weight="600" fill="#8b8b86">90%</text>
+<text x="16" y="195" font-size="12.5" fill="#8b8b86">Drawing to the screen</text>
+<rect x="200" y="182" width="436" height="18" rx="4" fill="#c9c9c4" fill-opacity="0.35"/>
+<rect x="200" y="182" width="383" height="18" rx="4" fill="#eb6834"/>
+<text x="646" y="195" font-size="12.5" font-weight="600" fill="#8b8b86">88%</text>
+<text x="16" y="225" font-size="12.5" fill="#8b8b86">Speed</text>
+<rect x="200" y="212" width="436" height="18" rx="4" fill="#c9c9c4" fill-opacity="0.35"/>
+<rect x="200" y="212" width="357" height="18" rx="4" fill="#2a78d6"/>
+<text x="646" y="225" font-size="12.5" font-weight="600" fill="#8b8b86">82%</text>
+<text x="16" y="255" font-size="12.5" fill="#8b8b86">DirectX 11</text>
+<rect x="200" y="242" width="436" height="18" rx="4" fill="#c9c9c4" fill-opacity="0.35"/>
+<rect x="200" y="242" width="296" height="18" rx="4" fill="#eb6834"/>
+<text x="646" y="255" font-size="12.5" font-weight="600" fill="#8b8b86">68%</text>
+<text x="16" y="285" font-size="12.5" fill="#8b8b86">2-D drawing (menus, HUD)</text>
+<rect x="200" y="272" width="436" height="18" rx="4" fill="#c9c9c4" fill-opacity="0.35"/>
+<rect x="200" y="272" width="279" height="18" rx="4" fill="#2a78d6"/>
+<text x="646" y="285" font-size="12.5" font-weight="600" fill="#8b8b86">64%</text>
+<text x="16" y="315" font-size="12.5" fill="#8b8b86">Sound</text>
+<rect x="200" y="302" width="436" height="18" rx="4" fill="#c9c9c4" fill-opacity="0.35"/>
+<rect x="200" y="302" width="239" height="18" rx="4" fill="#2a78d6"/>
+<text x="646" y="315" font-size="12.5" font-weight="600" fill="#8b8b86">55%</text>
+<text x="16" y="345" font-size="12.5" fill="#8b8b86">Installers &amp; saves</text>
+<rect x="200" y="332" width="436" height="18" rx="4" fill="#c9c9c4" fill-opacity="0.35"/>
+<rect x="200" y="332" width="165" height="18" rx="4" fill="#2a78d6"/>
+<text x="646" y="345" font-size="12.5" font-weight="600" fill="#8b8b86">38%</text>
+</svg>
