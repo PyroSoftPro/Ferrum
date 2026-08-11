@@ -55,6 +55,13 @@ Not done: a full game has not been driven end to end yet.
 Ferrum's source is closed. This repository carries **releases and documentation
 only** — no source code. Development happens in a private repository.
 
+## Documentation
+
+- **[How it works](docs/how-it-works.md)** — the four translations, in plain English
+- **[Questions people actually ask](docs/faq.md)** — will my games work, do I need
+  Windows, is it legal, how fast is it
+- **[Roadmap](docs/roadmap.md)** — what stands up, what doesn't, what's next
+
 ## Bourbon 26
 
 Ferrum is the engine. **Bourbon** is the app it ships in — a native macOS front end
