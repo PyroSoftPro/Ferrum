@@ -1,12 +1,12 @@
 # What's behind each number
 
-The chart on the front page isn't a vibe. It now tracks **fifteen** areas — six were added on 2026-08-12 (DirectX 12, 32-bit games, controllers, shader stutter, cutscene video, older DirectX). Adding them **lowered** the headline number, because they start at zero and the total is fixed at 100. Nothing got worse; we're counting more. Each bar has a fixed weight decided in
+The chart on the front page isn't a vibe. It now tracks **sixteen** areas — seven were added on 2026-08-12 (DirectX 12, 32-bit games, controllers, shader stutter, cutscene video, older DirectX, and anti-cheat for titles whose publishers already support Linux). Adding them **lowered** the headline number, because they start at zero and the total is fixed at 100. Nothing got worse; we're counting more. Each bar has a fixed weight decided in
 advance, and only the completion figure moves — so a bar going up means work
 happened, not that we got optimistic. This page says what that work was.
 
 Percentages are still a judgement. What isn't a judgement is the checks: every
 capability below has automated tests that fail if the capability disappears.
-There are **531** of them and they all pass.
+There are **616** of them and they all pass.
 
 One rule shapes everything here. Software that isn't finished tends to return
 something that *looks* like success — a zero that could mean "no error" or could
@@ -46,7 +46,7 @@ Not finished: mouse capture, the thing that keeps the cursor locked to the windo
 while you look around in a first-person game, and international text input.
 
 ## 2-D drawing for menus and HUDs
-**64%**
+**74%**
 
 The flat drawing games use for interface elements — health bars, inventory
 screens, subtitles, loading screens — rather than the 3-D world.
@@ -58,9 +58,20 @@ is already on screen. Also the coordinate systems: a program can set up its own
 scale and rotation and have the results come out right, including the fiddly case
 where two transformations combine and the order matters.
 
+Since added: shapes a program builds up piece by piece before drawing them in one
+go, and the whole business of asking for a font by name and measuring how wide
+text will be — half of the drawing calls a real program uses are now covered,
+up from four in ten.
+
+That work turned up six defects of exactly the kind this page's rule is about.
+All six reported success while drawing nothing, so the picture was right whenever
+anyone looked at the *finished* result and wrong at every moment in between — the
+kind of fault that shows up as flicker rather than as an error. A seventh handed
+back an error code where a font was expected, and it passed every check anyone
+had thought to write, because the check was "did we get something back".
+
 This is the widest surface in the whole project by raw count, which is why the
-number is where it is. Roughly a quarter of it is covered, but the specific
-operations games actually present frames with are the ones that are done.
+number is where it is even now.
 
 ## Drawing to the screen
 **88%**
@@ -102,7 +113,7 @@ zeros, which is indistinguishable from "your GPU supports nothing" and would hav
 looked plausible for weeks.
 
 ## DirectX 11
-**68%**
+**97%**
 
 The interface games actually draw with. This bar sat at zero for a long time.
 
@@ -112,13 +123,17 @@ pointer isn't null: creating a real buffer of a requested size and getting that
 exact size back, confirming the device reports itself healthy, and confirming the
 error message that had appeared on every single run for months is now gone.
 
-Not finished, and this is the honest gap: **nothing has been drawn yet**, and the
-rendering device is not yet joined to the on-screen window from the bar above.
-Those are two separate achievements that have to meet. Making them meet is the
+**They have since met.** The rendering device is joined to a real Mac window, a
+frame is presented, and geometry shaded by a real compiler comes out the far end
+— checked pixel by pixel against what DirectX was asked to draw, not by eye and
+not by "it didn't crash". Arbitrary content works, so this is a path rather than
+one hard-coded picture.
+
+Not finished: compute shaders and the wider set of pixel formats. The remaining
 next milestone that matters.
 
 ## Speed
-**82%**
+**90%**
 
 Translated code costs about **3.2× the CPU time** of code compiled for Apple
 Silicon directly, measured on work shaped like a real game frame — many small
@@ -138,17 +153,23 @@ Graphics performance under real load is **not measured**, and no number will be
 quoted for it until it is.
 
 ## Sound
-**55%**
+**78%**
 
 Windows audio reaches your speakers through CoreAudio. A program opens an audio
 device, describes the format it wants, and plays — and the output was checked
 against the exact signal level it should have produced, not just "sound came out".
 
-Not finished: microphone input, MIDI, and the older audio interfaces some
+Microphone input now works too, against real audio hardware, along with listing
+the audio devices on the machine and agreeing a format with them. That last part
+caught a genuine defect: a call meant to hand out a unique identifier returned
+the *same* one every time, which quietly turned every recording client in the
+program into a playback client.
+
+Not finished: MIDI, exclusive-mode output, and the older audio interfaces some
 long-lived games still use.
 
 ## Installers and saves
-**38%**
+**52%**
 
 The unglamorous surface: starting other programs, the Windows registry, and file
 system breadth. Games need this to install, to find their settings, and to write
@@ -169,7 +190,7 @@ This is the least finished area and it's deliberate. It's breadth work, it's wel
 understood, and it doesn't block the graphics milestones ahead of it.
 
 ## DirectX 12
-**0%** — just added
+**12%**
 
 The interface modern big-budget games use. Nothing here works yet; it's on the
 list because it's where the industry is, and because the commercial Mac
@@ -177,12 +198,19 @@ alternative's Apple-Silicon build doesn't have it either. Getting there means
 routing DirectX 12 through the same Vulkan bridge that already carries DirectX 11
 — using VKD3D, the translation layer Steam Deck uses for DX12 games.
 
-The honest risk: DirectX 12 asks for graphics features DirectX 11 doesn't, and
-the limit may turn out to be what Apple's Metal can express rather than anything
-we control. We'll find that out early and say so plainly either way.
+We said we'd test that risk early and say so plainly. We did, and the answer is
+better than expected: **DirectX 12 now runs far enough through our bridge to ask
+the graphics driver for what it needs, and it is held up by exactly one missing
+feature** — not the several that a translation layer like ours would normally be
+expected to fail. The demanding capabilities everyone assumes are the problem
+turned out to be present.
+
+Two limits are permanent and worth stating: Apple's Metal has no equivalent for a
+couple of older DirectX 12 features, so those specific effects will never have a
+floor here. Everything else is work, not a wall.
 
 ## 32-bit games
-**0%** — just added
+**24%**
 
 Older Windows games — roughly anything before 2015, plus a great many indies —
 are 32-bit. Apple removed 32-bit support from macOS entirely, and Rosetta never
@@ -190,18 +218,45 @@ translated 32-bit code, so **those games are currently impossible on a modern Ma
 by any route at all**.
 
 Our translator can run 32-bit code natively. Nobody else can offer this, which is
-why it's on the list. It means teaching the loader a second program format and
-the bridge a second way of talking to Windows.
+why it's on the list.
+
+32-bit code now executes in genuine 32-bit mode. The obstacle after that was
+unusual: macOS reserves the whole first 4 GB of memory for itself, and refuses to
+start any program built to give that up. For a 64-bit game that collides with a
+single page and is easy to work around. For a 32-bit game, that reserved region
+is its *entire* address space — there is nothing to move aside.
+
+So the address space itself is now relocated: the game gets its own full-size
+region elsewhere in memory, and every address is adjusted on the way through.
+The adjustment is free — the processor does it as part of the instruction that
+reads memory — and it also fixes something the old approach got quietly wrong at
+the very top of the range.
+
+Not finished: the loader does not yet place a 32-bit program into that region, so
+no 32-bit game has run end to end.
 
 ## Controllers
-**0%** — just added
+**70%**
 
 Gamepad support: the Windows controller interfaces (XInput and DirectInput)
 connected to macOS's own controller framework, so a pad you've paired with your
 Mac just works.
 
 Not a headline feature — a requirement. A large share of games are unplayable
-without one, and right now none of that is wired up.
+without one.
+
+**A game can now read your gamepad**: sticks, triggers and the button mask all
+arrive, and the counter a game uses to tell "nothing changed" from "I read a
+stale value" moves correctly with the state. It works under all three names
+Windows has shipped this interface as, which matters more than it sounds —
+a game asking for the older name would otherwise fail to start at all.
+
+This one needed care because of the rule at the top of this page: reporting
+"success" alongside an all-zero controller state is indistinguishable from a pad
+that is simply sitting still, so the tests insist on values that actually move.
+
+Not finished: rumble and force feedback, the older DirectInput interface, and
+breadth around pads connecting and disconnecting mid-game.
 
 ## Shader stutter
 **0%** — just added
@@ -215,11 +270,21 @@ eventually so is the first. Nothing about it is glamorous; players notice it
 immediately.
 
 ## Cutscene video
-**0%** — just added
+**35%**
 
 Games play video — intros, cutscenes, background footage — through a Windows
-media system we don't implement at all yet. When a game hits one, it hangs or
-closes, which looks exactly like a crash and isn't.
+media system that used to be entirely missing here. When a game hit one, it hung
+or closed, which looks exactly like a crash and isn't.
+
+A program can now open a video file and get **real decoded frames** back. Each
+frame is checked to be genuinely different from the last, because a decoder that
+hands back the same buffer over and over, or a black one, would otherwise pass a
+test that only asks "did I get a frame?". That check also caught a colour error
+that was subtle enough to look right: the picture was recognisable, and the
+greens were wrong.
+
+Not finished: the decoder isn't yet connected to the route a game actually asks
+through, so a game still gets a clear refusal rather than a picture.
 
 ## Older DirectX versions
 **0%** — just added
