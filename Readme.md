@@ -40,7 +40,7 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 
 <!--progress-->
 <p align="center">
-  <img src="docs/assets/progress.a1787a86.svg" width="100%" alt="Ferrum progress — 80% toward playable gameplay, 81% of the substrate, 531 checks passing">
+  <img src="docs/assets/progress.e436fc67.svg" width="100%" alt="Ferrum progress — 60% toward playable gameplay, 68% of the substrate, 531 checks passing">
 </p>
 
 <table>
@@ -51,7 +51,7 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 </tr>
 <tr>
 <td width="30%"><a href="docs/progress.md#directx-11">DirectX 11</a></td>
-<td width="58%"><a href="docs/progress.md#directx-11"><img src="docs/assets/bars/d3d.9c38ec1d.svg" width="320" height="14" alt="97 percent"></a></td>
+<td width="58%"><a href="docs/progress.md#directx-11"><img src="docs/assets/bars/d3d11.9c38ec1d.svg" width="320" height="14" alt="97 percent"></a></td>
 <td width="12%" align="right"><b>97%</b></td>
 </tr>
 <tr>
@@ -88,6 +88,36 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 <td width="30%"><a href="docs/progress.md#installers-and-saves">Installers and saves</a></td>
 <td width="58%"><a href="docs/progress.md#installers-and-saves"><img src="docs/assets/bars/installers.68cc9392.svg" width="320" height="14" alt="52 percent"></a></td>
 <td width="12%" align="right"><b>52%</b></td>
+</tr>
+<tr>
+<td width="30%"><a href="docs/progress.md#directx-12">DirectX 12</a></td>
+<td width="58%"><a href="docs/progress.md#directx-12"><img src="docs/assets/bars/d3d12.b94b3bde.svg" width="320" height="14" alt="0 percent"></a></td>
+<td width="12%" align="right"><b>0%</b></td>
+</tr>
+<tr>
+<td width="30%"><a href="docs/progress.md#32-bit-games">32-bit games</a></td>
+<td width="58%"><a href="docs/progress.md#32-bit-games"><img src="docs/assets/bars/wow64.e9b1eaac.svg" width="320" height="14" alt="0 percent"></a></td>
+<td width="12%" align="right"><b>0%</b></td>
+</tr>
+<tr>
+<td width="30%"><a href="docs/progress.md#controllers">Controllers</a></td>
+<td width="58%"><a href="docs/progress.md#controllers"><img src="docs/assets/bars/pads.e9b1eaac.svg" width="320" height="14" alt="0 percent"></a></td>
+<td width="12%" align="right"><b>0%</b></td>
+</tr>
+<tr>
+<td width="30%"><a href="docs/progress.md#shader-stutter">Shader stutter</a></td>
+<td width="58%"><a href="docs/progress.md#shader-stutter"><img src="docs/assets/bars/shaders.e9b1eaac.svg" width="320" height="14" alt="0 percent"></a></td>
+<td width="12%" align="right"><b>0%</b></td>
+</tr>
+<tr>
+<td width="30%"><a href="docs/progress.md#cutscene-video">Cutscene video</a></td>
+<td width="58%"><a href="docs/progress.md#cutscene-video"><img src="docs/assets/bars/video.e9b1eaac.svg" width="320" height="14" alt="0 percent"></a></td>
+<td width="12%" align="right"><b>0%</b></td>
+</tr>
+<tr>
+<td width="30%"><a href="docs/progress.md#older-directx-versions">Older DirectX versions</a></td>
+<td width="58%"><a href="docs/progress.md#older-directx-versions"><img src="docs/assets/bars/d3d9.e9b1eaac.svg" width="320" height="14" alt="0 percent"></a></td>
+<td width="12%" align="right"><b>0%</b></td>
 </tr>
 </table>
 

@@ -1,12 +1,12 @@
 # What's behind each number
 
-The chart on the front page isn't a vibe. Each bar has a fixed weight decided in
+The chart on the front page isn't a vibe. It now tracks **fifteen** areas — six were added on 2026-08-12 (DirectX 12, 32-bit games, controllers, shader stutter, cutscene video, older DirectX). Adding them **lowered** the headline number, because they start at zero and the total is fixed at 100. Nothing got worse; we're counting more. Each bar has a fixed weight decided in
 advance, and only the completion figure moves — so a bar going up means work
 happened, not that we got optimistic. This page says what that work was.
 
 Percentages are still a judgement. What isn't a judgement is the checks: every
 capability below has automated tests that fail if the capability disappears.
-There are **437** of them and they all pass.
+There are **531** of them and they all pass.
 
 One rule shapes everything here. Software that isn't finished tends to return
 something that *looks* like success — a zero that could mean "no error" or could
@@ -167,6 +167,66 @@ it worked.
 
 This is the least finished area and it's deliberate. It's breadth work, it's well
 understood, and it doesn't block the graphics milestones ahead of it.
+
+## DirectX 12
+**0%** — just added
+
+The interface modern big-budget games use. Nothing here works yet; it's on the
+list because it's where the industry is, and because the commercial Mac
+alternative's Apple-Silicon build doesn't have it either. Getting there means
+routing DirectX 12 through the same Vulkan bridge that already carries DirectX 11
+— using VKD3D, the translation layer Steam Deck uses for DX12 games.
+
+The honest risk: DirectX 12 asks for graphics features DirectX 11 doesn't, and
+the limit may turn out to be what Apple's Metal can express rather than anything
+we control. We'll find that out early and say so plainly either way.
+
+## 32-bit games
+**0%** — just added
+
+Older Windows games — roughly anything before 2015, plus a great many indies —
+are 32-bit. Apple removed 32-bit support from macOS entirely, and Rosetta never
+translated 32-bit code, so **those games are currently impossible on a modern Mac
+by any route at all**.
+
+Our translator can run 32-bit code natively. Nobody else can offer this, which is
+why it's on the list. It means teaching the loader a second program format and
+the bridge a second way of talking to Windows.
+
+## Controllers
+**0%** — just added
+
+Gamepad support: the Windows controller interfaces (XInput and DirectInput)
+connected to macOS's own controller framework, so a pad you've paired with your
+Mac just works.
+
+Not a headline feature — a requirement. A large share of games are unplayable
+without one, and right now none of that is wired up.
+
+## Shader stutter
+**0%** — just added
+
+The first time a game shows you a new effect, the graphics translation has to
+build a shader for it — and the game hitches while that happens. It's the single
+most-complained-about artifact of this kind of translation.
+
+The fix is to remember that work between runs, so the second launch is smooth and
+eventually so is the first. Nothing about it is glamorous; players notice it
+immediately.
+
+## Cutscene video
+**0%** — just added
+
+Games play video — intros, cutscenes, background footage — through a Windows
+media system we don't implement at all yet. When a game hits one, it hangs or
+closes, which looks exactly like a crash and isn't.
+
+## Older DirectX versions
+**0%** — just added
+
+DirectX 9 and earlier, for the back catalogue. Cheaper to reach than DirectX 12,
+because the translation layer we already use ships a DirectX 9 implementation —
+it mostly needs connecting to the bridge that's already built.
 
 ---
 
