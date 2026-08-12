@@ -40,7 +40,7 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 
 <!--progress-->
 <p align="center">
-  <img src="docs/assets/progress.29a77efe.svg" width="100%" alt="Ferrum progress — 62% toward playable gameplay, 71% of the substrate, 597 checks passing">
+  <img src="docs/assets/progress.938c08e0.svg" width="100%" alt="Ferrum progress — 66% toward playable gameplay, 78% of the substrate, 616 checks passing">
 </p>
 
 <table>
@@ -85,6 +85,11 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 <td width="12%" align="right"><b>74%</b></td>
 </tr>
 <tr>
+<td width="30%"><a href="docs/progress.md#controllers">Controllers</a></td>
+<td width="58%"><a href="docs/progress.md#controllers"><img src="docs/assets/bars/pads.84c5b78a.svg" width="320" height="14" alt="70 percent"></a></td>
+<td width="12%" align="right"><b>70%</b></td>
+</tr>
+<tr>
 <td width="30%"><a href="docs/progress.md#installers-and-saves">Installers and saves</a></td>
 <td width="58%"><a href="docs/progress.md#installers-and-saves"><img src="docs/assets/bars/installers.68cc9392.svg" width="320" height="14" alt="52 percent"></a></td>
 <td width="12%" align="right"><b>52%</b></td>
@@ -95,19 +100,14 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 <td width="12%" align="right"><b>35%</b></td>
 </tr>
 <tr>
+<td width="30%"><a href="docs/progress.md#32-bit-games">32-bit games</a></td>
+<td width="58%"><a href="docs/progress.md#32-bit-games"><img src="docs/assets/bars/wow64.5e671e24.svg" width="320" height="14" alt="24 percent"></a></td>
+<td width="12%" align="right"><b>24%</b></td>
+</tr>
+<tr>
 <td width="30%"><a href="docs/progress.md#directx-12">DirectX 12</a></td>
 <td width="58%"><a href="docs/progress.md#directx-12"><img src="docs/assets/bars/d3d12.3db48197.svg" width="320" height="14" alt="12 percent"></a></td>
 <td width="12%" align="right"><b>12%</b></td>
-</tr>
-<tr>
-<td width="30%"><a href="docs/progress.md#32-bit-games">32-bit games</a></td>
-<td width="58%"><a href="docs/progress.md#32-bit-games"><img src="docs/assets/bars/wow64.0bb451e4.svg" width="320" height="14" alt="10 percent"></a></td>
-<td width="12%" align="right"><b>10%</b></td>
-</tr>
-<tr>
-<td width="30%"><a href="docs/progress.md#controllers">Controllers</a></td>
-<td width="58%"><a href="docs/progress.md#controllers"><img src="docs/assets/bars/pads.e9b1eaac.svg" width="320" height="14" alt="0 percent"></a></td>
-<td width="12%" align="right"><b>0%</b></td>
 </tr>
 <tr>
 <td width="30%"><a href="docs/progress.md#shader-stutter">Shader stutter</a></td>
@@ -126,7 +126,7 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 </tr>
 </table>
 
-<sub>Every row links to <a href="docs/progress.md">what earned that number</a> — in plain English, no code. Orange is the critical path to a game running. <b>597 automated checks</b> pass; each one fails if its capability is removed.</sub><!--/progress-->
+<sub>Every row links to <a href="docs/progress.md">what earned that number</a> — in plain English, no code. Orange is the critical path to a game running. <b>616 automated checks</b> pass; each one fails if its capability is removed.</sub><!--/progress-->
 
 Real DXVK runs on this port and creates an **`ID3D11Device` at feature level 11_0**.
 A **GPU-rendered frame reaches a real macOS window** through a genuine
