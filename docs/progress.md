@@ -190,7 +190,7 @@ This is the least finished area and it's deliberate. It's breadth work, it's wel
 understood, and it doesn't block the graphics milestones ahead of it.
 
 ## DirectX 12
-**12%**
+**15%**
 
 The interface modern big-budget games use. Nothing here works yet; it's on the
 list because it's where the industry is, and because the commercial Mac
@@ -210,7 +210,7 @@ couple of older DirectX 12 features, so those specific effects will never have a
 floor here. Everything else is work, not a wall.
 
 ## 32-bit games
-**40%**
+**55%**
 
 Older Windows games — roughly anything before 2015, plus a great many indies —
 are 32-bit. Apple removed 32-bit support from macOS entirely, and Rosetta never
@@ -255,8 +255,22 @@ Not finished: the loader does not yet place a real 32-bit program into that
 region, so no 32-bit game has run end to end. That is loading work now, not an
 address-space question.
 
+**A real 32-bit program now loads and runs.** It gets placed in that relocated
+region, its internal addresses are corrected for where it actually landed, and
+it runs to a known answer. Five separate places were found where the translator
+handed back an address in the *host's* numbering instead of the program's —
+two of them with no symptom the program itself could ever have noticed, because
+the lower half of the two numbers happens to look identical.
+
+Also fixed: the 64-bit atomic compare-and-swap that older 32-bit code uses for
+thread safety. It had been left deliberately failing rather than guessing.
+
+Not finished: a 32-bit program cannot yet call into Windows' own libraries. The
+obstacle is specific — the calling convention needs an argument count that
+simply is not recorded anywhere in the file — so it needs a table, not a fix.
+
 ## Controllers
-**70%**
+**80%**
 
 Gamepad support: the Windows controller interfaces (XInput and DirectInput)
 connected to macOS's own controller framework, so a pad you've paired with your
@@ -278,8 +292,26 @@ that is simply sitting still, so the tests insist on values that actually move.
 Not finished: rumble and force feedback, the older DirectInput interface, and
 breadth around pads connecting and disconnecting mid-game.
 
+**DirectInput is in.** That is the older of the two ways Windows games talk to a
+pad, and most games from before about 2010 use nothing else — they previously had
+no route to a controller at all.
+
+Two faults were caught on the way, both of the "looks like success" kind this
+page is about. A pad that had just been unplugged reported *gone* through one
+call and *still here* through another. And one axis was being read from a slot
+nothing ever writes: in a range where the middle means centred, it read as a
+stick pushed fully to one side rather than at rest.
+
+Rumble also stopped correctly for the first time — a game that lost focus used to
+leave the pad buzzing on the desk indefinitely.
+
+⚠️ **Stated plainly: none of this has been tested on a physical controller**,
+because there isn't one on the development machine. Everything is driven by a
+simulated pad, which exercises every layer except the few lines that read the
+real hardware. That is why this sits at 80 and not higher.
+
 ## Shader stutter
-**0%** — just added
+**40%**
 
 The first time a game shows you a new effect, the graphics translation has to
 build a shader for it — and the game hitches while that happens. It's the single
@@ -288,6 +320,20 @@ most-complained-about artifact of this kind of translation.
 The fix is to remember that work between runs, so the second launch is smooth and
 eventually so is the first. Nothing about it is glamorous; players notice it
 immediately.
+
+**A shader compiled once is no longer recompiled on the next run.** Measured:
+the same work drops from 18.7 ms to 4.3 ms on a second launch, and with the
+saving switched off it stays flat — which is what proves the saving is what did
+it, rather than the machine simply being warmed up.
+
+An honest complication worth stating, because it changes what to expect: **macOS
+already keeps a shader cache of its own.** The first measurement here looked like
+a 120x improvement, and a control run with our saving completely disabled still
+showed a large speedup — that part was Apple's, not ours. What we add sits on top
+of it.
+
+Not finished: this does not help the *first* run, which is where most of the
+stutter a player notices comes from. That half belongs to Apple's cache.
 
 ## Cutscene video
 **35%**
@@ -307,14 +353,27 @@ Not finished: the decoder isn't yet connected to the route a game actually asks
 through, so a game still gets a clear refusal rather than a picture.
 
 ## Older DirectX versions
-**0%** — just added
+**35%**
 
 DirectX 9 and earlier, for the back catalogue. Cheaper to reach than DirectX 12,
 because the translation layer we already use ships a DirectX 9 implementation —
 it mostly needs connecting to the bridge that's already built.
 
+**A DirectX 9 program now puts a frame on screen.** The colours it asked for are
+read back from the display and checked value by value.
+
+Two things stood in the way, and neither was what you'd guess. DirectX 9 asks the
+system to list *monitors* rather than graphics cards, and that particular question
+had never been answered here — so the program was told there were no display
+devices at all and gave up. And the graphics layer was asking Apple's driver for
+a capability Metal simply does not have, which made every attempt to open a device
+fail. It now asks only for what the machine reports.
+
+Not finished: nothing is *drawn* yet — the frame is cleared and presented, with no
+shapes or textures. DirectX 8 and DirectDraw are untouched.
+
 ## Anti-cheat
-**0%** — just added, deliberately narrow
+**0%**, deliberately narrow
 
 Some multiplayer games refuse to run unless their anti-cheat is satisfied. There
 are two kinds, and only one is reachable.
