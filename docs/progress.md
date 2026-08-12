@@ -228,6 +228,28 @@ DirectX 9 and earlier, for the back catalogue. Cheaper to reach than DirectX 12,
 because the translation layer we already use ships a DirectX 9 implementation —
 it mostly needs connecting to the bridge that's already built.
 
+## Anti-cheat
+**0%** — just added, deliberately narrow
+
+Some multiplayer games refuse to run unless their anti-cheat is satisfied. There
+are two kinds, and only one is reachable.
+
+**Kernel-level anti-cheat cannot work** — not here, not under any translation
+layer, on any platform. It needs to load a driver into the operating system
+itself, which is exactly what a translation layer doesn't provide. We won't
+pretend otherwise.
+
+**The other kind can.** Easy Anti-Cheat and BattlEye both shipped a version that
+runs without a kernel driver, because Steam Deck needed it — and publishers opt
+in per game. Our rule is simple and fixed: **we support the games whose
+publishers already turned that on, and we don't chase the ones who haven't.**
+Pursuing a title whose publisher hasn't opted in would mean trying to defeat an
+anti-cheat, which we won't do.
+
+One honest caveat: that opt-in shipped as Linux software, and there's no Mac
+equivalent today. Whether it can be made to work here is an open question we'll
+answer with evidence, not optimism — and if the answer is no, we'll say so.
+
 ---
 
 ## How the two headline numbers differ
