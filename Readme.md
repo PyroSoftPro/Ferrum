@@ -40,7 +40,7 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 
 <!--progress-->
 <p align="center">
-  <img src="docs/assets/progress.69888332.svg" width="100%" alt="Ferrum progress — 66% toward playable gameplay, 78% of the substrate, 657 checks passing">
+  <img src="docs/assets/progress.ffe3ca8d.svg" width="100%" alt="Ferrum progress — 67% toward playable gameplay, 79% of the substrate, 657 checks passing">
 </p>
 
 <table>
@@ -95,14 +95,14 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 <td width="12%" align="right"><b>52%</b></td>
 </tr>
 <tr>
+<td width="30%"><a href="docs/progress.md#32-bit-games">32-bit games</a></td>
+<td width="58%"><a href="docs/progress.md#32-bit-games"><img src="docs/assets/bars/wow64.ec903240.svg" width="320" height="14" alt="40 percent"></a></td>
+<td width="12%" align="right"><b>40%</b></td>
+</tr>
+<tr>
 <td width="30%"><a href="docs/progress.md#cutscene-video">Cutscene video</a></td>
 <td width="58%"><a href="docs/progress.md#cutscene-video"><img src="docs/assets/bars/video.9d8c21c8.svg" width="320" height="14" alt="35 percent"></a></td>
 <td width="12%" align="right"><b>35%</b></td>
-</tr>
-<tr>
-<td width="30%"><a href="docs/progress.md#32-bit-games">32-bit games</a></td>
-<td width="58%"><a href="docs/progress.md#32-bit-games"><img src="docs/assets/bars/wow64.5e671e24.svg" width="320" height="14" alt="24 percent"></a></td>
-<td width="12%" align="right"><b>24%</b></td>
 </tr>
 <tr>
 <td width="30%"><a href="docs/progress.md#directx-12">DirectX 12</a></td>

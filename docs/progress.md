@@ -210,7 +210,7 @@ couple of older DirectX 12 features, so those specific effects will never have a
 floor here. Everything else is work, not a wall.
 
 ## 32-bit games
-**24%**
+**40%**
 
 Older Windows games — roughly anything before 2015, plus a great many indies —
 are 32-bit. Apple removed 32-bit support from macOS entirely, and Rosetta never
@@ -232,8 +232,28 @@ The adjustment is free — the processor does it as part of the instruction that
 reads memory — and it also fixes something the old approach got quietly wrong at
 the very top of the range.
 
-Not finished: the loader does not yet place a 32-bit program into that region, so
-no 32-bit game has run end to end.
+**That is now connected end to end, and the wall is gone.** A 32-bit program can
+do arithmetic on its own pointers — stepping through an array, reaching a field
+inside a structure, the most ordinary thing code does — and read what it points
+at. Until now that was the exact operation that failed, because a 32-bit
+addition cannot carry the extra bits a large address needs.
+
+The test insists on the pointer itself, not just the values fetched, since the
+right values with a wrong pointer would mean the reads happened to work. And it
+is checked both ways: with the relocation switched off, the old failure is still
+precisely where it was, so the result measures the fix rather than a test that
+got easier.
+
+Two faults were found on the way, both of the kind this page's rule is about.
+Some memory instructions take their address in a form that cannot carry the
+adjustment, and they had been overlooked because they *also* use a form that
+can. And the part that decides whether a piece of memory holds runnable code was
+asking about the wrong address, so every page looked unrunnable and programs
+stopped after a single instruction.
+
+Not finished: the loader does not yet place a real 32-bit program into that
+region, so no 32-bit game has run end to end. That is loading work now, not an
+address-space question.
 
 ## Controllers
 **70%**
