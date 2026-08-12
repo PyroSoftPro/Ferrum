@@ -68,9 +68,21 @@ separately — see the [licence](../LICENSE) or write to **contact@mikethetech.c
 
 ## What about anti-cheat?
 
-Kernel-level anti-cheat does not work under any translation layer, on any platform,
-and won't work here. That's a decision made by the anti-cheat vendors, not a
-technical gap on our side.
+Two kinds, and the distinction matters.
+
+**Kernel-level anti-cheat** does not work under any translation layer, on any
+platform, and won't work here. It loads a driver into the operating system
+itself — precisely what a translation layer isn't.
+
+**The user-mode kind can.** Easy Anti-Cheat and BattlEye both ship a version that
+runs without a kernel driver, and publishers enable it per game — that's how it
+works on Steam Deck. Our rule: **we support titles whose publishers already
+enabled it, and we don't chase the ones who haven't.** Going after a title that
+hasn't opted in would mean trying to defeat an anti-cheat, and we won't.
+
+It's on the roadmap, not working yet, and there's a real open question: that
+opt-in shipped as Linux software with no Mac equivalent. We'll answer it with
+evidence and report either way.
 
 ## Which Macs?
 
