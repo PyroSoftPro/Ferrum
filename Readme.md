@@ -40,7 +40,7 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 
 <!--progress-->
 <p align="center">
-  <img src="docs/assets/progress.1488bd02.svg" width="100%" alt="Ferrum progress — 60% toward playable gameplay, 70% of the substrate, 552 checks passing">
+  <img src="docs/assets/progress.29a77efe.svg" width="100%" alt="Ferrum progress — 62% toward playable gameplay, 71% of the substrate, 597 checks passing">
 </p>
 
 <table>
@@ -65,14 +65,19 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 <td width="12%" align="right"><b>90%</b></td>
 </tr>
 <tr>
+<td width="30%"><a href="docs/progress.md#speed">Speed</a></td>
+<td width="58%"><a href="docs/progress.md#speed"><img src="docs/assets/bars/speed.24ecf896.svg" width="320" height="14" alt="90 percent"></a></td>
+<td width="12%" align="right"><b>90%</b></td>
+</tr>
+<tr>
 <td width="30%"><a href="docs/progress.md#drawing-to-the-screen">Drawing to the screen</a></td>
 <td width="58%"><a href="docs/progress.md#drawing-to-the-screen"><img src="docs/assets/bars/pixels.26dfa9e1.svg" width="320" height="14" alt="88 percent"></a></td>
 <td width="12%" align="right"><b>88%</b></td>
 </tr>
 <tr>
-<td width="30%"><a href="docs/progress.md#speed">Speed</a></td>
-<td width="58%"><a href="docs/progress.md#speed"><img src="docs/assets/bars/speed.3b86a206.svg" width="320" height="14" alt="82 percent"></a></td>
-<td width="12%" align="right"><b>82%</b></td>
+<td width="30%"><a href="docs/progress.md#sound">Sound</a></td>
+<td width="58%"><a href="docs/progress.md#sound"><img src="docs/assets/bars/sound.b7ae5340.svg" width="320" height="14" alt="78 percent"></a></td>
+<td width="12%" align="right"><b>78%</b></td>
 </tr>
 <tr>
 <td width="30%"><a href="docs/progress.md#2-d-drawing-for-menus-and-huds">2-D drawing (menus, HUD)</a></td>
@@ -80,14 +85,14 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 <td width="12%" align="right"><b>74%</b></td>
 </tr>
 <tr>
-<td width="30%"><a href="docs/progress.md#sound">Sound</a></td>
-<td width="58%"><a href="docs/progress.md#sound"><img src="docs/assets/bars/sound.88440534.svg" width="320" height="14" alt="55 percent"></a></td>
-<td width="12%" align="right"><b>55%</b></td>
-</tr>
-<tr>
 <td width="30%"><a href="docs/progress.md#installers-and-saves">Installers and saves</a></td>
 <td width="58%"><a href="docs/progress.md#installers-and-saves"><img src="docs/assets/bars/installers.68cc9392.svg" width="320" height="14" alt="52 percent"></a></td>
 <td width="12%" align="right"><b>52%</b></td>
+</tr>
+<tr>
+<td width="30%"><a href="docs/progress.md#cutscene-video">Cutscene video</a></td>
+<td width="58%"><a href="docs/progress.md#cutscene-video"><img src="docs/assets/bars/video.9d8c21c8.svg" width="320" height="14" alt="35 percent"></a></td>
+<td width="12%" align="right"><b>35%</b></td>
 </tr>
 <tr>
 <td width="30%"><a href="docs/progress.md#directx-12">DirectX 12</a></td>
@@ -110,11 +115,6 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 <td width="12%" align="right"><b>0%</b></td>
 </tr>
 <tr>
-<td width="30%"><a href="docs/progress.md#cutscene-video">Cutscene video</a></td>
-<td width="58%"><a href="docs/progress.md#cutscene-video"><img src="docs/assets/bars/video.e9b1eaac.svg" width="320" height="14" alt="0 percent"></a></td>
-<td width="12%" align="right"><b>0%</b></td>
-</tr>
-<tr>
 <td width="30%"><a href="docs/progress.md#older-directx-versions">Older DirectX versions</a></td>
 <td width="58%"><a href="docs/progress.md#older-directx-versions"><img src="docs/assets/bars/d3d9.e9b1eaac.svg" width="320" height="14" alt="0 percent"></a></td>
 <td width="12%" align="right"><b>0%</b></td>
@@ -126,7 +126,7 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 </tr>
 </table>
 
-<sub>Every row links to <a href="docs/progress.md">what earned that number</a> — in plain English, no code. Orange is the critical path to a game running. <b>552 automated checks</b> pass; each one fails if its capability is removed.</sub><!--/progress-->
+<sub>Every row links to <a href="docs/progress.md">what earned that number</a> — in plain English, no code. Orange is the critical path to a game running. <b>597 automated checks</b> pass; each one fails if its capability is removed.</sub><!--/progress-->
 
 Real DXVK runs on this port and creates an **`ID3D11Device` at feature level 11_0**.
 A **GPU-rendered frame reaches a real macOS window** through a genuine
