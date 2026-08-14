@@ -1,6 +1,6 @@
 # What's behind each number
 
-The chart on the front page isn't a vibe. It now tracks **sixteen** areas — seven were added on 2026-08-12 (DirectX 12, 32-bit games, controllers, shader stutter, cutscene video, older DirectX, and anti-cheat for titles whose publishers already support Linux). Adding them **lowered** the headline number, because they start at zero and the total is fixed at 100. Nothing got worse; we're counting more. Each bar has a fixed weight decided in
+The chart on the front page isn't a vibe. It now tracks **fifteen** areas — six were added on 2026-08-12 (DirectX 12, 32-bit games, controllers, shader stutter, cutscene video, older DirectX). Anti-cheat was briefly on the list and was removed on 2026-08-13: it turned out to depend on files only the anti-cheat vendor can publish, and they have not published them, so there is no engineering work to schedule. Adding them **lowered** the headline number, because they start at zero and the total is fixed at 100. Nothing got worse; we're counting more. Each bar has a fixed weight decided in
 advance, and only the completion figure moves — so a bar going up means work
 happened, not that we got optimistic. This page says what that work was.
 
@@ -371,30 +371,6 @@ fail. It now asks only for what the machine reports.
 
 Not finished: nothing is *drawn* yet — the frame is cleared and presented, with no
 shapes or textures. DirectX 8 and DirectDraw are untouched.
-
-## Anti-cheat
-**0%**, deliberately narrow
-
-Some multiplayer games refuse to run unless their anti-cheat is satisfied. There
-are two kinds, and only one is reachable.
-
-**Kernel-level anti-cheat cannot work** — not here, not under any translation
-layer, on any platform. It needs to load a driver into the operating system
-itself, which is exactly what a translation layer doesn't provide. We won't
-pretend otherwise.
-
-**The other kind can.** Easy Anti-Cheat and BattlEye both shipped a version that
-runs without a kernel driver, because Steam Deck needed it — and publishers opt
-in per game. Our rule is simple and fixed: **we support the games whose
-publishers already turned that on, and we don't chase the ones who haven't.**
-Pursuing a title whose publisher hasn't opted in would mean trying to defeat an
-anti-cheat, which we won't do.
-
-One honest caveat: that opt-in shipped as Linux software, and there's no Mac
-equivalent today. Whether it can be made to work here is an open question we'll
-answer with evidence, not optimism — and if the answer is no, we'll say so.
-
----
 
 ## How the two headline numbers differ
 

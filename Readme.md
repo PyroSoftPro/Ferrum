@@ -40,7 +40,7 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 
 <!--progress-->
 <p align="center">
-  <img src="docs/assets/progress.9bcb22eb.svg" width="100%" alt="Ferrum progress — 70% toward playable gameplay, 82% of the substrate, 750 checks passing">
+  <img src="docs/assets/progress.577b2720.svg" width="100%" alt="Ferrum progress — 73% toward playable gameplay, 82% of the substrate, 822 checks passing">
 </p>
 
 <table>
@@ -119,14 +119,9 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 <td width="58%"><a href="docs/progress.md#directx-12"><img src="docs/assets/bars/d3d12.27049d5f.svg" width="320" height="14" alt="15 percent"></a></td>
 <td width="12%" align="right"><b>15%</b></td>
 </tr>
-<tr>
-<td width="30%"><a href="docs/progress.md#anti-cheat">Anti-cheat (Proton-path)</a></td>
-<td width="58%"><a href="docs/progress.md#anti-cheat"><img src="docs/assets/bars/anticheat.e9b1eaac.svg" width="320" height="14" alt="0 percent"></a></td>
-<td width="12%" align="right"><b>0%</b></td>
-</tr>
 </table>
 
-<sub>Every row links to <a href="docs/progress.md">what earned that number</a> — in plain English, no code. Orange is the critical path to a game running. <b>750 automated checks</b> pass; each one fails if its capability is removed.</sub><!--/progress-->
+<sub>Every row links to <a href="docs/progress.md">what earned that number</a> — in plain English, no code. Orange is the critical path to a game running. <b>822 automated checks</b> pass; each one fails if its capability is removed.</sub><!--/progress-->
 
 Real DXVK runs on this port and creates an **`ID3D11Device` at feature level 11_0**.
 A **GPU-rendered frame reaches a real macOS window** through a genuine
