@@ -18,7 +18,7 @@ looked finished and weren't, and were caught exactly that way.
 ---
 
 ## Windows programs run
-**99%**
+**98%**
 
 The foundation: a real Windows program file gets loaded into memory, its
 dependencies resolved, and its code executed.
@@ -35,6 +35,31 @@ graphics and audio — works, and the loaded code runs.
 Not 100% because a couple of rarely-used facilities are still refused. Nothing
 seen so far needs them.
 
+**This number went down, from 99%, and that is the honest result of finding
+something.** Windows lets a library reserve a private slot for per-thread data.
+Two separate pieces of this system were handing out those slot numbers from their
+own counters, neither aware of the other — so both could give out the same one.
+That is exactly what happens when Hollow Knight loads the runtime its game code
+is written in: it is handed a slot another component already owns, and reads the
+wrong memory. What it finds there happens to look like "this thread is already
+set up", so the real setup is skipped, and it stops a moment later insisting that
+the thread it is running on does not exist.
+
+That was proven rather than guessed — down to reading the exact instruction the
+program did not take, and to a number in the diagnostic that could only have come
+from the runtime's own file on disk.
+
+**That is now fixed, and the number has come back up.** The repair went in and the
+collision is gone — the game no longer reads the wrong memory, and the assertion
+that had stopped it for dozens of milestones is absent from every run. Along the
+way the earlier plan for "the second part" turned out not to exist: the real
+system never used the mechanism it assumed, so reading the actual bytes replaced a
+guess with a fact. With this cleared, Hollow Knight now runs all the way through
+its engine startup — graphics device, physics, and input all come up — and stops
+later, on a different thing (see *Sound*). The number is 98 rather than 100
+because a few rarely-used facilities are still refused and the very last stretch of
+startup isn't finished.
+
 ## Game windows and input
 **90%**
 
@@ -46,7 +71,7 @@ Not finished: mouse capture, the thing that keeps the cursor locked to the windo
 while you look around in a first-person game, and international text input.
 
 ## 2-D drawing for menus and HUDs
-**74%**
+**80%**
 
 The flat drawing games use for interface elements — health bars, inventory
 screens, subtitles, loading screens — rather than the 3-D world.
@@ -70,11 +95,25 @@ kind of fault that shows up as flicker rather than as an error. A seventh handed
 back an error code where a font was expected, and it passed every check anyone
 had thought to write, because the check was "did we get something back".
 
+The newest piece is the measuring a menu does before it draws: how wide a letter
+is, how tall a line is, how much room a string needs. Four of those answers were
+being given in screen pixels when the program had asked for its own units — which
+is invisible in the ordinary case, where the two happen to be the same, and wrong
+by exactly the scaling factor the moment a game scales its interface. Eleven more
+questions of that kind, previously all refused, are now answered.
+
+One of these deserves singling out, because the test for it had to be built
+against a specific trap. When the driver refuses a request, the refusal is a
+non-zero value — and non-zero is also how Windows says "yes, that worked". So a
+program spacing out text got a confident yes and no spacing. The test therefore
+checks that the ink on the screen actually moved, not that the call returned
+something.
+
 This is the widest surface in the whole project by raw count, which is why the
 number is where it is even now.
 
 ## Drawing to the screen
-**88%**
+**93%**
 
 Getting a finished image onto a real Mac window.
 
@@ -83,6 +122,12 @@ the same presentation path a game uses. That was verified from outside the
 process — two frames drawn in different colours, both read back from the GPU's
 own texture and confirmed to have swapped, and the macOS window server asked
 separately whether the window was actually on screen.
+
+And now the proof that matters most: **a real, modern commercial game presents
+its own frames through this path.** Where every earlier measurement showed a
+game acquiring and presenting zero swapchain images, the game now acquires and
+presents hundreds — its menu is on screen, drawn by its own engine, with no
+Rosetta anywhere in the process.
 
 This number went *down* once. A merge revealed that a whole class of drawing
 surface was being written to and then silently never displayed. Everything looked
@@ -113,7 +158,7 @@ zeros, which is indistinguishable from "your GPU supports nothing" and would hav
 looked plausible for weeks.
 
 ## DirectX 11
-**97%**
+**98%**
 
 The interface games actually draw with. This bar sat at zero for a long time.
 
@@ -128,6 +173,12 @@ frame is presented, and geometry shaded by a real compiler comes out the far end
 — checked pixel by pixel against what DirectX was asked to draw, not by eye and
 not by "it didn't crash". Arbitrary content works, so this is a path rather than
 one hard-coded picture.
+
+And a real game has now drawn through it. A modern commercial title renders its
+menu — thousands of draw calls per run across nearly two hundred render passes —
+once six draw commands it relied on (indexed drawing chief among them) were
+implemented. That was confirmed from a screenshot of the running game, not from a
+return code.
 
 Not finished: compute shaders and the wider set of pixel formats. The remaining
 next milestone that matters.
@@ -169,7 +220,7 @@ Not finished: MIDI, exclusive-mode output, and the older audio interfaces some
 long-lived games still use.
 
 ## Installers and saves
-**52%**
+**60%**
 
 The unglamorous surface: starting other programs, the Windows registry, and file
 system breadth. Games need this to install, to find their settings, and to write
@@ -186,13 +237,28 @@ talking about the same thing. Without it, two components asking for the same
 shared resource would each get their own — while everything visible reported that
 it worked.
 
-This is the least finished area and it's deliberate. It's breadth work, it's well
-understood, and it doesn't block the graphics milestones ahead of it.
+Two things landed since. Renaming a file now works, which sounds minor until you
+know that it is how nearly every game saves: write the new save under a temporary
+name, then rename it over the old one, so a crash mid-write cannot destroy a
+save. Without it that last step silently failed.
+
+And the settings store and the file system now report, at the end of a run,
+exactly what a program asked for and did not get — naming the full thing
+requested and which part of the program asked. Every other area here already did
+that; these two were the last blind spots.
+
+Reviewing that work turned up two faults in a path nothing tests: a relative
+rename could reach one directory further than it was allowed to, and any filename
+using characters outside the basic Latin set was being mangled.
+
+This is still one of the least finished areas and that's deliberate. It's breadth
+work, it's well understood, and it doesn't block the graphics milestones ahead of
+it. No real installer has been run.
 
 ## DirectX 12
-**15%**
+**35%**
 
-The interface modern big-budget games use. Nothing here works yet; it's on the
+The interface modern big-budget games use. It's on the
 list because it's where the industry is, and because the commercial Mac
 alternative's Apple-Silicon build doesn't have it either. Getting there means
 routing DirectX 12 through the same Vulkan bridge that already carries DirectX 11
@@ -205,12 +271,29 @@ feature** — not the several that a translation layer like ours would normally 
 expected to fail. The demanding capabilities everyone assumes are the problem
 turned out to be present.
 
+Since then the list of missing pieces was finished — it was a short, named list
+rather than an open question — and the result is the milestone this section was
+waiting for: **a DirectX 12 device now exists.** Every previous measurement,
+including the ones taken after we'd patched the translation layer, came back with
+no device at all. A game asking for one now gets one.
+
+That is the gateway, not the picture. The device comes back at the older of the
+two capability levels a game can ask for; the newer one still refuses. Nothing
+has been drawn through it yet, and neither the screen path nor command execution
+has been proven.
+
+A wrinkle worth recording, because it nearly hid the result: four of the five
+tests written to confirm this were checking for the *absence* of a function's
+name in the program's output — but the system ends every run by listing the
+functions it successfully used. So those tests failed precisely because the work
+succeeded. They now check the one place a name means "refused".
+
 Two limits are permanent and worth stating: Apple's Metal has no equivalent for a
 couple of older DirectX 12 features, so those specific effects will never have a
 floor here. Everything else is work, not a wall.
 
 ## 32-bit games
-**55%**
+**70%**
 
 Older Windows games — roughly anything before 2015, plus a great many indies —
 are 32-bit. Apple removed 32-bit support from macOS entirely, and Rosetta never
@@ -265,9 +348,18 @@ the lower half of the two numbers happens to look identical.
 Also fixed: the 64-bit atomic compare-and-swap that older 32-bit code uses for
 thread safety. It had been left deliberately failing rather than guessing.
 
-Not finished: a 32-bit program cannot yet call into Windows' own libraries. The
-obstacle is specific — the calling convention needs an argument count that
-simply is not recorded anywhere in the file — so it needs a table, not a fix.
+That obstacle is now solved. A 32-bit program can call into Windows' own
+libraries. The problem was real and specific: the calling convention needs to
+know how many bytes of arguments to discard, and that number is nowhere in the
+file — the name a program asks for has been stripped of it. So it is declared in
+a table, and because a table is exactly the sort of thing that can be quietly
+wrong, every entry is checked three independent ways: against the compiler
+toolchain's own libraries, against the stack the running program actually leaves
+behind, and against whether the answers come out right.
+
+Not finished: only six functions are declared, so a real game runs into an
+unknown-name refusal almost immediately. Several pieces a Windows program expects
+to exist are still absent, and no real 32-bit game has run.
 
 ## Controllers
 **80%**
@@ -311,7 +403,7 @@ simulated pad, which exercises every layer except the few lines that read the
 real hardware. That is why this sits at 80 and not higher.
 
 ## Shader stutter
-**40%**
+**55%**
 
 The first time a game shows you a new effect, the graphics translation has to
 build a shader for it — and the game hitches while that happens. It's the single
@@ -332,11 +424,20 @@ a 120x improvement, and a control run with our saving completely disabled still
 showed a large speedup — that part was Apple's, not ours. What we add sits on top
 of it.
 
+The saving now also covers the other kind of shader — the sort games use for
+physics, lighting and post-processing rather than for drawing shapes. That turned
+out to matter for a reason beyond speed: those shaders were not being built at
+all. A game asking for one got nothing back, or got something that ran nothing,
+and neither reported a problem. Repeat runs now do about a fifth of the work,
+which closely matches what the drawing shaders already showed.
+
 Not finished: this does not help the *first* run, which is where most of the
-stutter a player notices comes from. That half belongs to Apple's cache.
+stutter a player notices comes from. That half belongs to Apple's cache. One
+timing claim in this area still has no way to reproduce it, and is marked
+unverified rather than quoted.
 
 ## Cutscene video
-**35%**
+**70%**
 
 Games play video — intros, cutscenes, background footage — through a Windows
 media system that used to be entirely missing here. When a game hit one, it hung
@@ -349,8 +450,19 @@ test that only asks "did I get a frame?". That check also caught a colour error
 that was subtle enough to look right: the picture was recognisable, and the
 greens were wrong.
 
-Not finished: the decoder isn't yet connected to the route a game actually asks
-through, so a game still gets a clear refusal rather than a picture.
+That last gap is now closed: the decoder is connected to the route a game
+actually asks through, and a program reads frames the ordinary way rather than
+getting a refusal. Getting there meant finding a second closed door — even once
+the system agreed it could handle the file, it still handed the work to a
+component this Mac cannot run, unless one specific setting says otherwise.
+
+Setting that one value turned out to cost every program on the machine a little
+work, including ones that never play video at all. A test that counts exactly
+how much work a simple program does noticed, which is what that test is for. It
+is now done only when a video is actually opened.
+
+Not finished: only one video format route is wired, and no game has yet played a
+cutscene from start to finish.
 
 ## Older DirectX versions
 **35%**
