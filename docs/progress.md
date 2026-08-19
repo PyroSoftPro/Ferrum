@@ -342,7 +342,7 @@ intact, never a broken one. This closes the reason three earlier pieces of
 work each had to invent their own workaround for the same missing piece.
 
 ## DirectX 12
-**45%**
+**53%**
 
 The interface modern big-budget games use. It's on the
 list because it's where the industry is, and because the commercial Mac
@@ -393,6 +393,22 @@ machine code rather than guessed at.
 Not yet: this proves one computed result, not drawn pixels — a picture on
 screen through this specific path is the next thing to prove, and no real
 game has exercised it yet.
+
+**And now: the other half — a real draw, not just a computed answer.** The
+previous milestone proved the translation layer could make the GPU compute
+something and hand back the right number. Drawing a picture is a different
+operation with its own setup, and it needed four more small gaps in the
+graphics bridge closed before it would work at all — one of them found only
+because the first three closures still weren't enough: a full attempt came
+back with the GPU doing everything asked of it except actually knowing what
+shape to assemble the triangle from. Closed, and now: a full sequence — bind
+a target, draw into it, copy the result back, wait for it to finish — runs
+end to end and every one of 64 sampled pixels matches an independently
+computed answer, repeatably.
+
+Not yet: still one draw, one very simple picture — not a claim that any
+real game's actual rendering works, and no real game has exercised this
+path.
 
 ## 32-bit games
 **76%**
