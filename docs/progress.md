@@ -243,7 +243,7 @@ Graphics performance under real load is **not measured**, and no number will be
 quoted for it until it is.
 
 ## Sound
-**78%**
+**83%**
 
 Windows audio reaches your speakers through CoreAudio. A program opens an audio
 device, describes the format it wants, and plays — and the output was checked
@@ -257,6 +257,17 @@ program into a playback client.
 
 Not finished: MIDI, exclusive-mode output, and the older audio interfaces some
 long-lived games still use.
+
+**The older interface's exact failure is fixed.** It had been narrowed down
+to a very specific mechanism: a program that opens a background thread to
+manage its audio devices asks that thread to wait for its next instruction,
+and this stack was handing back "nothing to do, give up" immediately instead
+of actually waiting — so the thread quit before any real instruction could
+ever arrive. That's fixed for the kind of thread real programs use for this,
+built on the same waiting mechanism already proven elsewhere in this
+project, and checked twice over on a full run of every other check this
+project has to make sure nothing else moved. Not yet independently confirmed
+against a real program's own audio actually turning on end to end.
 
 ## Installers and saves
 **74%**
