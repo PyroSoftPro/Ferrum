@@ -61,7 +61,7 @@ because a few rarely-used facilities are still refused and the very last stretch
 startup isn't finished.
 
 ## Game windows and input
-**96%**
+**97%**
 
 A Windows program asks for a window and gets a real macOS one. It receives mouse
 and keyboard events through the message loop games actually use, and can move,
@@ -78,6 +78,19 @@ particular build's own Windows library, for reasons outside this driver's
 control; and a "release" call turned out not to route through the mechanism
 its name suggests on this build, so the equivalent, verified-working call is
 used instead.
+
+**A focused investigation into why a real game's title menu wasn't responding
+to keypresses closed five separate, real gaps**: a program asking "am I the
+window the user is typing at" was getting a convincing but wrong answer;
+hiding/showing the cursor could get stuck in a loop that never ends; every
+input event was timestamped as having happened at the instant the program
+booted, instead of when it actually occurred; the name this stack reported
+for the keyboard and mouse hardware wasn't in a form real games can parse;
+and switching which window has keyboard focus never told either window it
+happened. All five are real, verified fixes — and none of them turned out to
+be why that particular menu still won't respond to a keypress. That specific
+mystery remains open, with a concrete next lead identified rather than
+abandoned.
 
 Not finished: international text input, and locking the ACTUAL on-screen
 pointer to match — what's done so far is the bookkeeping a game asks for,
