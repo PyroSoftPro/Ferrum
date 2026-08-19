@@ -61,7 +61,7 @@ because a few rarely-used facilities are still refused and the very last stretch
 startup isn't finished.
 
 ## Game windows and input
-**97%**
+**99%**
 
 A Windows program asks for a window and gets a real macOS one. It receives mouse
 and keyboard events through the message loop games actually use, and can move,
@@ -88,16 +88,34 @@ booted, instead of when it actually occurred; the name this stack reported
 for the keyboard and mouse hardware wasn't in a form real games can parse;
 and switching which window has keyboard focus never told either window it
 happened. All five are real, verified fixes — and none of them turned out to
-be why that particular menu still won't respond to a keypress. That specific
-mystery remains open, with a concrete next lead identified rather than
-abandoned.
+be why that particular menu still didn't respond to a keypress.
 
-Not finished: international text input, and locking the ACTUAL on-screen
-pointer to match — what's done so far is the bookkeeping a game asks for,
-not yet the physical cursor obeying it.
+**And then the actual mystery was solved, and the answer was surprising: the
+menu was responding all along — the tool measuring it couldn't see it.** The
+original test compared checksums of the whole screen before and after a
+keypress, which is a fast, cheap way to catch big changes but genuinely
+cannot see a change as small as "one menu item's highlight moved to the
+next one" against a title screen that's already animating. Building a tool
+that could actually look at the picture — not just checksum it — settled it
+immediately: moving the mouse over a different menu item DOES move the
+selection, the arrow keys DO navigate between them, and pressing Enter on
+"Start Game" DOES leave the title screen and reach the real save-file
+selection screen, the same one a player would see. Reproduced three
+separate times on two different builds of the game to be sure it wasn't a
+fluke. **What's left is real but different in kind**: this hasn't been
+tried yet under normal, human-paced play — every test so far has been an
+automated, timed script — and about one run in four the game exits early
+for a reason not yet identified. The wall that looked like it was blocking
+player input is gone; making every run land reliably is the work that's
+left.
+
+Not finished: international text input, locking the ACTUAL on-screen
+pointer to match (what's done so far is the bookkeeping a game asks for,
+not yet the physical cursor obeying it), and a real human-paced play
+session start to finish.
 
 ## 2-D drawing for menus and HUDs
-**84%**
+**90%**
 
 The flat drawing games use for interface elements — health bars, inventory
 screens, subtitles, loading screens — rather than the 3-D world.
@@ -149,6 +167,16 @@ case where asking to "realize" a palette looked like it went one way but
 actually went a completely different one — the two answers happened to look
 similar enough that nothing would have noticed without checking the real
 path byte for byte.
+
+**Shaped windows are the newest piece, and it was the last named gap in this
+whole category.** Some games — splash screens, borderless launchers with
+rounded corners — don't want a plain rectangular window; Windows lets a
+program clip its own window to any shape it likes. Proven on screen, not
+just by a returned success code: a window shaped like an L-shape was
+checked at four points — two inside the L read the game's own picture, and
+the point that's inside the L's bounding box but outside the actual L reads
+back "nothing here," proving the shape is real and not just an approximate
+box.
 
 ## Drawing to the screen
 **97%**
@@ -256,7 +284,7 @@ Graphics performance under real load is **not measured**, and no number will be
 quoted for it until it is.
 
 ## Sound
-**83%**
+**90%**
 
 Windows audio reaches your speakers through CoreAudio. A program opens an audio
 device, describes the format it wants, and plays — and the output was checked
@@ -268,8 +296,20 @@ caught a genuine defect: a call meant to hand out a unique identifier returned
 the *same* one every time, which quietly turned every recording client in the
 program into a playback client.
 
-Not finished: MIDI, exclusive-mode output, and the older audio interfaces some
-long-lived games still use.
+Not finished: MIDI and exclusive-mode output.
+
+**The newer audio interface (XAudio2) now works too, and fixing it fixed
+something bigger than audio.** Most modern Windows games use this interface
+instead of the older DirectSound one, and it turned out to reuse the exact
+same path to CoreAudio DirectSound already proved out — so no new plumbing
+was needed there. The real gap was a single fact this stack had never told
+programs the truth about: whether the processor supports a set of common
+CPU features (the kind almost every modern program checks for at startup).
+It had always answered "no" to all of them, on hardware that genuinely
+supports them all — invisible to DirectSound, which never asks, but fatal
+to XAudio2's own audio-mixing code, which crashed the instant it asked and
+got a wrong answer. Fixed at the root, so any other program asking the same
+question now gets a true answer too, not just XAudio2.
 
 **The older interface's exact failure is fixed.** It had been narrowed down
 to a very specific mechanism: a program that opens a background thread to
