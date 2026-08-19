@@ -61,17 +61,30 @@ because a few rarely-used facilities are still refused and the very last stretch
 startup isn't finished.
 
 ## Game windows and input
-**90%**
+**96%**
 
 A Windows program asks for a window and gets a real macOS one. It receives mouse
 and keyboard events through the message loop games actually use, and can move,
 resize, and repaint.
 
-Not finished: mouse capture, the thing that keeps the cursor locked to the window
-while you look around in a first-person game, and international text input.
+**Mouse capture and cursor locking now both work** — the mechanism a
+first-person game uses to route every mouse movement to itself and keep the
+pointer from wandering off-window while you look around. Both pieces were
+verified against the real thing games actually call, not assumed: one is
+confirmed because the exact request appears, by name, in a real game's own
+list of things it asked this stack for. Two honest limits found along the
+way rather than papered over: one companion API is unreachable through this
+particular build's own Windows library, for reasons outside this driver's
+control; and a "release" call turned out not to route through the mechanism
+its name suggests on this build, so the equivalent, verified-working call is
+used instead.
+
+Not finished: international text input, and locking the ACTUAL on-screen
+pointer to match — what's done so far is the bookkeeping a game asks for,
+not yet the physical cursor obeying it.
 
 ## 2-D drawing for menus and HUDs
-**80%**
+**84%**
 
 The flat drawing games use for interface elements — health bars, inventory
 screens, subtitles, loading screens — rather than the 3-D world.
@@ -112,8 +125,20 @@ something.
 This is the widest surface in the whole project by raw count, which is why the
 number is where it is even now.
 
+**Colour palettes are the newest piece, and the claim that they were untouched
+was double-checked before doing anything** — it turned out still true, unlike
+two neighbouring claims (bitmaps and general visibility) that had quietly
+become out of date from earlier work. Palettes matter for the oldest games on
+the list, the ones built for 256-colour displays. Every piece of this was
+built by reading exactly what a real copy of Windows's own graphics library
+does, not by assumption. That reading paid for itself directly: it caught a
+case where asking to "realize" a palette looked like it went one way but
+actually went a completely different one — the two answers happened to look
+similar enough that nothing would have noticed without checking the real
+path byte for byte.
+
 ## Drawing to the screen
-**93%**
+**97%**
 
 Getting a finished image onto a real Mac window.
 
@@ -134,8 +159,22 @@ surface was being written to and then silently never displayed. Everything looke
 green; nothing was visible. Fixing that, and then connecting a real GPU rendering
 path, is what brought it back up and past where it started.
 
-Not finished: resizing, multiple windows, and syncing to your display's refresh
-rate.
+**Resizing the window and syncing to your display's refresh rate are both done
+now too.** Two real bugs were found and fixed along the way, not invented to
+have something to fix: the query a game makes to ask "how big is my window
+now" was answering from a snapshot taken once, at creation, and never updated
+— so a resized window kept reporting its ORIGINAL size. And the surface a
+game draws into was sized once and never resized again, even though the code
+to resize it already existed and worked; it just was never called a second
+time. Separately, the setting that controls whether frames wait for your
+display's refresh (vsync) was checked and found to already be passed through
+correctly — nothing needed fixing there, so nothing was touched, only made
+easier to verify.
+
+Not finished: multiple windows at once. And nothing here proves what a
+resize or a vsync toggle actually *looks* like — a human watching a real
+window is still the only way to confirm smoothness, and that hasn't
+happened yet.
 
 ## The Vulkan graphics bridge
 **92%**
@@ -220,7 +259,7 @@ Not finished: MIDI, exclusive-mode output, and the older audio interfaces some
 long-lived games still use.
 
 ## Installers and saves
-**60%**
+**74%**
 
 The unglamorous surface: starting other programs, the Windows registry, and file
 system breadth. Games need this to install, to find their settings, and to write
@@ -255,8 +294,31 @@ This is still one of the least finished areas and that's deliberate. It's breadt
 work, it's well understood, and it doesn't block the graphics milestones ahead of
 it. No real installer has been run.
 
+**A game can now find its own per-user data folder.** Windows resolves that
+folder through a lookup keyed by an internal identifier rather than a
+readable name, and this driver hadn't answered that specific lookup — so
+every attempt silently landed on the wrong person's folder instead of an
+honest failure. An earlier, plausible one-line fix was tried, tested against
+the real game, and found not to work — that attempt is kept in the written
+record and marked as retracted rather than erased, because knowing what
+didn't work is worth as much as knowing what did.
+
+**And a game's own settings now survive to the next time it's launched.**
+Until now, the entire Windows settings store this driver provides was rebuilt
+from scratch every single run — a game that saved a choice (a selected
+language, a graphics option) would find that choice gone the moment it
+started again, because there was never really anywhere for it to live between
+runs. The part a real game actually writes to now round-trips through a
+small file of its own, written the instant a change happens rather than
+saved up for later — because a bounded test run here ends abruptly, and
+anything saved "for later" risks never being saved at all. A change is never
+half-written: it's written to a spare file first and only swapped into place
+once that finishes, so an interrupted run leaves the previous good version
+intact, never a broken one. This closes the reason three earlier pieces of
+work each had to invent their own workaround for the same missing piece.
+
 ## DirectX 12
-**35%**
+**45%**
 
 The interface modern big-budget games use. It's on the
 list because it's where the industry is, and because the commercial Mac
@@ -290,10 +352,26 @@ succeeded. They now check the one place a name means "refused".
 
 Two limits are permanent and worth stating: Apple's Metal has no equivalent for a
 couple of older DirectX 12 features, so those specific effects will never have a
-floor here. Everything else is work, not a wall.
+floor here. Everything else is work, not a wall. One of those limits is exactly
+why the newer capability level will never be reached on this hardware — traced
+to a specific missing GPU feature, named plainly rather than left as a mystery.
+
+**And now: the first real command has actually run.** A full sequence — set up
+a resource, tell the GPU to do work on it, wait for that work to finish, and
+read the answer back — executed end to end and came back matching an
+independently computed answer, exactly. That is a different, later kind of
+proof than "a device exists": it shows the translation layer's own
+command-recording code doing real work, not just responding to a setup
+question. Two more small gaps in the graphics bridge were found and closed
+along the way, each pinned down by reading the real translation library's own
+machine code rather than guessed at.
+
+Not yet: this proves one computed result, not drawn pixels — a picture on
+screen through this specific path is the next thing to prove, and no real
+game has exercised it yet.
 
 ## 32-bit games
-**70%**
+**76%**
 
 Older Windows games — roughly anything before 2015, plus a great many indies —
 are 32-bit. Apple removed 32-bit support from macOS entirely, and Rosetta never
@@ -361,8 +439,23 @@ Not finished: only six functions are declared, so a real game runs into an
 unknown-name refusal almost immediately. Several pieces a Windows program expects
 to exist are still absent, and no real 32-bit game has run.
 
+**A program can now see its own process description** — the block Windows
+gives every process describing where it was loaded, what its command line
+was, and where its module list lives. Every field's location was independently
+re-derived from the compiler's own headers rather than assumed, and the
+program's own read of it was checked against itself, not against a value the
+driver told it in advance.
+
+Two further pieces — the order libraries initialize in, and structured
+exception handling — were looked at honestly rather than rushed. Neither
+turned out to be a small fix disguised as a big one: the first has nothing to
+order yet, because nothing here loads a second library today; the second needs
+a way for the translator to call into the program's own handler and get an
+answer back, which doesn't exist for 32-bit code on any path yet. Both are
+scoped for later rather than forced now.
+
 ## Controllers
-**80%**
+**85%**
 
 Gamepad support: the Windows controller interfaces (XInput and DirectInput)
 connected to macOS's own controller framework, so a pad you've paired with your
@@ -400,7 +493,14 @@ leave the pad buzzing on the desk indefinitely.
 ⚠️ **Stated plainly: none of this has been tested on a physical controller**,
 because there isn't one on the development machine. Everything is driven by a
 simulated pad, which exercises every layer except the few lines that read the
-real hardware. That is why this sits at 80 and not higher.
+real hardware.
+
+**The older DirectInput family now has its own path too**, distinct from the
+one above it — pre-2000 games use a different, simpler interface with its own
+identifiers and its own function table, not a smaller version of the modern
+one. Every detail was checked against the reference documentation rather than
+assumed, which caught one place the plan handed off for this work had gotten
+wrong before any code was written.
 
 ## Shader stutter
 **55%**
