@@ -677,6 +677,20 @@ is now done only when a video is actually opened.
 Not finished: only one video format route is wired, and no game has yet played a
 cutscene from start to finish.
 
+**And now the specific reason no game has finished one is known exactly.**
+Hollow Knight's own opening movie is where this got tested for real, and
+for the first time this project read the game's own compiled code instead
+of only watching pixels and log lines. That found something a longer wait
+was never going to fix: the movie is embedded inside a larger game file
+rather than being its own separate file, and this driver's video system
+currently only knows how to open a file by name — handed a piece of a
+larger file instead, it correctly declines rather than pretending. Proven
+separately: the actual video itself, extracted and handed to the decoder
+directly, plays back cleanly — the video codec isn't the problem, only
+that one specific way of pointing at a video. That's now a clear, scoped
+piece of work rather than an open question, but it isn't done yet, so the
+number doesn't move for finding it.
+
 ## Older DirectX versions
 **35%**
 
