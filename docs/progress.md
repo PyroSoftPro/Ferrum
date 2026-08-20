@@ -18,7 +18,7 @@ looked finished and weren't, and were caught exactly that way.
 ---
 
 ## Windows programs run
-**98%**
+**99%**
 
 The foundation: a real Windows program file gets loaded into memory, its
 dependencies resolved, and its code executed.
@@ -56,9 +56,23 @@ way the earlier plan for "the second part" turned out not to exist: the real
 system never used the mechanism it assumed, so reading the actual bytes replaced a
 guess with a fact. With this cleared, Hollow Knight now runs all the way through
 its engine startup — graphics device, physics, and input all come up — and stops
-later, on a different thing (see *Sound*). The number is 98 rather than 100
+later, on a different thing (see *Sound*). The number was 98 rather than 100
 because a few rarely-used facilities are still refused and the very last stretch of
-startup isn't finished.
+startup wasn't finished.
+
+**One more real crash cause is now closed.** Occasionally, about one run in
+four, the whole program would die early for no visible reason. Tracked
+down to a genuine mixup: this stack had inherited a setting meant to turn
+off a feature that only matters for a completely different kind of guest
+program than the ones this project runs, and leaving that feature
+half-enabled let a wild instruction crash the translator itself instead of
+just failing safely, the way a real processor would. Fixed at the root,
+matching how the underlying project handles the identical situation
+elsewhere. Being honest about the limits of this claim: it removes a real
+and previously-unexplained way to crash, but this pass never actually
+caught it happening live, so it can't yet be said to have measurably
+reduced how often that one-in-four failure occurs — that measurement is
+still to be done.
 
 ## Game windows and input
 **99%**
@@ -382,7 +396,7 @@ intact, never a broken one. This closes the reason three earlier pieces of
 work each had to invent their own workaround for the same missing piece.
 
 ## DirectX 12
-**53%**
+**62%**
 
 The interface modern big-budget games use. It's on the
 list because it's where the industry is, and because the commercial Mac
@@ -448,6 +462,25 @@ computed answer, repeatably.
 
 Not yet: still one draw, one very simple picture — not a claim that any
 real game's actual rendering works, and no real game has exercised this
+path.
+
+**And now: a picture that actually uses real game data, not an empty
+shape.** Both milestones above deliberately drew and computed with nothing
+bound to them — no textures, no colors, no numbers a real game would
+actually feed the GPU — specifically to prove the mechanism in isolation
+first. Every real game binds at least something (a transform matrix, a
+color, a texture), and that turned out to need one more small piece: every
+buffer of data handed to the GPU needs its own real address, and this
+stack had never actually given one out, so every buffer silently landed at
+the same placeholder address — invisible with nothing bound, wrong the
+moment two different pieces of data needed two different addresses. Fixed,
+and proven the way this project always proves a claim like this: with the
+bug still present, two buffers holding two different numbers both read
+back as the SAME wrong number; with the fix in place, they read back
+correctly and distinctly, every time.
+
+Not yet: only one kind of binding (a single small value, not a full
+texture), still not a breadth claim, and no real game has exercised this
 path.
 
 ## 32-bit games
