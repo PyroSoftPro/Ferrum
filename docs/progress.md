@@ -650,7 +650,7 @@ timing claim in this area still has no way to reproduce it, and is marked
 unverified rather than quoted.
 
 ## Cutscene video
-**70%**
+**80%**
 
 Games play video — intros, cutscenes, background footage — through a Windows
 media system that used to be entirely missing here. When a game hit one, it hung
@@ -690,6 +690,21 @@ directly, plays back cleanly — the video codec isn't the problem, only
 that one specific way of pointing at a video. That's now a clear, scoped
 piece of work rather than an open question, but it isn't done yet, so the
 number doesn't move for finding it.
+
+**That scoped piece of work is now done, and proven on the real game.**
+The driver can now read a video that lives inside a larger game file by
+asking the game itself to hand over the bytes, piece by piece, through
+the same callback machinery real Windows uses — every detail of that
+machinery verified against the actual system libraries rather than
+guessed. Hollow Knight's real opening movie, which has no file of its
+own, came out of the running game intact: exactly the right size, exactly
+the right dimensions and frame count, byte-for-byte what an independent
+tool says the video should be. Honest limit: the movie still doesn't
+play — solving one door revealed the next one (the system now finds the
+video but can't yet find a converter component it expects to be
+registered, a specific and named gap rather than a mystery). One
+plausible-looking explanation was tested against the real game and ruled
+out, which narrows the next step rather than leaving it open.
 
 ## Older DirectX versions
 **35%**
