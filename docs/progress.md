@@ -650,7 +650,7 @@ timing claim in this area still has no way to reproduce it, and is marked
 unverified rather than quoted.
 
 ## Cutscene video
-**80%**
+**88%**
 
 Games play video — intros, cutscenes, background footage — through a Windows
 media system that used to be entirely missing here. When a game hit one, it hung
@@ -705,6 +705,20 @@ video but can't yet find a converter component it expects to be
 registered, a specific and named gap rather than a mystery). One
 plausible-looking explanation was tested against the real game and ruled
 out, which narrows the next step rather than leaving it open.
+
+**And now the movie actually finishes.** The "converter not found" error
+turned out to be something subtler: the game asks for its video in a very
+specific three-part shape, and this driver had two of the three parts
+wrong at once — each one alone producing the identical error, which is
+exactly why fixing one at a time looked hopeless. With both fixed, the
+game read its entire opening movie start to finish — every one of its 906
+frames, ending at precisely the movie's real duration — and then moved
+itself on to the second movie, exactly what the game's own code was shown
+(two milestones ago) to be structurally unable to do while the video never
+loaded. Honest limits: the picture drawn on screen is still wrong — the
+colors arrive but get arranged in the wrong order, a precisely-measured,
+stable pattern with the likely cause narrowed down — and the test run
+spent all its time inside the movies, so no gameplay yet.
 
 ## Older DirectX versions
 **35%**
