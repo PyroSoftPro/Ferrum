@@ -650,7 +650,7 @@ timing claim in this area still has no way to reproduce it, and is marked
 unverified rather than quoted.
 
 ## Cutscene video
-**88%**
+**93%**
 
 Games play video — intros, cutscenes, background footage — through a Windows
 media system that used to be entirely missing here. When a game hit one, it hung
@@ -719,6 +719,20 @@ loaded. Honest limits: the picture drawn on screen is still wrong — the
 colors arrive but get arranged in the wrong order, a precisely-measured,
 stable pattern with the likely cause narrowed down — and the test run
 spent all its time inside the movies, so no gameplay yet.
+
+**And now the movie draws a real picture.** The garbled pattern turned out
+to be the game receiving compressed color data and reading it with the
+wrong map — diagnosed down to the exact code path in the game engine
+itself, with the mistaken earlier explanation corrected on the record. The
+opening movie now renders full-height, right way up, with real image
+content that matches an independent decode of the same frame to a
+correlation of 0.91. Still honest about what's left: the colors carry a
+green cast (the exact remaining collision is measured and its complete fix
+is a named, scoped component this driver can build), and a first-ever test
+of the cutscene-skip button on a genuinely playing movie came back
+negative — run and reported rather than skipped. The game's complaint
+about missing color information is also gone: the driver now tells it the
+video's true color standard.
 
 ## Older DirectX versions
 **35%**
