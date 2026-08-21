@@ -291,7 +291,7 @@ Not finished: compute shaders and the wider set of pixel formats. The remaining
 next milestone that matters.
 
 ## Speed
-**90%**
+**96%**
 
 Translated code costs about **3.2× the CPU time** of code compiled for Apple
 Silicon directly, measured on work shaped like a real game frame — many small
@@ -309,6 +309,22 @@ Silicon has hardware that can do it directly, which is what Rosetta uses.
 
 Graphics performance under real load is **not measured**, and no number will be
 quoted for it until it is.
+
+**Now it is measured — and the port was never actually slow at computing
+anything.** Real gameplay had been drawing one frame every five seconds.
+Profiling the live game showed the CPU was busy less than a fifth of one
+percent of the time: nearly all of it was WAITING. One driver-wide lock
+was being held across calls that block for the GPU, so everything else
+queued behind it; and a separate, hidden bug made the graphics layer
+rebuild its whole output surface every single frame. Both fixed — and the
+same gameplay scene went from 5 seconds per frame to 26 milliseconds per
+frame: **38 frames per second**, roughly a 200x improvement, confirmed by
+a timer inside the game engine itself that this driver never touches
+(its own internal housekeeping went from nearly a second to 50 ms).
+Honest limits: that's one scene measured, not the whole game; a leftover
+GPU wait that nobody satisfies still spins (now free, not absent); and
+the deeper per-instruction translation cost measured earlier is
+unchanged — this was all waiting, not computing.
 
 ## Sound
 **90%**
@@ -746,6 +762,19 @@ of the cutscene-skip button on a genuinely playing movie came back
 negative — run and reported rather than skipped. The game's complaint
 about missing color information is also gone: the driver now tells it the
 video's true color standard.
+
+**And now: 38 frames per second, and a save you can come back to.** The
+two hardest walls left after the movement test are down. Performance:
+see *Speed* — real gameplay now runs at 38 FPS instead of one frame every
+five seconds. Saves: the game's own save trigger was found in its code and
+walked (pause menu → quit to menu, which saves), and the resulting save
+state is archived and verified restorable — a fresh setup comes back to
+the playable area with no opening movies at all. Every future gameplay
+test now takes minutes instead of an hour and a half. Still honest about
+the rest: no human has yet sat down and played it at human pace (every
+run is scripted automation — and the speedup means those scripts' timing
+needs re-tuning), and reliability is one successful traversal, not a
+measured rate.
 
 **THE KNIGHT MOVES.** The whole chain paid off: the opening movie ends,
 the game advances itself through the second one, and a long test run
