@@ -128,6 +128,19 @@ pointer to match (what's done so far is the bookkeeping a game asks for,
 not yet the physical cursor obeying it), and a real human-paced play
 session start to finish.
 
+**Every remaining navigation mystery turned out to be one defect — and it
+was never this driver's.** Occasional dead keys, a cutscene-skip that
+never fired, test runs tangling in the setup screens: all one mechanism,
+read out of the game's own code. The game repeats a held direction key
+once per rendered frame after eight-tenths of a second — and this port's
+menu frames happen to take almost exactly that long, so whether a key
+registered as one press or several was a coin flip. The driver's own
+delivery was verified clean first. The fix counts a key's hold in rendered
+frames instead of milliseconds, and the measurement went from zero-in-12
+exact outcomes to 12-in-12, then held up live: six keys produced six exact
+menu transitions through the setup screens that had defeated every prior
+attempt.
+
 ## 2-D drawing for menus and HUDs
 **90%**
 
