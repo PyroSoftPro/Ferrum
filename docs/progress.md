@@ -747,6 +747,20 @@ negative — run and reported rather than skipped. The game's complaint
 about missing color information is also gone: the driver now tells it the
 video's true color standard.
 
+**THE KNIGHT MOVES.** The whole chain paid off: the opening movie ends,
+the game advances itself through the second one, and a long test run
+reached the first real playable area — the player character standing in
+the game world with its full interface, in correct color, rendered by the
+same graphics path the rest of the game uses. Then the test this entire
+project exists for: with no input, twenty-four consecutive frame pairs
+show the character exactly still; holding RIGHT moves the character
+through the world; holding LEFT moves it back. Real, controllable
+gameplay, photographed and verified frame by frame. What that is NOT yet:
+human-speed play (every run is scripted automation), a reliability
+guarantee (one full successful traversal, not a rate), or real-time
+performance (instrumented runs draw seconds per frame). Those are the
+remaining distance, and they're work, not walls.
+
 **And now the colors are exactly right.** The named missing component — a
 real video-decoder plugin of the kind Windows expects to find installed —
 was built, and with it in place the game engine takes its intended path
