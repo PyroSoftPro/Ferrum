@@ -40,7 +40,7 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 
 <!--progress-->
 <p align="center">
-  <img src="docs/assets/progress.3e468a0c.svg" width="100%" alt="Ferrum progress — 96% toward playable gameplay, 93% of the substrate, 1403 checks passing">
+  <img src="docs/assets/progress.e737e450.svg" width="100%" alt="Ferrum progress — 96% toward playable gameplay, 93% of the substrate, 1403 checks passing">
 </p>
 
 <table>
@@ -70,6 +70,11 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 <td width="12%" align="right"><b>97%</b></td>
 </tr>
 <tr>
+<td width="30%"><a href="docs/progress.md#sound">Sound</a></td>
+<td width="58%"><a href="docs/progress.md#sound"><img src="docs/assets/bars/sound.203960a4.svg" width="320" height="14" alt="97 percent"></a></td>
+<td width="12%" align="right"><b>97%</b></td>
+</tr>
+<tr>
 <td width="30%"><a href="docs/progress.md#speed">Speed</a></td>
 <td width="58%"><a href="docs/progress.md#speed"><img src="docs/assets/bars/speed.901aabe1.svg" width="320" height="14" alt="96 percent"></a></td>
 <td width="12%" align="right"><b>96%</b></td>
@@ -78,11 +83,6 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 <td width="30%"><a href="docs/progress.md#cutscene-video">Cutscene video</a></td>
 <td width="58%"><a href="docs/progress.md#cutscene-video"><img src="docs/assets/bars/video.901aabe1.svg" width="320" height="14" alt="96 percent"></a></td>
 <td width="12%" align="right"><b>96%</b></td>
-</tr>
-<tr>
-<td width="30%"><a href="docs/progress.md#sound">Sound</a></td>
-<td width="58%"><a href="docs/progress.md#sound"><img src="docs/assets/bars/sound.e5cd68af.svg" width="320" height="14" alt="95 percent"></a></td>
-<td width="12%" align="right"><b>95%</b></td>
 </tr>
 <tr>
 <td width="30%"><a href="docs/progress.md#32-bit-games">32-bit games</a></td>
@@ -96,23 +96,23 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 </tr>
 <tr>
 <td width="30%"><a href="docs/progress.md#controllers">Controllers</a></td>
-<td width="58%"><a href="docs/progress.md#controllers"><img src="docs/assets/bars/pads.232ec8f7.svg" width="320" height="14" alt="85 percent"></a></td>
-<td width="12%" align="right"><b>85%</b></td>
+<td width="58%"><a href="docs/progress.md#controllers"><img src="docs/assets/bars/pads.24ecf896.svg" width="320" height="14" alt="90 percent"></a></td>
+<td width="12%" align="right"><b>90%</b></td>
+</tr>
+<tr>
+<td width="30%"><a href="docs/progress.md#installers-and-saves">Installers and saves</a></td>
+<td width="58%"><a href="docs/progress.md#installers-and-saves"><img src="docs/assets/bars/installers.6e005eaf.svg" width="320" height="14" alt="88 percent"></a></td>
+<td width="12%" align="right"><b>88%</b></td>
+</tr>
+<tr>
+<td width="30%"><a href="docs/progress.md#directx-12">DirectX 12</a></td>
+<td width="58%"><a href="docs/progress.md#directx-12"><img src="docs/assets/bars/d3d12.925f7c98.svg" width="320" height="14" alt="80 percent"></a></td>
+<td width="12%" align="right"><b>80%</b></td>
 </tr>
 <tr>
 <td width="30%"><a href="docs/progress.md#shader-stutter">Shader stutter</a></td>
 <td width="58%"><a href="docs/progress.md#shader-stutter"><img src="docs/assets/bars/shaders.f77c1074.svg" width="320" height="14" alt="75 percent"></a></td>
 <td width="12%" align="right"><b>75%</b></td>
-</tr>
-<tr>
-<td width="30%"><a href="docs/progress.md#installers-and-saves">Installers and saves</a></td>
-<td width="58%"><a href="docs/progress.md#installers-and-saves"><img src="docs/assets/bars/installers.6a657759.svg" width="320" height="14" alt="74 percent"></a></td>
-<td width="12%" align="right"><b>74%</b></td>
-</tr>
-<tr>
-<td width="30%"><a href="docs/progress.md#directx-12">DirectX 12</a></td>
-<td width="58%"><a href="docs/progress.md#directx-12"><img src="docs/assets/bars/d3d12.dcb52bfc.svg" width="320" height="14" alt="74 percent"></a></td>
-<td width="12%" align="right"><b>74%</b></td>
 </tr>
 <tr>
 <td width="30%"><a href="docs/progress.md#older-directx-versions">Older DirectX versions</a></td>

@@ -337,7 +337,7 @@ the deeper per-instruction translation cost measured earlier is
 unchanged — this was all waiting, not computing.
 
 ## Sound
-**95%**
+**97%**
 
 Windows audio reaches your speakers through CoreAudio. A program opens an audio
 device, describes the format it wants, and plays — and the output was checked
@@ -383,7 +383,7 @@ audio path that doesn't work yet was traced to its real cause — a missing
 window class, not the audio machinery — and is waiting on that.
 
 ## Installers and saves
-**74%**
+**88%**
 
 The unglamorous surface: starting other programs, the Windows registry, and file
 system breadth. Games need this to install, to find their settings, and to write
@@ -443,7 +443,7 @@ work each had to invent their own workaround for the same missing piece.
 
 
 ## DirectX 12
-**74%**
+**80%**
 
 The interface modern big-budget games use. It's on the
 list because it's where the industry is, and because the commercial Mac
@@ -635,7 +635,7 @@ answer back, which doesn't exist for 32-bit code on any path yet. Both are
 scoped for later rather than forced now.
 
 ## Controllers
-**85%**
+**90%**
 
 Gamepad support: the Windows controller interfaces (XInput and DirectInput)
 connected to macOS's own controller framework, so a pad you've paired with your
