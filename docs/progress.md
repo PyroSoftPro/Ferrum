@@ -763,6 +763,22 @@ negative — run and reported rather than skipped. The game's complaint
 about missing color information is also gone: the driver now tells it the
 video's true color standard.
 
+**The first attempt to leave the starting room didn't — and the failure
+was measured down to the cause.** Three runs walked and jumped for two
+minutes each; frames minutes apart matched pixel-for-pixel, because the
+Knight crosses the room in three seconds and then jumps against a wall.
+Reading the game's own level data for the first time gave the answer: the
+exit is up a ledge, not along the floor, and the saved character has no
+special moves yet, so a plain jump must reach it. The recipe is re-aimed.
+Separately, the attack misses split into two causes: most are the game's
+own rules declining a press it provably received; a small fraction (~8%)
+is this driver's — a press delivered while the game's frame clock and
+message loop both briefly stood still, now directly observed and counted
+for the first time. And a years-old safety switch that silenced GPU-event
+logging turned out to have been working around the bug fixed two
+milestones ago; lifting it removes 99% of the noise from every real-game
+log.
+
 **And now it's a rate, not a one-off — and the Knight jumps.** Five
 independent runs from the archived save, each restoring straight into the
 playable area with no movies, each walking the Knight left and right on
