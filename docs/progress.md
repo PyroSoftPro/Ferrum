@@ -763,6 +763,22 @@ negative — run and reported rather than skipped. The game's complaint
 about missing color information is also gone: the driver now tells it the
 video's true color standard.
 
+**And now it's a rate, not a one-off — and the Knight jumps.** Five
+independent runs from the archived save, each restoring straight into the
+playable area with no movies, each walking the Knight left and right on
+command with every no-input control showing zero motion: five for five.
+Jumping was tested for the first time and works — a full arc up and back
+down, frame by frame. Attacking works three times in five; the two misses
+are real and were narrowed to the game not acting on a key it provably
+received, not to the key failing to arrive. Every timing number in the
+test scripts was re-derived for the new frame rate (and it turns out a
+"safe" hold is a range that shifts under machine load, not a single
+value). Four bugs fixed on the way — including a key table that only knew
+the menu keys, which would have sent jump and attack as nothing while the
+log swore they were delivered. Still honest: nobody has played this by
+hand yet, the Knight hasn't yet been walked out of the first area, and
+the attack miss is unexplained.
+
 **And now: 38 frames per second, and a save you can come back to.** The
 two hardest walls left after the movement test are down. Performance:
 see *Speed* — real gameplay now runs at 38 FPS instead of one frame every
