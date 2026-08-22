@@ -245,7 +245,7 @@ window is still the only way to confirm smoothness, and that hasn't
 happened yet.
 
 ## The Vulkan graphics bridge
-**92%**
+**97%**
 
 Vulkan is the modern graphics interface DXVK speaks. Apple doesn't support it
 directly; MoltenVK translates it to Metal. This bar is the plumbing that carries
@@ -263,6 +263,16 @@ A specific proof point: the capabilities DXVK reads back are *mixed* — some
 supported, some not. If the bridge were subtly broken it would have returned all
 zeros, which is indistinguishable from "your GPU supports nothing" and would have
 looked plausible for weeks.
+
+**The real game's own list of missing graphics calls is now empty.** Every
+time a game runs, the driver writes down the calls it was asked for and
+couldn't answer; that list, for both the flagship game and every DirectX
+12 test, is now blank. Alongside it, the four long-named gaps closed:
+GPU queries (including a test that reproduces the exact hang a game's
+"is this object visible yet?" loop would have hit, then shows it fixed),
+the fast-path descriptor mechanism, video-format color sampling (exact to
+the byte against a CPU reference), and sparse memory — which this hardware
+genuinely lacks — now declined by name instead of quietly.
 
 ## DirectX 11
 **98%**
@@ -327,7 +337,7 @@ the deeper per-instruction translation cost measured earlier is
 unchanged — this was all waiting, not computing.
 
 ## Sound
-**90%**
+**95%**
 
 Windows audio reaches your speakers through CoreAudio. A program opens an audio
 device, describes the format it wants, and plays — and the output was checked
@@ -364,6 +374,13 @@ built on the same waiting mechanism already proven elsewhere in this
 project, and checked twice over on a full run of every other check this
 project has to make sure nothing else moved. Not yet independently confirmed
 against a real program's own audio actually turning on end to end.
+
+**MIDI now plays, and the last audio gaps are answered.** Music through the
+MIDI interface (older games' soundtracks) now sounds — a real note played
+and was measured coming out. Exclusive-mode audio is answered exactly the
+way the underlying compatibility layer answers it. And the one remaining
+audio path that doesn't work yet was traced to its real cause — a missing
+window class, not the audio machinery — and is waiting on that.
 
 ## Installers and saves
 **74%**
@@ -424,8 +441,9 @@ once that finishes, so an interrupted run leaves the previous good version
 intact, never a broken one. This closes the reason three earlier pieces of
 work each had to invent their own workaround for the same missing piece.
 
+
 ## DirectX 12
-**62%**
+**74%**
 
 The interface modern big-budget games use. It's on the
 list because it's where the industry is, and because the commercial Mac
@@ -512,8 +530,28 @@ Not yet: only one kind of binding (a single small value, not a full
 texture), still not a breadth claim, and no real game has exercised this
 path.
 
+**And now three binding models, including a real texture.** The two
+other ways a DX12 program hands data to the GPU — direct buffer handles
+with no lookup table at all, and a lookup table carrying four different
+kinds of resource at once — both produce bit-exact results. And the one
+that needed new plumbing: an actual image, uploaded, bound together with
+its sampler, and read by a pixel shader — one missing GPU-copy call,
+recovered by reading the real library's own machine code (where a
+"by-symmetry" guess about its layout would have been wrong), with a
+before/after proof: zero correct pixels before, all 64 after.
+
 ## 32-bit games
-**76%**
+**93%**
+
+**A real 32-bit program now runs, start to finish.** The six Windows
+functions a 32-bit program could call became seventy — each one's calling
+convention taken from the compiler's own libraries rather than guessed,
+with a cross-check that caught a mistake in the first draft of the table.
+A plain 32-bit C program built with the standard toolchain — no tricks,
+normal startup — prints its greeting, runs its shutdown handlers in the
+right order, and exits with the right code; a second program's entire
+output matches a native build byte for byte. What's next: a program that
+loads a second library, which needs a loader piece that doesn't exist yet.
 
 Older Windows games — roughly anything before 2015, plus a great many indies —
 are 32-bit. Apple removed 32-bit support from macOS entirely, and Rosetta never
@@ -645,7 +683,7 @@ assumed, which caught one place the plan handed off for this work had gotten
 wrong before any code was written.
 
 ## Shader stutter
-**55%**
+**75%**
 
 The first time a game shows you a new effect, the graphics translation has to
 build a shader for it — and the game hitches while that happens. It's the single
@@ -677,6 +715,18 @@ Not finished: this does not help the *first* run, which is where most of the
 stutter a player notices comes from. That half belongs to Apple's cache. One
 timing claim in this area still has no way to reproduce it, and is marked
 unverified rather than quoted.
+
+**An honest correction, and a measurement that was already true.** An
+earlier milestone quoted headline timing numbers for which no reproducing
+tool existed. One now does, and the finding is: the mechanism is real
+(Apple's own cache makes a second run 100x faster; redirecting it works
+exactly as claimed), but those specific numbers cannot be reproduced and
+are retracted. Two quirks found on the way — an empty redirected cache is
+slower than no cache, and Apple writes its cache in the background, so a
+"warm" second run taken too soon looks cold — are now built into the
+tests. And the DirectX 12 path, which the record said "cannot reach a
+cache yet," turns out to already get the same second-run saving as
+DirectX 11 — no change needed, just the measurement nobody had taken.
 
 ## Cutscene video
 **96%**
@@ -839,11 +889,19 @@ game's first-run setup screens by a now-identified quirk of how the test
 harness holds keys down, which is the next named fix.
 
 ## Older DirectX versions
-**35%**
+**60%**
 
 DirectX 9 and earlier, for the back catalogue. Cheaper to reach than DirectX 12,
 because the translation layer we already use ships a DirectX 9 implementation —
 it mostly needs connecting to the bridge that's already built.
+
+**A DirectX 9 triangle, at last — and DirectX 8 behind it.** For a long
+time DirectX 9 could clear the screen and show it but never draw a shape;
+now real geometry is drawn and the pixels are checked. DirectX 8 runs
+through Wine's own compatibility layer on top of that, which needed a
+handful of new graphics-bridge pieces (each recovered from the real
+library's machine code). DirectDraw — the oldest of all — is scoped, not
+yet built.
 
 **A DirectX 9 program now puts a frame on screen.** The colours it asked for are
 read back from the display and checked value by value.
