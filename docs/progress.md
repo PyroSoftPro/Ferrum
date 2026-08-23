@@ -6,7 +6,7 @@ happened, not that we got optimistic. This page says what that work was.
 
 Percentages are still a judgement. What isn't a judgement is the checks: every
 capability below has automated tests that fail if the capability disappears.
-There are **1,403** of them and they all pass.
+There are **616** of them and they all pass.
 
 One rule shapes everything here. Software that isn't finished tends to return
 something that *looks* like success — a zero that could mean "no error" or could
