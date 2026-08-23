@@ -40,7 +40,7 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 
 <!--progress-->
 <p align="center">
-  <img src="docs/assets/progress.dd6e3c38.svg" width="100%" alt="Ferrum progress — 96% toward playable gameplay, 93% of the substrate, 1403 checks passing">
+  <img src="docs/assets/progress.b00b1b6a.svg" width="100%" alt="Ferrum progress — 96% toward playable gameplay, 93% of the substrate, 1403 checks passing">
 </p>
 
 <table>

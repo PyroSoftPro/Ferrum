@@ -6,7 +6,7 @@ happened, not that we got optimistic. This page says what that work was.
 
 Percentages are still a judgement. What isn't a judgement is the checks: every
 capability below has automated tests that fail if the capability disappears.
-There are **616** of them and they all pass.
+There are **1403** of them and they all pass.
 
 One rule shapes everything here. Software that isn't finished tends to return
 something that *looks* like success — a zero that could mean "no error" or could
@@ -73,6 +73,21 @@ and previously-unexplained way to crash, but this pass never actually
 caught it happening live, so it can't yet be said to have measurably
 reduced how often that one-in-four failure occurs — that measurement is
 still to be done.
+
+**A Windows program can now launch and wait for a second translated Windows
+program.** This is a real supervised child process, not a fabricated handle:
+the child receives the exact command line, environment, working directory and
+standard streams; suspended creation and resume work; process and thread IDs
+agree on both sides; duplicated handles share the same wait state; and normal
+and crash exits return their exact Windows status. The executable is held and
+loaded through the file descriptor that was validated, so replacing its pathname
+after creation cannot swap in different code. Thirteen focused checks cover the
+working path, refusals, symlink escapes and that replacement race.
+
+This is the first multiprocess substrate, not complete Windows process semantics.
+Arbitrary inherited handles are explicitly refused, and shared services, IPC,
+named objects and full wineserver behavior remain in the native-Wine runtime
+work ahead.
 
 ## Game windows and input
 **99%**
