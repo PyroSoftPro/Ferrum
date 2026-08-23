@@ -130,6 +130,31 @@ A **GPU-rendered frame reaches a real macOS window** through a genuine
 
 Not done: a full game has not been driven end to end yet.
 
+## Product direction
+
+Ferrum is now being developed as a **self-managing, all-in-one compatibility
+product**, not a collection of machine-specific paths and manually installed
+dependencies. The target architecture keeps Wine's host side native ARM64,
+uses FEX only where Windows x86/x64 code needs translation, and chooses the
+best graphics path per API and title rather than forcing every workload through
+one backend.
+
+The package will carry a complete offline open-source baseline. Optional
+components may be acquired by Ferrum itself only from authorized origins, with
+an exact version, digest and publisher/signature verification, explicit terms
+where required, atomic activation, rollback, and offline reuse. D3DMetal is one
+such possible managed component when its authorization permits; an open path
+remains the fallback.
+
+Ferrum's runtime, prefixes, downloads, caches and user data are isolated from
+Bourbon and from every existing Wine installation. No Homebrew, MacPorts,
+`PATH` discovery, manual symlinks, or another product's files are part of the
+customer runtime contract.
+
+This is the selected architecture and delivery policy, not a claim that all of
+it has shipped. See the **[updated roadmap](docs/roadmap.md#direction-update--august-2026)**
+for the implementation order and current boundaries.
+
 Ferrum's source is closed. This repository carries **releases and documentation
 only** — no source code. Development happens in a private repository.
 
@@ -139,7 +164,8 @@ only** — no source code. Development happens in a private repository.
 - **[Questions people actually ask](docs/faq.md)** — will my games work, do I need
   Windows, is it legal, how fast is it
 - **[Progress in detail](docs/progress.md)** — what earned each number on the chart
-- **[Roadmap](docs/roadmap.md)** — what stands up, what doesn't, what's next
+- **[Roadmap](docs/roadmap.md)** — the self-managing architecture, what stands up,
+  what doesn't, and what's next
 
 ## Bourbon 26
 

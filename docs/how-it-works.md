@@ -27,11 +27,15 @@ a 30-year-old open-source project that reimplements the Windows interfaces from
 scratch. No Microsoft code, no Windows licence, no piracy — Wine is the reason any
 of this is legal and the reason it works at all.
 
-**3. The graphics.** Games talk DirectX. Macs speak Metal. In between sits
-[DXVK](https://github.com/doitsujin/dxvk), which turns DirectX into Vulkan, and
-[MoltenVK](https://github.com/KhronosGroup/MoltenVK), which turns Vulkan into Metal.
-Ferrum's job is to carry those conversations across the boundary intact — which
-turns out to be most of the work.
+**3. The graphics.** Games talk several generations of DirectX, OpenGL or Vulkan;
+Macs speak Metal. Ferrum routes each API through the best maintained path for that
+workload. That can mean a direct Metal translator, or open layers such as
+[DXVK](https://github.com/doitsujin/dxvk), WineD3D,
+[VKD3D](https://gitlab.winehq.org/wine/vkd3d) and
+[MoltenVK](https://github.com/KhronosGroup/MoltenVK). An authorized optional
+component can be managed by Ferrum too, but it cannot replace the offline open
+baseline. Ferrum's job is to carry every conversation across the boundary intact
+and select the route without making the user assemble it.
 
 **4. The window itself.** A game expects a Windows window it can draw into. It gets
 a real macOS window instead, and never notices.
@@ -64,7 +68,7 @@ Ferrum's development a feature appeared to work and didn't, and was caught only
 because a test insisted on the actual measured value rather than the absence of a
 crash.
 
-There are currently **415** such checks. They all pass.
+There are currently **1,403** such checks. They all pass.
 
 ## What Ferrum is not
 
