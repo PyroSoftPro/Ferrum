@@ -139,6 +139,23 @@ production change was rejected and reverted byte-for-byte. The result table is
 unchanged. This is the intended acceptance rule: a plausible code-shape idea is
 not a speed milestone until measurement says it is one.
 
+## Sequential-memory attribution follow-up
+
+An exact-byte compile witness now ties the table's 4 MiB read/write loops to
+Ferrum's IR and Apple AArch64 output in four modes. Ferrum is already selecting
+LRCPC2 and folding signed offsets; that mode emits 33 host instructions for the
+read loop and 25 for the write loop. The intentionally unsound TSO-off
+diagnostic emits 29 and 23. The remaining static difference inside Ferrum is
+the ordered `ldapur`/`stlur` access plus one reserved half-barrier patch-slot
+`nop` per guest memory access.
+
+That attributes Ferrum's mechanism; it does not expose either comparator's
+code generator and does not prove that these extra instructions alone explain
+the complete throughput gap. No TSO-off production shortcut has been accepted.
+A reproducible freestanding Store-Buffering/Message-Passing litmus was added as
+the correctness gate for future candidates; translated-route outcomes and a
+quantitative A/B remain pending.
+
 ## Launch diagnostic
 
 Median host launch-to-first complete guest identity record was 27.774 ms for the
