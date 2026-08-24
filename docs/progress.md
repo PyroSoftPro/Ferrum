@@ -45,6 +45,15 @@ from it. The campaign runner is being held behind process-architecture,
 fresh-bottle, no-leftover-process, thermal/load, raw-log, and final-rehash gates.
 The percentages below do not move for measurement infrastructure alone.
 
+**The campaign runner has now cleared independent review.** Its 63 host-side
+tests bind the signed CrossOver launcher and the exact ARM64/FEX and
+x86-64/Rosetta components, reject reused or linked bottles, prove process
+identity across launcher transitions, record architecture from the measured
+process, and re-derive cleanup and result claims from sealed evidence. The same
+suite passed again after integration into the private product branch. The fresh
+three-way measurement and report bundle are still being completed, so there is
+still no published speed winner or compatibility score from this work.
+
 ---
 
 ## Windows programs run
