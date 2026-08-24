@@ -123,6 +123,22 @@ measured patched/baseline throughput of 0.999016x, so no speed win is claimed.
 The useful result is narrower generated code with exact flag-semantics guards;
 further branch work remains open.
 
+## Second optimization follow-up
+
+The next review added a compile-only witness and balanced A/B runner so exact
+x86 bytes can be tied to their FEX IR and Apple AArch64 code shape before a
+performance change is accepted. The measured POPCNT block was already four
+scalar CSSC `cnt` instructions on the Apple host, so no POPCNT production edit
+was made.
+
+A narrower FMA load-pair candidate was tested in three balanced A/B pairs (six
+complete 34-kernel runs). Its candidate/baseline FMA ratios were `0.991624x`,
+`0.991352x`, and `0.991830x`; the aggregate was `0.991624x`. No non-FMA
+aggregate fell below `0.97x`, but the target row did not improve, so the
+production change was rejected and reverted byte-for-byte. The result table is
+unchanged. This is the intended acceptance rule: a plausible code-shape idea is
+not a speed milestone until measurement says it is one.
+
 ## Launch diagnostic
 
 Median host launch-to-first complete guest identity record was 27.774 ms for the
