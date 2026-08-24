@@ -156,6 +156,24 @@ A reproducible freestanding Store-Buffering/Message-Passing litmus was added as
 the correctness gate for future candidates; translated-route outcomes and a
 quantitative A/B remain pending.
 
+## TSO architecture decision follow-up
+
+The first implementation candidate is now a fragment-local, out-of-line
+half-barrier fallback. The intended aligned hot path keeps Ferrum's ordered
+`ldapur`/`stlur` access but removes its adjacent reserved `nop`; an actual
+misalignment would patch that access to branch to a same-fragment fallback that
+performs the same plain access and half barrier used today.
+
+This is an architecture selection, not a merged production optimization and
+not a revised benchmark result. It advances only through a compile/layout
+prototype first. Acceptance requires exact access/register equivalence, direct
+branch and final-layout proof, no normal control-flow entry into fallback code,
+one-shot first-fault replay, concurrent patch idempotence, precise invalid and
+cross-page faults, SMC/code-cache safety, exact SB/MP/MP_MFENCE outcomes,
+randomized A/B, and independent physical-M2 validation. If any semantic gate
+fails, Ferrum retains the current two-word implementation and moves to guarded
+aligned-loop versioning rather than weakening TSO.
+
 ## Launch diagnostic
 
 Median host launch-to-first complete guest identity record was 27.774 ms for the
