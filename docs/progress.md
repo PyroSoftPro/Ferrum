@@ -17,6 +17,36 @@ looked finished and weren't, and were caught exactly that way.
 
 ---
 
+## Three-way performance and compatibility measurement
+
+Ferrum now has a fresh comparison suite built specifically to measure the same
+x86-64 Windows binaries three ways on one Apple Silicon Mac: Ferrum's direct
+Darwin/FEX path, an ARM64 Wine host with FEX, and the same CrossOver Preview
+build's x86-64 Wine host under Rosetta 2. This avoids borrowing another
+project's benchmark source or comparing different executables.
+
+The first exact timing primitive has passed on all three routes. One identical
+Windows executable observed a 10 MHz Windows performance-counter frequency,
+valid return values and sentinels, monotonic samples, and time advancing after
+real work. That proves the three routes can share one self-timed benchmark
+protocol; it is not yet a broad speed result.
+
+The first feature bundle is also complete and independently audited. Its five
+freestanding Win64 executables cover exception delivery, threads and TLS,
+virtual memory and atomics, isolated filesystem and registry behavior, and
+IPv4/IPv6 loopback networking. Together they expose 82 exact assertions. Every
+binary is built twice, must be byte-identical, has its imports and real entry
+point checked directly, and is tied to exact source and tool digests. All 38
+host and artifact checks pass.
+
+What this does **not** claim: the new feature bundle has not yet completed its
+final isolated runtime campaign, and no performance ranking is being published
+from it. The campaign runner is being held behind process-architecture,
+fresh-bottle, no-leftover-process, thermal/load, raw-log, and final-rehash gates.
+The percentages below do not move for measurement infrastructure alone.
+
+---
+
 ## Windows programs run
 **99%**
 

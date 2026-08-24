@@ -47,6 +47,13 @@ and the remote M2, followed by release-package verification.
 5. Sign, notarize and reproduce the complete package on both Macs, including
    fail-closed component download, rollback and offline tests.
 
+The comparison foundation for steps 3 and 4 is now in place: one exact
+self-timed Win64 protocol runs through all three intended CPU routes, and a
+separately audited five-executable feature bundle carries 82 exact assertions
+across core Windows behavior. The final isolated runtime and timing campaigns
+remain pending, so this foundation does not yet change a compatibility or speed
+percentage.
+
 Kernel drivers, vendor anti-cheat and protected DRM remain vendor-controlled
 boundaries. They will not be represented as solved without authorization and
 physical evidence.
