@@ -25,11 +25,21 @@ Darwin/FEX path, an ARM64 Wine host with FEX, and the same CrossOver Preview
 build's x86-64 Wine host under Rosetta 2. This avoids borrowing another
 project's benchmark source or comparing different executables.
 
-The first exact timing primitive has passed on all three routes. One identical
-Windows executable observed a 10 MHz Windows performance-counter frequency,
-valid return values and sentinels, monotonic samples, and time advancing after
-real work. That proves the three routes can share one self-timed benchmark
-protocol; it is not yet a broad speed result.
+The first sealed performance campaign is now complete. It ran 3 route probes and
+18 fresh measured processes on an Apple M5: six each for Ferrum, CrossOver/FEX
+and CrossOver/Rosetta. Every process executed all 34 kernels, with zero feature
+skips, guest failures, timing-floor failures, host-load failures or scoped
+leftovers. The final report and an independent reconstruction match byte for
+byte. [The full method, all 34 medians and the caveats are published
+here](translation-benchmark-2026-08-24.md).
+
+The honest high-level result is broad CPU parity. Against Rosetta's descriptive
+0.8–1.25× band, Ferrum lands inside on 27/34 rows and FEX on 30/34. Ferrum and FEX
+are about 2× Rosetta on the SSE shuffle and 19.80×/12.12× on `rep movsb`; Rosetta
+retains clear leads on POPCNT, predictable branches and FMA. Ferrum's direct
+4 MiB working-set sequential read/write rows are only 0.416×/0.494× Rosetta and
+are now an explicit performance anomaly to investigate. These cache-sensitive
+rows are not a DRAM-bandwidth claim. These are CPU microbenchmarks, not game FPS.
 
 The first feature bundle is also complete and independently audited. Its five
 freestanding Win64 executables cover exception delivery, threads and TLS,
@@ -39,20 +49,21 @@ binary is built twice, must be byte-identical, has its imports and real entry
 point checked directly, and is tied to exact source and tool digests. All 38
 host and artifact checks pass.
 
-What this does **not** claim: the new feature bundle has not yet completed its
-final isolated runtime campaign, and no performance ranking is being published
-from it. The campaign runner is being held behind process-architecture,
-fresh-bottle, no-leftover-process, thermal/load, raw-log, and final-rehash gates.
-The percentages below do not move for measurement infrastructure alone.
+What this does **not** claim: the separate five-executable compatibility bundle
+has not yet completed its own three-route runtime campaign, so there is no full
+compatibility score. Graphics, audio, input and whole-game performance also
+remain outside this CPU result. The percentages below do not move for measurement
+infrastructure alone.
 
-**The campaign runner has now cleared independent review.** Its 63 host-side
+**The campaign runner has cleared independent review and a physical campaign.**
+Its 88 host-side
 tests bind the signed CrossOver launcher and the exact ARM64/FEX and
 x86-64/Rosetta components, reject reused or linked bottles, prove process
-identity across launcher transitions, record architecture from the measured
-process, and re-derive cleanup and result claims from sealed evidence. The same
-suite passed again after integration into the private product branch. The fresh
-three-way measurement and report bundle are still being completed, so there is
-still no published speed winner or compatibility score from this work.
+identity across launcher transitions, record architecture from the three
+excluded route-probe processes, and re-derive cleanup and result claims from
+sealed evidence. All 21 launches passed their applicable gates. The compatibility
+bundle still needs its separate physical campaign before feature rankings are
+published.
 
 ---
 
