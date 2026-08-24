@@ -108,6 +108,21 @@ Route-median variability above 5% remains common, especially on cold and memory
 tests. The large gaps above exceed that noise, but close rows should be rerun on
 more machines and real applications before product decisions depend on them.
 
+## First optimization follow-up
+
+Milestone m1050 folds a one-hot x86 `TEST` followed by `JZ`/`JNZ` to one native
+AArch64 `TBZ`/`TBNZ` when every TEST flag is dead. On the exact
+`branch_predictable` hot block, independent Apple disassembly confirms the host
+shape changed from AND+CMP+B.eq to TBZ: 13 to 11 instructions and 8 bytes
+smaller. The final generated-code matrix passed 15/15 on an Apple M2, including
+six negative controls, and a freestanding semantic PE passed both baseline and
+patched drivers.
+
+This does not revise the table above. An earlier A/B of the same hot-block fold
+measured patched/baseline throughput of 0.999016x, so no speed win is claimed.
+The useful result is narrower generated code with exact flag-semantics guards;
+further branch work remains open.
+
 ## Launch diagnostic
 
 Median host launch-to-first complete guest identity record was 27.774 ms for the

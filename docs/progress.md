@@ -401,6 +401,19 @@ GPU wait that nobody satisfies still spins (now free, not absent); and
 the deeper per-instruction translation cost measured earlier is
 unchanged — this was all waiting, not computing.
 
+**The first post-comparison CPU optimization is now verified, with its limit
+kept explicit.** A common one-bit test followed by a branch now compiles to
+ARM's single test-and-branch instruction when no later code needs the flags.
+On the exact predictable-branch hot block this removes two ARM instructions
+and eight bytes (13 instructions down to 11). Fifteen generated-code cases and
+a separate semantic program passed on the remote M2; cases that still need
+flags, use more than one mask bit, or share the masked value remain unchanged.
+An earlier A/B of the same hot-block fold measured 0.999x, so this is a real
+code-shape and code-size improvement, not a claimed benchmark-score increase.
+POPCNT was also inspected and found already to be four clean hardware count
+instructions; no speculative rewrite was shipped. FMA's repeat loop is the next
+measured target.
+
 ## Sound
 **97%**
 
