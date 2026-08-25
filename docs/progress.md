@@ -17,56 +17,6 @@ looked finished and weren't, and were caught exactly that way.
 
 ---
 
-## Three-way performance and compatibility measurement
-
-Ferrum now has a fresh comparison suite built specifically to measure the same
-x86-64 Windows binaries three ways on one Apple Silicon Mac: Ferrum's direct
-Darwin/FEX path, an ARM64 Wine host with FEX, and the same CrossOver Preview
-build's x86-64 Wine host under Rosetta 2. This avoids borrowing another
-project's benchmark source or comparing different executables.
-
-The first sealed performance campaign is now complete. It ran 3 route probes and
-18 fresh measured processes on an Apple M5: six each for Ferrum, CrossOver/FEX
-and CrossOver/Rosetta. Every process executed all 34 kernels, with zero feature
-skips, guest failures, timing-floor failures, host-load failures or scoped
-leftovers. The final report and an independent reconstruction match byte for
-byte. [The full method, all 34 medians and the caveats are published
-here](translation-benchmark-2026-08-24.md).
-
-The honest high-level result is broad CPU parity. Against Rosetta's descriptive
-0.8–1.25× band, Ferrum lands inside on 27/34 rows and FEX on 30/34. Ferrum and FEX
-are about 2× Rosetta on the SSE shuffle and 19.80×/12.12× on `rep movsb`; Rosetta
-retains clear leads on POPCNT, predictable branches and FMA. Ferrum's direct
-4 MiB working-set sequential read/write rows are only 0.416×/0.494× Rosetta and
-are now an explicit performance anomaly to investigate. These cache-sensitive
-rows are not a DRAM-bandwidth claim. These are CPU microbenchmarks, not game FPS.
-
-The first feature bundle is also complete and independently audited. Its five
-freestanding Win64 executables cover exception delivery, threads and TLS,
-virtual memory and atomics, isolated filesystem and registry behavior, and
-IPv4/IPv6 loopback networking. Together they expose 82 exact assertions. Every
-binary is built twice, must be byte-identical, has its imports and real entry
-point checked directly, and is tied to exact source and tool digests. All 38
-host and artifact checks pass.
-
-What this does **not** claim: the separate five-executable compatibility bundle
-has not yet completed its own three-route runtime campaign, so there is no full
-compatibility score. Graphics, audio, input and whole-game performance also
-remain outside this CPU result. The percentages below do not move for measurement
-infrastructure alone.
-
-**The campaign runner has cleared independent review and a physical campaign.**
-Its 88 host-side
-tests bind the signed CrossOver launcher and the exact ARM64/FEX and
-x86-64/Rosetta components, reject reused or linked bottles, prove process
-identity across launcher transitions, record architecture from the three
-excluded route-probe processes, and re-derive cleanup and result claims from
-sealed evidence. All 21 launches passed their applicable gates. The compatibility
-bundle still needs its separate physical campaign before feature rankings are
-published.
-
----
-
 ## Windows programs run
 **99%**
 
@@ -400,19 +350,6 @@ Honest limits: that's one scene measured, not the whole game; a leftover
 GPU wait that nobody satisfies still spins (now free, not absent); and
 the deeper per-instruction translation cost measured earlier is
 unchanged — this was all waiting, not computing.
-
-**The first post-comparison CPU optimization is now verified, with its limit
-kept explicit.** A common one-bit test followed by a branch now compiles to
-ARM's single test-and-branch instruction when no later code needs the flags.
-On the exact predictable-branch hot block this removes two ARM instructions
-and eight bytes (13 instructions down to 11). Fifteen generated-code cases and
-a separate semantic program passed on the remote M2; cases that still need
-flags, use more than one mask bit, or share the masked value remain unchanged.
-An earlier A/B of the same hot-block fold measured 0.999x, so this is a real
-code-shape and code-size improvement, not a claimed benchmark-score increase.
-POPCNT was also inspected and found already to be four clean hardware count
-instructions; no speculative rewrite was shipped. FMA's repeat loop is the next
-measured target.
 
 ## Sound
 **97%**
