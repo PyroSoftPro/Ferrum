@@ -157,7 +157,7 @@ menu transitions through the setup screens that had defeated every prior
 attempt.
 
 ## 2-D drawing for menus and HUDs
-**90%**
+**94%**
 
 The flat drawing games use for interface elements — health bars, inventory
 screens, subtitles, loading screens — rather than the 3-D world.
@@ -698,7 +698,7 @@ assumed, which caught one place the plan handed off for this work had gotten
 wrong before any code was written.
 
 ## Shader stutter
-**75%**
+**90%**
 
 The first time a game shows you a new effect, the graphics translation has to
 build a shader for it — and the game hitches while that happens. It's the single
