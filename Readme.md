@@ -20,6 +20,50 @@ graphics to [DXVK](https://github.com/doitsujin/dxvk) →
 [MoltenVK](https://github.com/KhronosGroup/MoltenVK) → Metal. Your games keep
 working, on hardware that never had an Intel chip in it.
 
+## What Ferrum adds
+
+Three things Ferrum does that a Rosetta-based stack cannot, each measured rather
+than asserted.
+
+**It executes instructions Rosetta refuses.** The standard AVX detection sequence
+is two steps: `CPUID` asks "does this machine have AVX?", then `XGETBV` asks the
+OS "is it actually enabled?". Rosetta 2 runs AVX2 code perfectly well and then
+raises `STATUS_ILLEGAL_INSTRUCTION` (`0xC000001D`) on the `XGETBV` opcode
+`0F 01 D0` — it refuses the question, not the work. Final Fantasy VII dies exactly
+there, and dies the same way under Apple's own Game Porting Toolkit, so it is not
+a Wine bug and no Wine-side fix reaches it. Ferrum implements the whole
+`CPUID → XGETBV → XSAVE` dispatch and gates it end to end **inside the guest**,
+asserting the exact advertised feature set rather than trusting the host.
+
+**It is not slower.** In a sealed three-way benchmark — Ferrum, CrossOver's ARM64
+Wine with FEX, and the same build's x86-64 Wine under Rosetta 2 — Ferrum places
+first or inside the 1% tie band on **24 of 34** CPU kernels, the most first places
+of the three and the fewest last places. Two results are not close: `rep movsb`
+runs at 80.2 GB/s against Rosetta's 4.0 GB/s, and the dependent SSE shuffle at
+roughly twice Rosetta's speed. Full method, raw numbers and per-cell placement:
+**[the three-way benchmark](docs/translation-benchmark-2026-08-24.md)**.
+
+**It is a component that can be owned.** Rosetta is Apple's, closed, and on its
+way out. Ferrum is FEX (MIT) plus Wine (LGPL) with a macOS backend written for
+this purpose, so its roadmap, its bug fixes and its lifetime are decisions rather
+than announcements.
+
+### Alongside Bourbon, not instead of it
+
+Bourbon's Windows path today runs **x86-64 Wine under Rosetta 2**. That works, and
+it will keep working right up until Rosetta does not. What Ferrum replaces is the
+layer underneath: a native ARM64 host, FEX only where guest x86-64 actually needs
+translating, and a macOS-native NT syscall surface instead of a dependency on
+someone else's Wine build. Bottles, Smart Play, the store bridges and the rest of
+Bourbon are unaffected — they sit above this line.
+
+**Being straight about the current boundary:** Bourbon runs real games today and
+Ferrum does not yet run one end to end. Ferrum boots a real title, renders its
+menus through DXVK and presents frames at the display's refresh rate; it does not
+yet carry a player through a game. The engine is ahead of the product on the parts
+measured above and behind it on finishing a session. Both are true at once, and
+the [status section](#status) tracks which is which.
+
 ## Why "Ferrum"?
 
 **Ferrum** is Latin for [iron](https://en.wikipedia.org/wiki/Iron), whose symbol is
