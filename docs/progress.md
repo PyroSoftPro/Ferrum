@@ -286,8 +286,8 @@ couldn't answer; that list, for both the flagship game and every DirectX
 GPU queries (including a test that reproduces the exact hang a game's
 "is this object visible yet?" loop would have hit, then shows it fixed),
 the fast-path descriptor mechanism, video-format color sampling (exact to
-the byte against a CPU reference), and sparse memory — which this hardware
-genuinely lacks — now declined by name instead of quietly.
+the byte against a CPU reference), and sparse memory — which the Vulkan layer
+reports as unavailable — now declined by name instead of quietly.
 
 ## DirectX 11
 **98%**
@@ -490,11 +490,18 @@ name in the program's output — but the system ends every run by listing the
 functions it successfully used. So those tests failed precisely because the work
 succeeded. They now check the one place a name means "refused".
 
-Two limits are permanent and worth stating: Apple's Metal has no equivalent for a
-couple of older DirectX 12 features, so those specific effects will never have a
-floor here. Everything else is work, not a wall. One of those limits is exactly
-why the newer capability level will never be reached on this hardware — traced
-to a specific missing GPU feature, named plainly rather than left as a mystery.
+One limit is permanent and worth stating: Apple's Metal has no geometry shader
+stage, so the older DirectX 12 features built on it will never have a floor here.
+Everything else is work, not a wall.
+
+A second limit used to be listed beside it, and that was wrong — corrected here
+rather than quietly dropped. The newer capability level is blocked on sparse
+memory, and our own probe traces that to a value the Vulkan translation layer
+hard-codes as unavailable on every Apple GPU. It is not missing hardware: Apple
+Silicon supports sparse textures and Metal exposes them. The gap sits in a
+component we vendor and already patch, not in the machine. Whether it can be
+bridged far enough to reach that capability level is unmeasured, so the level
+stays listed as out of reach — but as unfinished work, not as a wall.
 
 **And now: the first real command has actually run.** A full sequence — set up
 a resource, tell the GPU to do work on it, wait for that work to finish, and
