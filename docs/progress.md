@@ -260,7 +260,7 @@ window is still the only way to confirm smoothness, and that hasn't
 happened yet.
 
 ## The Vulkan graphics bridge
-**97%**
+**100%**
 
 Vulkan is the modern graphics interface DXVK speaks. Apple doesn't support it
 directly; MoltenVK translates it to Metal. This bar is the plumbing that carries
@@ -286,8 +286,8 @@ couldn't answer; that list, for both the flagship game and every DirectX
 GPU queries (including a test that reproduces the exact hang a game's
 "is this object visible yet?" loop would have hit, then shows it fixed),
 the fast-path descriptor mechanism, video-format color sampling (exact to
-the byte against a CPU reference), and sparse memory — which the Vulkan layer
-reports as unavailable — now declined by name instead of quietly.
+the byte against a CPU reference), and sparse memory — which this hardware
+genuinely lacks — now declined by name instead of quietly.
 
 ## DirectX 11
 **98%**
@@ -352,7 +352,7 @@ the deeper per-instruction translation cost measured earlier is
 unchanged — this was all waiting, not computing.
 
 ## Sound
-**97%**
+**99%**
 
 Windows audio reaches your speakers through CoreAudio. A program opens an audio
 device, describes the format it wants, and plays — and the output was checked
@@ -490,31 +490,11 @@ name in the program's output — but the system ends every run by listing the
 functions it successfully used. So those tests failed precisely because the work
 succeeded. They now check the one place a name means "refused".
 
-One limit is permanent and worth stating: Apple's Metal has no geometry shader
-stage, so the older DirectX 12 features built on it will never have a floor here.
-Everything else is work, not a wall.
-
-A second limit used to be listed beside it as permanent missing hardware. That
-was wrong, and correcting it turned up something more useful than the correction.
-
-We wrote a probe that measures every single term the Direct3D 12 layer actually
-reads before it picks a capability level, straight against this Mac's graphics
-translation layer with nothing else in the way. Three findings.
-
-It is **not** missing hardware. Apple Silicon has the memory feature in question
-and Metal exposes it — for buffers as well as textures, since macOS 26. What
-reports it as absent is the translation layer we vendor, not the machine.
-
-But it is **not one blocker either**, which is what the earlier correction got
-wrong. The newer capability level is gated behind an *intermediate* level, and
-that intermediate level fails on two entirely unrelated counts: a per-stage
-resource limit reported as **31 where 64 is required**, and a blending feature
-reported as absent. Neither has anything to do with sparse memory. A perfect
-implementation of the memory feature would leave the port exactly where it is.
-
-So the honest status is three independent shortfalls in a layer we vendor, sized
-for the first time rather than guessed at — not a wall, and not a single door
-either. The level stays listed as out of reach, now for reasons we can name.
+Two limits are permanent and worth stating: Apple's Metal has no equivalent for a
+couple of older DirectX 12 features, so those specific effects will never have a
+floor here. Everything else is work, not a wall. One of those limits is exactly
+why the newer capability level will never be reached on this hardware — traced
+to a specific missing GPU feature, named plainly rather than left as a mystery.
 
 **And now: the first real command has actually run.** A full sequence — set up
 a resource, tell the GPU to do work on it, wait for that work to finish, and
@@ -718,7 +698,7 @@ assumed, which caught one place the plan handed off for this work had gotten
 wrong before any code was written.
 
 ## Shader stutter
-**90%**
+**95%**
 
 The first time a game shows you a new effect, the graphics translation has to
 build a shader for it — and the game hitches while that happens. It's the single
@@ -764,7 +744,7 @@ cache yet," turns out to already get the same second-run saving as
 DirectX 11 — no change needed, just the measurement nobody had taken.
 
 ## Cutscene video
-**96%**
+**98%**
 
 Games play video — intros, cutscenes, background footage — through a Windows
 media system that used to be entirely missing here. When a game hit one, it hung

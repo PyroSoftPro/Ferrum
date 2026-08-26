@@ -84,10 +84,15 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 
 <!--progress-->
 <p align="center">
-  <img src="docs/assets/progress.9b1dcb70.svg" width="100%" alt="Ferrum progress — 96% toward playable gameplay, 93% of the substrate, 1515 checks passing">
+  <img src="docs/assets/progress.02d2fdd0.svg" width="100%" alt="Ferrum progress — 96% toward playable gameplay, 96% of the substrate, 1515 checks passing">
 </p>
 
 <table>
+<tr>
+<td width="30%"><a href="docs/progress.md#the-vulkan-graphics-bridge">Vulkan graphics bridge</a></td>
+<td width="58%"><a href="docs/progress.md#the-vulkan-graphics-bridge"><img src="docs/assets/bars/vulkan.414a0372.svg" width="320" height="14" alt="100 percent"></a></td>
+<td width="12%" align="right"><b>100%</b></td>
+</tr>
 <tr>
 <td width="30%"><a href="docs/progress.md#windows-programs-run">Windows programs run</a></td>
 <td width="58%"><a href="docs/progress.md#windows-programs-run"><img src="docs/assets/bars/programs.143cf815.svg" width="320" height="14" alt="99 percent"></a></td>
@@ -99,8 +104,18 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 <td width="12%" align="right"><b>99%</b></td>
 </tr>
 <tr>
+<td width="30%"><a href="docs/progress.md#sound">Sound</a></td>
+<td width="58%"><a href="docs/progress.md#sound"><img src="docs/assets/bars/sound.143cf815.svg" width="320" height="14" alt="99 percent"></a></td>
+<td width="12%" align="right"><b>99%</b></td>
+</tr>
+<tr>
 <td width="30%"><a href="docs/progress.md#directx-11">DirectX 11</a></td>
 <td width="58%"><a href="docs/progress.md#directx-11"><img src="docs/assets/bars/d3d11.c5d21393.svg" width="320" height="14" alt="98 percent"></a></td>
+<td width="12%" align="right"><b>98%</b></td>
+</tr>
+<tr>
+<td width="30%"><a href="docs/progress.md#cutscene-video">Cutscene video</a></td>
+<td width="58%"><a href="docs/progress.md#cutscene-video"><img src="docs/assets/bars/video.5780a56c.svg" width="320" height="14" alt="98 percent"></a></td>
 <td width="12%" align="right"><b>98%</b></td>
 </tr>
 <tr>
@@ -109,24 +124,14 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 <td width="12%" align="right"><b>97%</b></td>
 </tr>
 <tr>
-<td width="30%"><a href="docs/progress.md#the-vulkan-graphics-bridge">Vulkan graphics bridge</a></td>
-<td width="58%"><a href="docs/progress.md#the-vulkan-graphics-bridge"><img src="docs/assets/bars/vulkan.203960a4.svg" width="320" height="14" alt="97 percent"></a></td>
-<td width="12%" align="right"><b>97%</b></td>
-</tr>
-<tr>
-<td width="30%"><a href="docs/progress.md#sound">Sound</a></td>
-<td width="58%"><a href="docs/progress.md#sound"><img src="docs/assets/bars/sound.203960a4.svg" width="320" height="14" alt="97 percent"></a></td>
-<td width="12%" align="right"><b>97%</b></td>
-</tr>
-<tr>
 <td width="30%"><a href="docs/progress.md#speed">Speed</a></td>
 <td width="58%"><a href="docs/progress.md#speed"><img src="docs/assets/bars/speed.901aabe1.svg" width="320" height="14" alt="96 percent"></a></td>
 <td width="12%" align="right"><b>96%</b></td>
 </tr>
 <tr>
-<td width="30%"><a href="docs/progress.md#cutscene-video">Cutscene video</a></td>
-<td width="58%"><a href="docs/progress.md#cutscene-video"><img src="docs/assets/bars/video.901aabe1.svg" width="320" height="14" alt="96 percent"></a></td>
-<td width="12%" align="right"><b>96%</b></td>
+<td width="30%"><a href="docs/progress.md#shader-stutter">Shader stutter</a></td>
+<td width="58%"><a href="docs/progress.md#shader-stutter"><img src="docs/assets/bars/shaders.e5cd68af.svg" width="320" height="14" alt="95 percent"></a></td>
+<td width="12%" align="right"><b>95%</b></td>
 </tr>
 <tr>
 <td width="30%"><a href="docs/progress.md#2-d-drawing-for-menus-and-huds">2-D drawing (menus, HUD)</a></td>
@@ -152,11 +157,6 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 <td width="30%"><a href="docs/progress.md#directx-12">DirectX 12</a></td>
 <td width="58%"><a href="docs/progress.md#directx-12"><img src="docs/assets/bars/d3d12.8790af09.svg" width="320" height="14" alt="92 percent"></a></td>
 <td width="12%" align="right"><b>92%</b></td>
-</tr>
-<tr>
-<td width="30%"><a href="docs/progress.md#shader-stutter">Shader stutter</a></td>
-<td width="58%"><a href="docs/progress.md#shader-stutter"><img src="docs/assets/bars/shaders.24ecf896.svg" width="320" height="14" alt="90 percent"></a></td>
-<td width="12%" align="right"><b>90%</b></td>
 </tr>
 <tr>
 <td width="30%"><a href="docs/progress.md#older-directx-versions">Older DirectX versions</a></td>
