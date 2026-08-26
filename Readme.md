@@ -40,7 +40,7 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 
 <!--progress-->
 <p align="center">
-  <img src="docs/assets/progress.0cc8e4a9.svg" width="100%" alt="Ferrum progress — 96% toward playable gameplay, 93% of the substrate, 1503 checks passing">
+  <img src="docs/assets/progress.38fd669a.svg" width="100%" alt="Ferrum progress — 96% toward playable gameplay, 93% of the substrate, 1503 checks passing">
 </p>
 
 <table>
@@ -90,9 +90,19 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 <td width="12%" align="right"><b>94%</b></td>
 </tr>
 <tr>
+<td width="30%"><a href="docs/progress.md#installers-and-saves">Installers and saves</a></td>
+<td width="58%"><a href="docs/progress.md#installers-and-saves"><img src="docs/assets/bars/installers.7c455106.svg" width="320" height="14" alt="93 percent"></a></td>
+<td width="12%" align="right"><b>93%</b></td>
+</tr>
+<tr>
 <td width="30%"><a href="docs/progress.md#32-bit-games">32-bit games</a></td>
 <td width="58%"><a href="docs/progress.md#32-bit-games"><img src="docs/assets/bars/wow64.7c455106.svg" width="320" height="14" alt="93 percent"></a></td>
 <td width="12%" align="right"><b>93%</b></td>
+</tr>
+<tr>
+<td width="30%"><a href="docs/progress.md#directx-12">DirectX 12</a></td>
+<td width="58%"><a href="docs/progress.md#directx-12"><img src="docs/assets/bars/d3d12.8790af09.svg" width="320" height="14" alt="92 percent"></a></td>
+<td width="12%" align="right"><b>92%</b></td>
 </tr>
 <tr>
 <td width="30%"><a href="docs/progress.md#controllers">Controllers</a></td>
@@ -103,16 +113,6 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 <td width="30%"><a href="docs/progress.md#shader-stutter">Shader stutter</a></td>
 <td width="58%"><a href="docs/progress.md#shader-stutter"><img src="docs/assets/bars/shaders.24ecf896.svg" width="320" height="14" alt="90 percent"></a></td>
 <td width="12%" align="right"><b>90%</b></td>
-</tr>
-<tr>
-<td width="30%"><a href="docs/progress.md#installers-and-saves">Installers and saves</a></td>
-<td width="58%"><a href="docs/progress.md#installers-and-saves"><img src="docs/assets/bars/installers.6e005eaf.svg" width="320" height="14" alt="88 percent"></a></td>
-<td width="12%" align="right"><b>88%</b></td>
-</tr>
-<tr>
-<td width="30%"><a href="docs/progress.md#directx-12">DirectX 12</a></td>
-<td width="58%"><a href="docs/progress.md#directx-12"><img src="docs/assets/bars/d3d12.925f7c98.svg" width="320" height="14" alt="80 percent"></a></td>
-<td width="12%" align="right"><b>80%</b></td>
 </tr>
 <tr>
 <td width="30%"><a href="docs/progress.md#older-directx-versions">Older DirectX versions</a></td>
