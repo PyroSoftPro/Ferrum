@@ -40,7 +40,7 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 
 <!--progress-->
 <p align="center">
-  <img src="docs/assets/progress.38fd669a.svg" width="100%" alt="Ferrum progress — 96% toward playable gameplay, 93% of the substrate, 1503 checks passing">
+  <img src="docs/assets/progress.ad2fc7cd.svg" width="100%" alt="Ferrum progress — 96% toward playable gameplay, 93% of the substrate, 1503 checks passing">
 </p>
 
 <table>
@@ -100,14 +100,14 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 <td width="12%" align="right"><b>93%</b></td>
 </tr>
 <tr>
+<td width="30%"><a href="docs/progress.md#controllers">Controllers</a></td>
+<td width="58%"><a href="docs/progress.md#controllers"><img src="docs/assets/bars/pads.7c455106.svg" width="320" height="14" alt="93 percent"></a></td>
+<td width="12%" align="right"><b>93%</b></td>
+</tr>
+<tr>
 <td width="30%"><a href="docs/progress.md#directx-12">DirectX 12</a></td>
 <td width="58%"><a href="docs/progress.md#directx-12"><img src="docs/assets/bars/d3d12.8790af09.svg" width="320" height="14" alt="92 percent"></a></td>
 <td width="12%" align="right"><b>92%</b></td>
-</tr>
-<tr>
-<td width="30%"><a href="docs/progress.md#controllers">Controllers</a></td>
-<td width="58%"><a href="docs/progress.md#controllers"><img src="docs/assets/bars/pads.24ecf896.svg" width="320" height="14" alt="90 percent"></a></td>
-<td width="12%" align="right"><b>90%</b></td>
 </tr>
 <tr>
 <td width="30%"><a href="docs/progress.md#shader-stutter">Shader stutter</a></td>
@@ -116,8 +116,8 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 </tr>
 <tr>
 <td width="30%"><a href="docs/progress.md#older-directx-versions">Older DirectX versions</a></td>
-<td width="58%"><a href="docs/progress.md#older-directx-versions"><img src="docs/assets/bars/d3d9.f25c0450.svg" width="320" height="14" alt="60 percent"></a></td>
-<td width="12%" align="right"><b>60%</b></td>
+<td width="58%"><a href="docs/progress.md#older-directx-versions"><img src="docs/assets/bars/d3d9.b7ae5340.svg" width="320" height="14" alt="78 percent"></a></td>
+<td width="12%" align="right"><b>78%</b></td>
 </tr>
 </table>
 

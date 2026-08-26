@@ -650,7 +650,7 @@ answer back, which doesn't exist for 32-bit code on any path yet. Both are
 scoped for later rather than forced now.
 
 ## Controllers
-**90%**
+**93%**
 
 Gamepad support: the Windows controller interfaces (XInput and DirectInput)
 connected to macOS's own controller framework, so a pad you've paired with your
@@ -904,7 +904,7 @@ game's first-run setup screens by a now-identified quirk of how the test
 harness holds keys down, which is the next named fix.
 
 ## Older DirectX versions
-**60%**
+**78%**
 
 DirectX 9 and earlier, for the back catalogue. Cheaper to reach than DirectX 12,
 because the translation layer we already use ships a DirectX 9 implementation —
