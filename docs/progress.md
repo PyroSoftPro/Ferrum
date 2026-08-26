@@ -494,14 +494,27 @@ One limit is permanent and worth stating: Apple's Metal has no geometry shader
 stage, so the older DirectX 12 features built on it will never have a floor here.
 Everything else is work, not a wall.
 
-A second limit used to be listed beside it, and that was wrong — corrected here
-rather than quietly dropped. The newer capability level is blocked on sparse
-memory, and our own probe traces that to a value the Vulkan translation layer
-hard-codes as unavailable on every Apple GPU. It is not missing hardware: Apple
-Silicon supports sparse textures and Metal exposes them. The gap sits in a
-component we vendor and already patch, not in the machine. Whether it can be
-bridged far enough to reach that capability level is unmeasured, so the level
-stays listed as out of reach — but as unfinished work, not as a wall.
+A second limit used to be listed beside it as permanent missing hardware. That
+was wrong, and correcting it turned up something more useful than the correction.
+
+We wrote a probe that measures every single term the Direct3D 12 layer actually
+reads before it picks a capability level, straight against this Mac's graphics
+translation layer with nothing else in the way. Three findings.
+
+It is **not** missing hardware. Apple Silicon has the memory feature in question
+and Metal exposes it — for buffers as well as textures, since macOS 26. What
+reports it as absent is the translation layer we vendor, not the machine.
+
+But it is **not one blocker either**, which is what the earlier correction got
+wrong. The newer capability level is gated behind an *intermediate* level, and
+that intermediate level fails on two entirely unrelated counts: a per-stage
+resource limit reported as **31 where 64 is required**, and a blending feature
+reported as absent. Neither has anything to do with sparse memory. A perfect
+implementation of the memory feature would leave the port exactly where it is.
+
+So the honest status is three independent shortfalls in a layer we vendor, sized
+for the first time rather than guessed at — not a wall, and not a single door
+either. The level stays listed as out of reach, now for reasons we can name.
 
 **And now: the first real command has actually run.** A full sequence — set up
 a resource, tell the GPU to do work on it, wait for that work to finish, and
