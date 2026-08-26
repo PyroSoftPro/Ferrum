@@ -34,47 +34,59 @@ treated as a practical tie until more title-level evidence exists.
 
 ## Final steady results
 
-🟩 marks the benchmarks where **Ferrum places first** — 12 outright wins plus 12
-more where it is inside the 1% practical-tie band defined above, so **24 of 34**.
-The tie band is measured against the best of the three, not against the single
-runner-up named in the Winner column.
+Each cell is coloured by where that route places in its row, using the same 1%
+practical-tie band defined above: 🟩 first or within 1% of the best result,
+🟨 second or within 1% of second, 🟥 last and outside the band.
+
+Because the band is 1%, 🟥 means "measurably last", not "slow" — five of the
+seventeen red cells trail by under 3%. Where all three routes land inside 1% of
+each other the whole row is green and no second or last place applies, which is
+the case for 13 of the 34 kernels.
+
+| Route | 🟩 first | 🟨 second | 🟥 last |
+|---|---:|---:|---:|
+| Ferrum | **24** | 5 | **5** |
+| FEX | 22 | 6 | 6 |
+| Rosetta | **24** | 4 | 6 |
+
+Ferrum ties Rosetta for the most first places and has the fewest last places.
 
 | Benchmark | Better | Ferrum | FEX | Rosetta | Winner |
 |---|---:|---:|---:|---:|---|
-| `int_add_dep` | ↓ ns/op | 🟩 0.238 | 0.241 | **0.238** | Rosetta ≈ Ferrum |
-| `int_add_independent` | ↑ Mops/s | 10905.604 | **11456.623** | 10946.467 | FEX |
-| `int_mul_dep` | ↓ ns/op | 🟩 0.711 | 0.721 | **0.709** | Rosetta ≈ Ferrum |
-| `int_mul_independent` | ↑ Mops/s | 🟩 5540.048 | 5515.380 | **5550.808** | Rosetta ≈ Ferrum |
-| `int_variable_div_dep` | ↓ ns/div | 🟩 **2.780** | 2.797 | 2.840 | Ferrum ≈ FEX |
-| `int_popcnt_independent` | ↑ Mpopcnt/s | 3944.102 | 4157.684 | **5260.763** | Rosetta |
-| `int_bitops_dep` | ↓ ns/op | 🟩 0.239 | **0.239** | 0.300 | FEX ≈ Ferrum |
-| `branch_predictable` | ↑ Mdecisions/s | 3066.903 | 3543.613 | **4074.506** | Rosetta |
-| `branch_random` | ↑ Mdecisions/s | 940.158 | 871.124 | **954.450** | Rosetta |
-| `cmov_mixed` | ↑ Mselect/s | 2026.986 | **2075.123** | 2043.471 | FEX |
-| `call_direct` | ↓ ns/call | 🟩 **0.965** | 1.123 | 0.975 | Ferrum |
-| `call_indirect_register` | ↓ ns/call | 🟩 **1.102** | 1.324 | 1.133 | Ferrum |
-| `sse_f32_dep` | ↓ ns/fp-op | 🟩 **0.642** | 0.643 | 0.646 | Ferrum ≈ FEX |
-| `sse_f32_independent` | ↑ Mflop/s | 🟩 **5700.676** | 5675.043 | 5686.139 | Ferrum ≈ Rosetta |
-| `sse_f64_dep` | ↓ ns/fp-op | 🟩 0.644 | 0.642 | **0.642** | Rosetta ≈ FEX |
-| `sse_f64_independent` | ↑ Mflop/s | 🟩 **5689.853** | 5680.592 | 5672.521 | Ferrum ≈ FEX |
-| `sse_packed_f32_dep` | ↓ ns/lane-op | 🟩 **0.161** | 0.161 | 0.161 | Ferrum ≈ FEX |
-| `sse_packed_f64_dep` | ↓ ns/lane-op | 0.324 | **0.319** | 0.321 | FEX ≈ Rosetta |
-| `sse_paddd_dep` | ↓ ns/lane-op | 🟩 0.119 | 0.120 | **0.119** | Rosetta ≈ Ferrum |
-| `sse_shuffle_dep` | ↓ ns/instr | 🟩 **0.478** | 0.481 | 0.955 | Ferrum ≈ FEX |
-| `sse_cvttsd2si_mixed` | ↓ ns/conv | 🟩 0.717 | 0.722 | **0.715** | Rosetta ≈ Ferrum |
-| `sse_sqrtps_dep` | ↓ ns/lane-sqrt | 🟩 0.780 | **0.773** | 0.774 | FEX ≈ Rosetta |
-| `sse_divps_dep` | ↓ ns/lane-div | 🟩 0.656 | **0.651** | 0.655 | FEX ≈ Rosetta |
-| `sse_denormal_dep` | ↓ ns/fp-op | 🟩 0.639 | **0.636** | 0.642 | FEX ≈ Ferrum |
-| `sse_dpps_dep` | ↓ ns/dot | 🟩 **3.358** | 3.359 | 3.865 | Ferrum ≈ FEX |
-| `avx2_paddd_dep` | ↓ ns/lane-op | 🟩 0.339 | **0.337** | 0.338 | FEX ≈ Rosetta |
-| `fma_v8sf_dep` | ↓ ns/fp-op | 0.172 | 0.172 | **0.152** | Rosetta |
-| `memory_sequential_read_4mib_working_set` | ↑ GB/s | 31.445 | **75.647** | 75.628 | FEX ≈ Rosetta |
-| `memory_sequential_write_4mib_working_set` | ↑ GB/s | 25.823 | 52.190 | **52.256** | Rosetta ≈ FEX |
-| `memory_pointer_chase_1mib_working_set` | ↓ ns/load | 🟩 **3.518** | 3.609 | 4.100 | Ferrum |
-| `memory_rep_movsb_4mib_working_set` | ↑ GB/s | 🟩 **80.181** | 49.062 | 4.049 | Ferrum |
-| `memory_hot_memcpy_256` | ↑ GB/s | 🟩 56.420 | 56.385 | **56.633** | Rosetta ≈ Ferrum |
-| `atomic_xadd` | ↓ ns/atomic | 🟩 **1.665** | 1.682 | 1.667 | Ferrum ≈ Rosetta |
-| `atomic_cmpxchg` | ↓ ns/atomic | 1.651 | 1.656 | **1.538** | Rosetta |
+| `int_add_dep` | ↓ ns/op | 🟩 0.238 | 🟥 0.241 | 🟩 **0.238** | Rosetta ≈ Ferrum |
+| `int_add_independent` | ↑ Mops/s | 🟨 10905.604 | 🟩 **11456.623** | 🟨 10946.467 | FEX |
+| `int_mul_dep` | ↓ ns/op | 🟩 0.711 | 🟥 0.721 | 🟩 **0.709** | Rosetta ≈ Ferrum |
+| `int_mul_independent` | ↑ Mops/s | 🟩 5540.048 | 🟩 5515.380 | 🟩 **5550.808** | Rosetta ≈ Ferrum |
+| `int_variable_div_dep` | ↓ ns/div | 🟩 **2.780** | 🟩 2.797 | 🟥 2.840 | Ferrum ≈ FEX |
+| `int_popcnt_independent` | ↑ Mpopcnt/s | 🟥 3944.102 | 🟨 4157.684 | 🟩 **5260.763** | Rosetta |
+| `int_bitops_dep` | ↓ ns/op | 🟩 0.239 | 🟩 **0.239** | 🟥 0.300 | FEX ≈ Ferrum |
+| `branch_predictable` | ↑ Mdecisions/s | 🟥 3066.903 | 🟨 3543.613 | 🟩 **4074.506** | Rosetta |
+| `branch_random` | ↑ Mdecisions/s | 🟨 940.158 | 🟥 871.124 | 🟩 **954.450** | Rosetta |
+| `cmov_mixed` | ↑ Mselect/s | 🟨 2026.986 | 🟩 **2075.123** | 🟨 2043.471 | FEX |
+| `call_direct` | ↓ ns/call | 🟩 **0.965** | 🟥 1.123 | 🟨 0.975 | Ferrum |
+| `call_indirect_register` | ↓ ns/call | 🟩 **1.102** | 🟥 1.324 | 🟨 1.133 | Ferrum |
+| `sse_f32_dep` | ↓ ns/fp-op | 🟩 **0.642** | 🟩 0.643 | 🟩 0.646 | Ferrum ≈ FEX |
+| `sse_f32_independent` | ↑ Mflop/s | 🟩 **5700.676** | 🟩 5675.043 | 🟩 5686.139 | Ferrum ≈ Rosetta |
+| `sse_f64_dep` | ↓ ns/fp-op | 🟩 0.644 | 🟩 0.642 | 🟩 **0.642** | Rosetta ≈ FEX |
+| `sse_f64_independent` | ↑ Mflop/s | 🟩 **5689.853** | 🟩 5680.592 | 🟩 5672.521 | Ferrum ≈ FEX |
+| `sse_packed_f32_dep` | ↓ ns/lane-op | 🟩 **0.161** | 🟩 0.161 | 🟩 0.161 | Ferrum ≈ FEX |
+| `sse_packed_f64_dep` | ↓ ns/lane-op | 🟥 0.324 | 🟩 **0.319** | 🟩 0.321 | FEX ≈ Rosetta |
+| `sse_paddd_dep` | ↓ ns/lane-op | 🟩 0.119 | 🟩 0.120 | 🟩 **0.119** | Rosetta ≈ Ferrum |
+| `sse_shuffle_dep` | ↓ ns/instr | 🟩 **0.478** | 🟩 0.481 | 🟥 0.955 | Ferrum ≈ FEX |
+| `sse_cvttsd2si_mixed` | ↓ ns/conv | 🟩 0.717 | 🟩 0.722 | 🟩 **0.715** | Rosetta ≈ Ferrum |
+| `sse_sqrtps_dep` | ↓ ns/lane-sqrt | 🟩 0.780 | 🟩 **0.773** | 🟩 0.774 | FEX ≈ Rosetta |
+| `sse_divps_dep` | ↓ ns/lane-div | 🟩 0.656 | 🟩 **0.651** | 🟩 0.655 | FEX ≈ Rosetta |
+| `sse_denormal_dep` | ↓ ns/fp-op | 🟩 0.639 | 🟩 **0.636** | 🟩 0.642 | FEX ≈ Ferrum |
+| `sse_dpps_dep` | ↓ ns/dot | 🟩 **3.358** | 🟩 3.359 | 🟥 3.865 | Ferrum ≈ FEX |
+| `avx2_paddd_dep` | ↓ ns/lane-op | 🟩 0.339 | 🟩 **0.337** | 🟩 0.338 | FEX ≈ Rosetta |
+| `fma_v8sf_dep` | ↓ ns/fp-op | 🟨 0.172 | 🟨 0.172 | 🟩 **0.152** | Rosetta |
+| `memory_sequential_read_4mib_working_set` | ↑ GB/s | 🟥 31.445 | 🟩 **75.647** | 🟩 75.628 | FEX ≈ Rosetta |
+| `memory_sequential_write_4mib_working_set` | ↑ GB/s | 🟥 25.823 | 🟩 52.190 | 🟩 **52.256** | Rosetta ≈ FEX |
+| `memory_pointer_chase_1mib_working_set` | ↓ ns/load | 🟩 **3.518** | 🟨 3.609 | 🟥 4.100 | Ferrum |
+| `memory_rep_movsb_4mib_working_set` | ↑ GB/s | 🟩 **80.181** | 🟨 49.062 | 🟥 4.049 | Ferrum |
+| `memory_hot_memcpy_256` | ↑ GB/s | 🟩 56.420 | 🟩 56.385 | 🟩 **56.633** | Rosetta ≈ Ferrum |
+| `atomic_xadd` | ↓ ns/atomic | 🟩 **1.665** | 🟥 1.682 | 🟩 1.667 | Ferrum ≈ Rosetta |
+| `atomic_cmpxchg` | ↓ ns/atomic | 🟨 1.651 | 🟨 1.656 | 🟩 **1.538** | Rosetta |
 
 ## What the results say
 
