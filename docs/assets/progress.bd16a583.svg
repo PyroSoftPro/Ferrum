@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="96" viewBox="0 0 720 96" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" role="img" aria-label="Ferrum progress: 96 percent toward playable gameplay, 97 percent of the substrate, 2120 checks passing">
+<text x="16" y="40" font-size="14" fill="#8b8b86"><tspan font-size="34" font-weight="600" fill="#2a78d6">96%</tspan><tspan dx="10">toward playable gameplay</tspan></text>
+<text x="16" y="76" font-size="14" fill="#8b8b86"><tspan font-size="34" font-weight="600" fill="#8b8b86">97%</tspan><tspan dx="10">of the substrate</tspan></text>
+<text x="704" y="40" font-size="14" text-anchor="end" fill="#8b8b86">2120 checks passing</text>
+<text x="704" y="76" font-size="14" text-anchor="end" fill="#8b8b86">milestone m1650</text>
+</svg>

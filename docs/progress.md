@@ -316,7 +316,7 @@ Not finished: compute shaders and the wider set of pixel formats. The remaining
 next milestone that matters.
 
 ## Speed
-**96%**
+**97%**
 
 Translated code costs about **3.2× the CPU time** of code compiled for Apple
 Silicon directly, measured on work shaped like a real game frame — many small
@@ -398,7 +398,7 @@ audio path that doesn't work yet was traced to its real cause — a missing
 window class, not the audio machinery — and is waiting on that.
 
 ## Installers and saves
-**93%**
+**96%**
 
 The unglamorous surface: starting other programs, the Windows registry, and file
 system breadth. Games need this to install, to find their settings, and to write
@@ -650,7 +650,7 @@ answer back, which doesn't exist for 32-bit code on any path yet. Both are
 scoped for later rather than forced now.
 
 ## Controllers
-**93%**
+**96%**
 
 Gamepad support: the Windows controller interfaces (XInput and DirectInput)
 connected to macOS's own controller framework, so a pad you've paired with your
