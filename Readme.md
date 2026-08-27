@@ -40,7 +40,15 @@ Wine with FEX, and the same build's x86-64 Wine under Rosetta 2 — Ferrum place
 first or inside the 1% tie band on **24 of 34** CPU kernels, the most first places
 of the three and the fewest last places. Two results are not close: `rep movsb`
 runs at 80.2 GB/s against Rosetta's 4.0 GB/s, and the dependent SSE shuffle at
-roughly twice Rosetta's speed. Full method, raw numbers and per-cell placement:
+roughly twice Rosetta's speed.
+
+A later quiet-box campaign sharpened that, and it is worth stating precisely
+rather than leaving the flattering reading: most of the `rep movsb` margin is a
+property of **FEX-based translation in general**, not of Ferrum specifically —
+CrossOver's ARM64 Wine with FEX is already 11.9× Rosetta there, and Ferrum adds
+about 1.5× on top of that. It is a strong argument for translating this way
+instead of through Rosetta; it is not evidence that Ferrum beats other FEX
+stacks. Full method, raw numbers and per-cell placement:
 **[the three-way benchmark](docs/translation-benchmark-2026-08-24.md)**.
 
 **It is a component that can be owned.** Rosetta is Apple's, closed, and on its
