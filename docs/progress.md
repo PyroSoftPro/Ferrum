@@ -556,17 +556,24 @@ recovered by reading the real library's own machine code (where a
 before/after proof: zero correct pixels before, all 64 after.
 
 ## 32-bit games
-**93%**
+**94%**
 
-**A real 32-bit program now runs, start to finish.** The six Windows
-functions a 32-bit program could call became seventy — each one's calling
-convention taken from the compiler's own libraries rather than guessed,
-with a cross-check that caught a mistake in the first draft of the table.
-A plain 32-bit C program built with the standard toolchain — no tricks,
-normal startup — prints its greeting, runs its shutdown handlers in the
-right order, and exits with the right code; a second program's entire
-output matches a native build byte for byte. What's next: a program that
-loads a second library, which needs a loader piece that doesn't exist yet.
+**A real 32-bit program now runs, start to finish — and it can work with
+files.** The six Windows functions a 32-bit program could call became
+seventy, then grew a real file surface: open, read, write, seek, truncate,
+delete, ask for attributes. Each one's calling convention was taken from
+the compiler's own libraries rather than guessed, with a cross-check that
+caught a mistake in the first draft of the table. A plain 32-bit C program
+built with the standard toolchain — no tricks, normal startup — prints its
+greeting, runs its shutdown handlers in the right order, and exits with the
+right code; a second program's entire output matches a native build byte
+for byte. Our own 32-bit benchmark now runs its file-I/O section and scores
+every step, including a one-megabyte round trip that comes back identical.
+
+**What's next, and it is a wall rather than a gap:** a 32-bit program still
+cannot start a second thread. That one missing piece is what stands between
+here and a real 32-bit game, and we would rather say so than quietly return
+a fake answer and let the failure surface somewhere less obvious.
 
 Older Windows games — roughly anything before 2015, plus a great many indies —
 are 32-bit. Apple removed 32-bit support from macOS entirely, and Rosetta never
