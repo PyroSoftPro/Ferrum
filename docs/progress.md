@@ -568,7 +568,13 @@ recovered by reading the real library's own machine code (where a
 before/after proof: zero correct pixels before, all 64 after.
 
 ## 32-bit games
-**98%**
+**99%**
+
+**Portal now runs its game engine's code.** Five of the game's own libraries load and start up — including its Steam layer, which prints its own status messages — and a sixth is loading when the run stops. That's 7,707 of the game's calls, up from 483, with two real worker threads. The proof is text the game itself assembled while running, not a screenshot.
+
+Three real bugs surfaced doing it, including one four milestones old: a library that loaded another library during startup silently cancelled its siblings' startup, and the damage only showed up three thousand calls later. The game also reported one of our bugs back to us in its own error box.
+
+What's left is countable and none of it is graphics: **99 more functions** for the engine, 374 across the whole render and interface chain. No 32-bit game has reached a menu, a frame or a save yet.
 
 **A real 32-bit game's own code now runs.** Portal starts up, works out where it lives on disk, sets up its search path, tries to load its launcher, asks Windows what went wrong, formats the message and shows it — then exits cleanly. Every step is the game's own code, recorded as 483 calls in order, and the proof is text taken byte-for-byte from inside the game's own executable rather than from a screenshot.
 
@@ -935,7 +941,11 @@ game's first-run setup screens by a now-identified quirk of how the test
 harness holds keys down, which is the next named fix.
 
 ## Older DirectX versions
-**78%**
+**80%**
+
+**We finally ran the colour-palette test that had been sitting compiled and never executed** since we ourselves named it the biggest hole here. It gets further than expected and then fails precisely: an 8-bit paletted image is created, locked, and its colour table reads back correctly — then the copy to screen reports success and writes black. The graphics layer says why in its own log, and a second test with exactly one variable changed proves the gap is the paletted format itself, not the destination.
+
+Still true: no older game has run. The one legacy title installed here never reaches DirectX at all — it stops earlier, at the registry.
 
 DirectX 9 and earlier, for the back catalogue. Cheaper to reach than DirectX 12,
 because the translation layer we already use ships a DirectX 9 implementation —

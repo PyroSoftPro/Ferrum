@@ -92,7 +92,7 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 
 <!--progress-->
 <p align="center">
-  <img src="docs/assets/progress.3a5f9d5d.svg" width="100%" alt="Ferrum progress — 96% toward playable gameplay, 98% of the substrate, 1866 checks passing">
+  <img src="docs/assets/progress.fefd6342.svg" width="100%" alt="Ferrum progress — 96% toward playable gameplay, 98% of the substrate, 1866 checks passing">
 </p>
 
 <table>
@@ -122,6 +122,11 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 <td width="12%" align="right"><b>99%</b></td>
 </tr>
 <tr>
+<td width="30%"><a href="docs/progress.md#32-bit-games">32-bit games</a></td>
+<td width="58%"><a href="docs/progress.md#32-bit-games"><img src="docs/assets/bars/wow64.143cf815.svg" width="320" height="14" alt="99 percent"></a></td>
+<td width="12%" align="right"><b>99%</b></td>
+</tr>
+<tr>
 <td width="30%"><a href="docs/progress.md#drawing-to-the-screen">Drawing to the screen</a></td>
 <td width="58%"><a href="docs/progress.md#drawing-to-the-screen"><img src="docs/assets/bars/pixels.c5d21393.svg" width="320" height="14" alt="98 percent"></a></td>
 <td width="12%" align="right"><b>98%</b></td>
@@ -134,11 +139,6 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 <tr>
 <td width="30%"><a href="docs/progress.md#installers-and-saves">Installers and saves</a></td>
 <td width="58%"><a href="docs/progress.md#installers-and-saves"><img src="docs/assets/bars/installers.5780a56c.svg" width="320" height="14" alt="98 percent"></a></td>
-<td width="12%" align="right"><b>98%</b></td>
-</tr>
-<tr>
-<td width="30%"><a href="docs/progress.md#32-bit-games">32-bit games</a></td>
-<td width="58%"><a href="docs/progress.md#32-bit-games"><img src="docs/assets/bars/wow64.5780a56c.svg" width="320" height="14" alt="98 percent"></a></td>
 <td width="12%" align="right"><b>98%</b></td>
 </tr>
 <tr>
@@ -168,8 +168,8 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 </tr>
 <tr>
 <td width="30%"><a href="docs/progress.md#older-directx-versions">Older DirectX versions</a></td>
-<td width="58%"><a href="docs/progress.md#older-directx-versions"><img src="docs/assets/bars/d3d9.b7ae5340.svg" width="320" height="14" alt="78 percent"></a></td>
-<td width="12%" align="right"><b>78%</b></td>
+<td width="58%"><a href="docs/progress.md#older-directx-versions"><img src="docs/assets/bars/d3d9.92126618.svg" width="320" height="14" alt="80 percent"></a></td>
+<td width="12%" align="right"><b>80%</b></td>
 </tr>
 </table>
 
