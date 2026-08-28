@@ -157,7 +157,9 @@ menu transitions through the setup screens that had defeated every prior
 attempt.
 
 ## 2-D drawing for menus and HUDs
-**94%**
+**96%**
+
+**Real typefaces, measured across scripts.** One font face became eight, with styles and slants, and text layout was checked across seven writing systems — including honest reporting of which character pairs a face simply does not cover. What is still missing is the thing that matters most: no 2-D game has been driven through this surface from start to finish. The dialog that paints is an installer, not a game.
 
 The flat drawing games use for interface elements — health bars, inventory
 screens, subtitles, loading screens — rather than the 3-D world.
@@ -221,7 +223,9 @@ back "nothing here," proving the shape is real and not just an approximate
 box.
 
 ## Drawing to the screen
-**97%**
+**98%**
+
+**Two windows at once, confirmed by macOS rather than by us.** The code that assumed a single window is gone, and the proof is the system's own window list reporting two on screen at different sizes and not overlapping — not our own bookkeeping saying so. What remains is narrower than before, and one part of it needs a person: whether motion actually looks smooth cannot be measured from a log.
 
 Getting a finished image onto a real Mac window.
 
@@ -290,7 +294,9 @@ the byte against a CPU reference), and sparse memory — which this hardware
 genuinely lacks — now declined by name instead of quietly.
 
 ## DirectX 11
-**98%**
+**99%**
+
+**The two things this section said were missing are both answered.** Compute shaders work and are checked against a known-good result, with a deliberately broken control that fails. Texture formats were probed against the graphics layer we actually ship: every compressed format games rely on is supported, and the single exception is a depth format Apple's hardware does not implement. What is left is playing a DirectX 11 game through to the end.
 
 The interface games actually draw with. This bar sat at zero for a long time.
 
@@ -316,7 +322,9 @@ Not finished: compute shaders and the wider set of pixel formats. The remaining
 next milestone that matters.
 
 ## Speed
-**97%**
+**98%**
+
+**The game renders at rate for a thousand seconds.** A real save, a real scene, roughly 117 frames a second sustained. The dramatic slowdown reported earlier turned out to be the screenshot tool measuring, not the game running. Deliberately credited modestly: that run changed more than one thing at once, so it shows the speed is there without isolating what delivered it — and it is still one game.
 
 Translated code costs about **3.2× the CPU time** of code compiled for Apple
 Silicon directly, measured on work shaped like a real game frame — many small
@@ -398,7 +406,11 @@ audio path that doesn't work yet was traced to its real cause — a missing
 window class, not the audio machinery — and is waiting on that.
 
 ## Installers and saves
-**96%**
+**98%**
+
+**A real installer wizard is now walked through, not skipped.** Setup programs are usually driven with a silent switch that hides everything interesting; this one was clicked through like a person would, two Enters at a time, and installed 107 files. A shipped uninstaller then ran and spawned a child program that deletes the folder its parent is running from — a thing real uninstallers do and a thing that breaks naive implementations. On the way, a fixture caught the driver recording a file's read-only flag without ever enforcing it.
+
+What is left here is a number nobody has measured: how often a long play session ends in a crash.
 
 The unglamorous surface: starting other programs, the Windows registry, and file
 system breadth. Games need this to install, to find their settings, and to write
@@ -556,7 +568,9 @@ recovered by reading the real library's own machine code (where a
 before/after proof: zero correct pixels before, all 64 after.
 
 ## 32-bit games
-**94%**
+**95%**
+
+**Forwarded exports work.** Many Windows libraries do not contain the function you asked for — they point at another library that does. In one system library, 252 of its 262 entries are pointers like that, so before this landed, 96% of what it offers was unreachable. Still ahead: a 32-bit program cannot start a second thread, and no 32-bit game has run.
 
 **A real 32-bit program now runs, start to finish — and it can work with
 files.** The six Windows functions a 32-bit program could call became
