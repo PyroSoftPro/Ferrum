@@ -568,7 +568,11 @@ recovered by reading the real library's own machine code (where a
 before/after proof: zero correct pixels before, all 64 after.
 
 ## 32-bit games
-**95%**
+**97%**
+
+**A 32-bit program can now start a thread**, which is what stood between here and trying a real 32-bit game. Each one is a genuine system thread — a take-turns scheme cannot work, because a busy worker never pauses to hand control back. Our own 32-bit benchmark's threading section goes from stopping dead at the first thread to passing every step: a hundred thousand increments shared across four threads with none lost, and four thousand more done *without* atomic protection but under a lock — a test that only passes if the lock genuinely excludes.
+
+Still ahead, and stated plainly: a thread cannot be paused and inspected from outside, some library layouts still refuse threading by name, and **no 32-bit game has been run.** The wall in front of trying one is gone; that is not the same as one running.
 
 **Forwarded exports work.** Many Windows libraries do not contain the function you asked for — they point at another library that does. In one system library, 252 of its 262 entries are pointers like that, so before this landed, 96% of what it offers was unreachable. Still ahead: a 32-bit program cannot start a second thread, and no 32-bit game has run.
 

@@ -92,7 +92,7 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 
 <!--progress-->
 <p align="center">
-  <img src="docs/assets/progress.8b91a0b1.svg" width="100%" alt="Ferrum progress — 96% toward playable gameplay, 98% of the substrate, 1849 checks passing">
+  <img src="docs/assets/progress.bd7fe3c2.svg" width="100%" alt="Ferrum progress — 96% toward playable gameplay, 98% of the substrate, 1866 checks passing">
 </p>
 
 <table>
@@ -142,6 +142,11 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 <td width="12%" align="right"><b>98%</b></td>
 </tr>
 <tr>
+<td width="30%"><a href="docs/progress.md#32-bit-games">32-bit games</a></td>
+<td width="58%"><a href="docs/progress.md#32-bit-games"><img src="docs/assets/bars/wow64.203960a4.svg" width="320" height="14" alt="97 percent"></a></td>
+<td width="12%" align="right"><b>97%</b></td>
+</tr>
+<tr>
 <td width="30%"><a href="docs/progress.md#2-d-drawing-for-menus-and-huds">2-D drawing (menus, HUD)</a></td>
 <td width="58%"><a href="docs/progress.md#2-d-drawing-for-menus-and-huds"><img src="docs/assets/bars/gdi.901aabe1.svg" width="320" height="14" alt="96 percent"></a></td>
 <td width="12%" align="right"><b>96%</b></td>
@@ -150,11 +155,6 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 <td width="30%"><a href="docs/progress.md#controllers">Controllers</a></td>
 <td width="58%"><a href="docs/progress.md#controllers"><img src="docs/assets/bars/pads.901aabe1.svg" width="320" height="14" alt="96 percent"></a></td>
 <td width="12%" align="right"><b>96%</b></td>
-</tr>
-<tr>
-<td width="30%"><a href="docs/progress.md#32-bit-games">32-bit games</a></td>
-<td width="58%"><a href="docs/progress.md#32-bit-games"><img src="docs/assets/bars/wow64.e5cd68af.svg" width="320" height="14" alt="95 percent"></a></td>
-<td width="12%" align="right"><b>95%</b></td>
 </tr>
 <tr>
 <td width="30%"><a href="docs/progress.md#shader-stutter">Shader stutter</a></td>
@@ -173,7 +173,7 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 </tr>
 </table>
 
-<sub>Every row links to <a href="docs/progress.md">what earned that number</a> — in plain English, no code. Orange is the critical path to a game running. <b>1849 automated checks</b> pass; each one fails if its capability is removed.</sub><!--/progress-->
+<sub>Every row links to <a href="docs/progress.md">what earned that number</a> — in plain English, no code. Orange is the critical path to a game running. <b>1866 automated checks</b> pass; each one fails if its capability is removed.</sub><!--/progress-->
 
 Real DXVK runs on this port and creates an **`ID3D11Device` at feature level 11_0**.
 A **GPU-rendered frame reaches a real macOS window** through a genuine
