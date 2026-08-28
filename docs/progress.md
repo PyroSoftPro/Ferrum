@@ -568,7 +568,13 @@ recovered by reading the real library's own machine code (where a
 before/after proof: zero correct pixels before, all 64 after.
 
 ## 32-bit games
-**97%**
+**98%**
+
+**A real 32-bit game's own code now runs.** Portal starts up, works out where it lives on disk, sets up its search path, tries to load its launcher, asks Windows what went wrong, formats the message and shows it — then exits cleanly. Every step is the game's own code, recorded as 483 calls in order, and the proof is text taken byte-for-byte from inside the game's own executable rather than from a screenshot.
+
+**The thing standing in the way was never graphics.** A Windows program lists the functions it needs up front, and if even one is missing nothing runs at all — not one instruction. Portal asked for 66 and we answered 32, so "Portal doesn't work" actually meant "we never started it". With those filled in, it runs.
+
+Next up is more of the same, and we can count it exactly: **83 more functions** to load Portal's launcher, 189 to include its engine. None of them are graphics. No 32-bit game has reached a menu, a frame or a save yet.
 
 **A 32-bit program can now start a thread**, which is what stood between here and trying a real 32-bit game. Each one is a genuine system thread — a take-turns scheme cannot work, because a busy worker never pauses to hand control back. Our own 32-bit benchmark's threading section goes from stopping dead at the first thread to passing every step: a hundred thousand increments shared across four threads with none lost, and four thousand more done *without* atomic protection but under a lock — a test that only passes if the lock genuinely excludes.
 

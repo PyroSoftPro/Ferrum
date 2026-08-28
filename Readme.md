@@ -92,7 +92,7 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 
 <!--progress-->
 <p align="center">
-  <img src="docs/assets/progress.bd7fe3c2.svg" width="100%" alt="Ferrum progress — 96% toward playable gameplay, 98% of the substrate, 1866 checks passing">
+  <img src="docs/assets/progress.3a5f9d5d.svg" width="100%" alt="Ferrum progress — 96% toward playable gameplay, 98% of the substrate, 1866 checks passing">
 </p>
 
 <table>
@@ -137,14 +137,14 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 <td width="12%" align="right"><b>98%</b></td>
 </tr>
 <tr>
-<td width="30%"><a href="docs/progress.md#cutscene-video">Cutscene video</a></td>
-<td width="58%"><a href="docs/progress.md#cutscene-video"><img src="docs/assets/bars/video.5780a56c.svg" width="320" height="14" alt="98 percent"></a></td>
+<td width="30%"><a href="docs/progress.md#32-bit-games">32-bit games</a></td>
+<td width="58%"><a href="docs/progress.md#32-bit-games"><img src="docs/assets/bars/wow64.5780a56c.svg" width="320" height="14" alt="98 percent"></a></td>
 <td width="12%" align="right"><b>98%</b></td>
 </tr>
 <tr>
-<td width="30%"><a href="docs/progress.md#32-bit-games">32-bit games</a></td>
-<td width="58%"><a href="docs/progress.md#32-bit-games"><img src="docs/assets/bars/wow64.203960a4.svg" width="320" height="14" alt="97 percent"></a></td>
-<td width="12%" align="right"><b>97%</b></td>
+<td width="30%"><a href="docs/progress.md#cutscene-video">Cutscene video</a></td>
+<td width="58%"><a href="docs/progress.md#cutscene-video"><img src="docs/assets/bars/video.5780a56c.svg" width="320" height="14" alt="98 percent"></a></td>
+<td width="12%" align="right"><b>98%</b></td>
 </tr>
 <tr>
 <td width="30%"><a href="docs/progress.md#2-d-drawing-for-menus-and-huds">2-D drawing (menus, HUD)</a></td>
