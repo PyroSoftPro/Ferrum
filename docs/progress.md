@@ -944,7 +944,9 @@ game's first-run setup screens by a now-identified quirk of how the test
 harness holds keys down, which is the next named fix.
 
 ## Older DirectX versions
-**80%**
+**82%**
+
+**The paletted-image fix now ships by default.** The 8-bit paletted copy that used to come out black now resolves to the real colours in the graphics libraries we actually ship — proven on the same test that used to read black. We deliberately built it against the matching library version rather than a newer one, after finding the newer one quietly broke another display feature. Still true: no older game runs yet (blocked earlier, in program loading), and the full-screen paletted path has a separate gap. This fixes the off-screen case.
 
 **We finally ran the colour-palette test that had been sitting compiled and never executed** since we ourselves named it the biggest hole here. It gets further than expected and then fails precisely: an 8-bit paletted image is created, locked, and its colour table reads back correctly — then the copy to screen reports success and writes black. The graphics layer says why in its own log, and a second test with exactly one variable changed proves the gap is the paletted format itself, not the destination.
 
