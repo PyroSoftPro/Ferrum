@@ -470,7 +470,10 @@ work each had to invent their own workaround for the same missing piece.
 
 
 ## DirectX 12
-**92%**
+**94%**
+
+**DirectX 12 now reaches feature level 11_1 in the shipping build.** We turned on a capability in our graphics layer that unlocks it, verified it works correctly on a live GPU (not just reported as present), and it's on by default. The next level up, 12_0, needs a newer version of Apple's Metal than the one our graphics layer is built on — so that one is genuinely out of reach for now, not a matter of more work.
+
 
 The interface modern big-budget games use. It's on the
 list because it's where the industry is, and because the commercial Mac
