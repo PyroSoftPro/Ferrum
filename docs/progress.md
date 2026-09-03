@@ -420,7 +420,7 @@ and one legacy call that the underlying compatibility layer itself leaves
 unimplemented upstream.
 
 ## Installers and saves
-**98%**
+**99%**
 
 **A real installer wizard is now walked through, not skipped.** Setup programs are usually driven with a silent switch that hides everything interesting; this one was clicked through like a person would, two Enters at a time, and installed 107 files. A shipped uninstaller then ran and spawned a child program that deletes the folder its parent is running from — a thing real uninstallers do and a thing that breaks naive implementations. On the way, a fixture caught the driver recording a file's read-only flag without ever enforcing it.
 
@@ -481,6 +481,21 @@ half-written: it's written to a spare file first and only swapped into place
 once that finishes, so an interrupted run leaves the previous good version
 intact, never a broken one. This closes the reason three earlier pieces of
 work each had to invent their own workaround for the same missing piece.
+
+**Two more things installers and updaters rely on now work.** Registry
+shortcuts — where one settings key is really a pointer to another — are now
+followed, with a guard against a pointer that loops back on itself. And the
+Windows trick where a program schedules a file to be moved or deleted on the
+*next* restart (how updaters replace a file that's currently in use) is now
+honoured: the request is remembered and carried out when the environment next
+starts, instead of being refused. Along the way, one of the residual items on
+this bar turned out to have been quietly done already, and is now confirmed
+rather than listed as missing. Two items remain, and both are deliberate rather
+than unfinished: letting a program hand an arbitrary open resource down to a
+child process, which needs a piece of Windows plumbing this design doesn't have
+and whose useful part (passing the standard input/output channels) already
+works; and full machine-wide-registry persistence, whose one clear real-world
+case (the restart trick above) is the part now handled.
 
 
 ## DirectX 12
