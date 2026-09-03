@@ -228,9 +228,9 @@ back "nothing here," proving the shape is real and not just an approximate
 box.
 
 ## Drawing to the screen
-**98%**
+**99%**
 
-**Two windows at once, confirmed by macOS rather than by us.** The code that assumed a single window is gone, and the proof is the system's own window list reporting two on screen at different sizes and not overlapping — not our own bookkeeping saying so. What remains is narrower than before, and one part of it needs a person: whether motion actually looks smooth cannot be measured from a log.
+**Two windows at once, confirmed by macOS rather than by us.** The code that assumed a single window is gone, and the proof is the system's own window list reporting two on screen at different sizes and not overlapping — not our own bookkeeping saying so. What remains is narrower than before, and one part of it needs a person: whether motion actually looks smooth cannot be measured from a log. The narrower parts are now closed as far as they can be without the screen: two windows can each drive their own graphics surface and each shows its own picture (read back and checked to be the colour its own program drew); a second window can be given a non-rectangular shape and the masked-off part reads as empty; and for smoothness, the presentation path is shown to be one where the system composites whole finished frames, so the classic "tearing" artifact is structurally impossible, with a working pace-measuring self-check on top. What is genuinely left needs a real display and a person: a two-window check through the system's own window list, a real on-screen frame-timing number (off-screen there is no presentation clock to read), and a human's own eyes on the motion.
 
 Getting a finished image onto a real Mac window.
 
