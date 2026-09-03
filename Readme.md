@@ -92,7 +92,7 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 
 <!--progress-->
 <p align="center">
-  <img src="docs/assets/progress.ff96414f.svg" width="100%" alt="Ferrum progress — 96% toward playable gameplay, 98% of the substrate, 2407 checks passing">
+  <img src="docs/assets/progress.c2446ac4.svg" width="100%" alt="Ferrum progress — 96% toward playable gameplay, 98% of the substrate, 2407 checks passing">
 </p>
 
 <table>
@@ -152,14 +152,14 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 <td width="12%" align="right"><b>97%</b></td>
 </tr>
 <tr>
-<td width="30%"><a href="docs/progress.md#shader-stutter">Shader stutter</a></td>
-<td width="58%"><a href="docs/progress.md#shader-stutter"><img src="docs/assets/bars/shaders.203960a4.svg" width="320" height="14" alt="97 percent"></a></td>
+<td width="30%"><a href="docs/progress.md#controllers">Controllers</a></td>
+<td width="58%"><a href="docs/progress.md#controllers"><img src="docs/assets/bars/pads.203960a4.svg" width="320" height="14" alt="97 percent"></a></td>
 <td width="12%" align="right"><b>97%</b></td>
 </tr>
 <tr>
-<td width="30%"><a href="docs/progress.md#controllers">Controllers</a></td>
-<td width="58%"><a href="docs/progress.md#controllers"><img src="docs/assets/bars/pads.901aabe1.svg" width="320" height="14" alt="96 percent"></a></td>
-<td width="12%" align="right"><b>96%</b></td>
+<td width="30%"><a href="docs/progress.md#shader-stutter">Shader stutter</a></td>
+<td width="58%"><a href="docs/progress.md#shader-stutter"><img src="docs/assets/bars/shaders.203960a4.svg" width="320" height="14" alt="97 percent"></a></td>
+<td width="12%" align="right"><b>97%</b></td>
 </tr>
 <tr>
 <td width="30%"><a href="docs/progress.md#directx-12">DirectX 12</a></td>

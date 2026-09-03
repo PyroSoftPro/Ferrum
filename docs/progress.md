@@ -96,12 +96,17 @@ A Windows program asks for a window and gets a real macOS one. It receives mouse
 and keyboard events through the message loop games actually use, and can move,
 resize, and repaint.
 
-**Mouse capture and cursor locking now both work** — the mechanism a
-first-person game uses to route every mouse movement to itself and keep the
-pointer from wandering off-window while you look around. Both pieces were
-verified against the real thing games actually call, not assumed: one is
-confirmed because the exact request appears, by name, in a real game's own
-list of things it asked this stack for. Two honest limits found along the
+**Mouse capture works, and cursor locking works as far as a Windows program
+can tell** — the mechanism a first-person game uses to route every mouse
+movement to itself and keep the pointer from wandering off-window while you
+look around. This was verified against the real thing games actually call, not
+assumed: the exact request appears, by name, in a real game's own list of
+things it asked this stack for. One honest qualifier: the confinement is applied
+to the *program's* notion of the pointer — what the game reads when it asks
+"where is the cursor" — and not to the physical macOS cursor on your screen.
+Nothing on this path warps the real system pointer yet; wiring that in is built
+but switched off, because it only matters during an on-screen play session and
+none has been run. Two honest limits found along the
 way rather than papered over: one companion API is unreachable through this
 particular build's own Windows library, for reasons outside this driver's
 control; and a "release" call turned out not to route through the mechanism
@@ -699,7 +704,7 @@ answer back, which doesn't exist for 32-bit code on any path yet. Both are
 scoped for later rather than forced now.
 
 ## Controllers
-**96%**
+**97%**
 
 Gamepad support: the Windows controller interfaces (XInput and DirectInput)
 connected to macOS's own controller framework, so a pad you've paired with your
@@ -718,8 +723,20 @@ This one needed care because of the rule at the top of this page: reporting
 "success" alongside an all-zero controller state is indistinguishable from a pad
 that is simply sitting still, so the tests insist on values that actually move.
 
-Not finished: rumble and force feedback, the older DirectInput interface, and
-breadth around pads connecting and disconnecting mid-game.
+**There is now a five-minute self-checking test a person can run with a real pad.**
+It walks through every button, stick, trigger and D-pad direction and reads each
+press back through the exact controller libraries a Windows game reads (both the
+modern and the older interface, in one frame), then asks the person to confirm the
+two rumble motors buzzed. It refuses to pass if no pad is connected. The parts a
+computer can check on its own are all covered and each is proven the honest way —
+with the feature removed, the test fails.
+
+Rumble is built and driven correctly right up to the motor: the vibration pattern
+is constructed from what the game asked for and read back to confirm it is right.
+The actual physical buzz, and the actual physical button press, are the only two
+things left — and on a Mac those genuinely require a person with a controller in
+hand, not a missing piece of software. That is the whole reason this is 97 and not
+100.
 
 **DirectInput is in.** That is the older of the two ways Windows games talk to a
 pad, and most games from before about 2010 use nothing else — they previously had
