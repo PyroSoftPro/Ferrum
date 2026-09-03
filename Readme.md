@@ -92,13 +92,18 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 
 <!--progress-->
 <p align="center">
-  <img src="docs/assets/progress.9bd5fefc.svg" width="100%" alt="Ferrum progress — 96% toward playable gameplay, 98% of the substrate, 2407 checks passing">
+  <img src="docs/assets/progress.ff96414f.svg" width="100%" alt="Ferrum progress — 96% toward playable gameplay, 98% of the substrate, 2407 checks passing">
 </p>
 
 <table>
 <tr>
 <td width="30%"><a href="docs/progress.md#the-vulkan-graphics-bridge">Vulkan graphics bridge</a></td>
 <td width="58%"><a href="docs/progress.md#the-vulkan-graphics-bridge"><img src="docs/assets/bars/vulkan.414a0372.svg" width="320" height="14" alt="100 percent"></a></td>
+<td width="12%" align="right"><b>100%</b></td>
+</tr>
+<tr>
+<td width="30%"><a href="docs/progress.md#sound">Sound</a></td>
+<td width="58%"><a href="docs/progress.md#sound"><img src="docs/assets/bars/sound.414a0372.svg" width="320" height="14" alt="100 percent"></a></td>
 <td width="12%" align="right"><b>100%</b></td>
 </tr>
 <tr>
@@ -114,11 +119,6 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 <tr>
 <td width="30%"><a href="docs/progress.md#directx-11">DirectX 11</a></td>
 <td width="58%"><a href="docs/progress.md#directx-11"><img src="docs/assets/bars/d3d11.e77e1756.svg" width="320" height="14" alt="99 percent"></a></td>
-<td width="12%" align="right"><b>99%</b></td>
-</tr>
-<tr>
-<td width="30%"><a href="docs/progress.md#sound">Sound</a></td>
-<td width="58%"><a href="docs/progress.md#sound"><img src="docs/assets/bars/sound.143cf815.svg" width="320" height="14" alt="99 percent"></a></td>
 <td width="12%" align="right"><b>99%</b></td>
 </tr>
 <tr>

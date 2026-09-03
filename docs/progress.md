@@ -360,7 +360,7 @@ the deeper per-instruction translation cost measured earlier is
 unchanged — this was all waiting, not computing.
 
 ## Sound
-**99%**
+**100%**
 
 Windows audio reaches your speakers through CoreAudio. A program opens an audio
 device, describes the format it wants, and plays — and the output was checked
@@ -372,7 +372,7 @@ caught a genuine defect: a call meant to hand out a unique identifier returned
 the *same* one every time, which quietly turned every recording client in the
 program into a playback client.
 
-Not finished: MIDI and exclusive-mode output.
+At the time, MIDI and exclusive-mode output were still open; both are now closed (below).
 
 **The newer audio interface (XAudio2) now works too, and fixing it fixed
 something bigger than audio.** Most modern Windows games use this interface
@@ -398,12 +398,21 @@ project, and checked twice over on a full run of every other check this
 project has to make sure nothing else moved. Not yet independently confirmed
 against a real program's own audio actually turning on end to end.
 
-**MIDI now plays, and the last audio gaps are answered.** Music through the
-MIDI interface (older games' soundtracks) now sounds — a real note played
-and was measured coming out. Exclusive-mode audio is answered exactly the
-way the underlying compatibility layer answers it. And the one remaining
-audio path that doesn't work yet was traced to its real cause — a missing
-window class, not the audio machinery — and is waiting on that.
+**MIDI now plays in both directions, and the audio surface is complete.**
+Music through the MIDI interface (older games' soundtracks) sounds, measured
+coming out; and a program sending MIDI now reaches a real macOS MIDI destination
+with its notes arriving byte-for-byte on the other side of the system's MIDI
+service, in a separate process. One old rough edge was fixed properly: when the
+MIDI feature is deliberately switched off, the stack used to hand programs back
+whatever random value happened to be lying in memory — which sometimes read as
+"success" by luck — and now it returns a defined "not available" every time. A
+sweep of every audio interface a Windows game can use (the modern one, the older
+one, the low-level device layer, and the system audio driver) found no remaining
+unanswered call. Two things are deliberately not claimed, and neither is a gap in
+the software: a round trip through a physical MIDI instrument (this Mac has none,
+so the software path was proven across the real system MIDI boundary instead),
+and one legacy call that the underlying compatibility layer itself leaves
+unimplemented upstream.
 
 ## Installers and saves
 **98%**
