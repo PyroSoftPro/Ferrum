@@ -168,8 +168,8 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 </tr>
 <tr>
 <td width="30%"><a href="docs/progress.md#older-directx-versions">Older DirectX versions</a></td>
-<td width="58%"><a href="docs/progress.md#older-directx-versions"><img src="docs/assets/bars/d3d9.3b86a206.svg" width="320" height="14" alt="82 percent"></a></td>
-<td width="12%" align="right"><b>82%</b></td>
+<td width="58%"><a href="docs/progress.md#older-directx-versions"><img src="docs/assets/bars/d3d9.2215dcb9.svg" width="320" height="14" alt="87 percent"></a></td>
+<td width="12%" align="right"><b>87%</b></td>
 </tr>
 </table>
 

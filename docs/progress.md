@@ -968,7 +968,9 @@ game's first-run setup screens by a now-identified quirk of how the test
 harness holds keys down, which is the next named fix.
 
 ## Older DirectX versions
-**82%**
+**87%**
+
+**The two backend gaps that were this bar's remaining work are now closed and proven.** The two things the earlier tests had pinned down as the real holes — a windowed DirectDraw surface whose picture never reached its place on screen, and an 8-bit paletted screen that reported success and wrote black — both now work, checked on actual pixels with a direction (the windowed image lands at the right offset and is black outside it; the paletted screen resolves its indices through the palette, and changing the palette changes the colours). Each is proven the honest way: with the fix removed, the old failure comes back. Two limits are stated plainly rather than smoothed over. First, this is proven in a purpose-built, patched copy of the graphics library used as a test rig — it is not yet folded into the product's default build the way the shader fix is, so it is a proven capability, not yet a shipped one. Second, no older game has actually been played through it: none of the owned games is a DirectDraw title, and that path is also still waiting on the 32-bit program loader. The on-screen appearance of a paletted window, and a true full-screen paletted mode, remain named gaps.
 
 **The paletted-image fix now ships by default.** The 8-bit paletted copy that used to come out black now resolves to the real colours in the graphics libraries we actually ship — proven on the same test that used to read black. We deliberately built it against the matching library version rather than a newer one, after finding the newer one quietly broke another display feature. Still true: no older game runs yet (blocked earlier, in program loading), and the full-screen paletted path has a separate gap. This fixes the off-screen case.
 
