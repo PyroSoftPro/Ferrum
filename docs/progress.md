@@ -157,9 +157,9 @@ menu transitions through the setup screens that had defeated every prior
 attempt.
 
 ## 2-D drawing for menus and HUDs
-**96%**
+**97%**
 
-**Real typefaces, measured across scripts.** One font face became eight, with styles and slants, and text layout was checked across seven writing systems — including honest reporting of which character pairs a face simply does not cover. What is still missing is the thing that matters most: no 2-D game has been driven through this surface from start to finish. The dialog that paints is an installer, not a game.
+**Real typefaces, measured across scripts.** One font face became eight, with styles and slants, and text layout was checked across seven writing systems — including honest reporting of which character pairs a face simply does not cover. What is still missing is the thing that matters most: no 2-D game has been driven through this surface from start to finish. The dialog that paints is an installer, not a game. One real gap did close: the small paletted images games use for sprites and board tiles — the compact colour-indexed format almost every 2-D game draws with — now decode correctly through their colour table, proven not on a mock but on a real game's own board tile (Wine's Minesweeper), with the fix switched off leaving the board blank. What keeps this short of finished is a structural one: a classic 2-D Windows game composites its screen with a copy operation the graphics library performs entirely inside the program, so its final picture never passes through the part of this stack that reaches the Mac window — reaching the screen for that kind of game is a separate, larger piece of work.
 
 The flat drawing games use for interface elements — health bars, inventory
 screens, subtitles, loading screens — rather than the 3-D world.
@@ -747,7 +747,7 @@ assumed, which caught one place the plan handed off for this work had gotten
 wrong before any code was written.
 
 ## Shader stutter
-**95%**
+**97%**
 
 The first time a game shows you a new effect, the graphics translation has to
 build a shader for it — and the game hitches while that happens. It's the single
@@ -791,6 +791,21 @@ slower than no cache, and Apple writes its cache in the background, so a
 tests. And the DirectX 12 path, which the record said "cannot reach a
 cache yet," turns out to already get the same second-run saving as
 DirectX 11 — no change needed, just the measurement nobody had taken.
+
+**The compiled-shader half is now saved to disk and shipped by default.** The
+work of turning a shader into something the GPU can run has two stages, and until
+now only the first was ever remembered between runs. The second — the part where
+Apple's tools produce the final GPU machine code — is now captured in a permanent
+on-disk archive, keyed to the exact graphics driver and GPU, written safely,
+rebuilt automatically if it is ever corrupted, and included in the standard build
+rather than an experimental toggle. Measured through the shipped graphics layer,
+that stage drops to about a hundredth of its cold cost on a second run, and with
+the archive switched off it stays slow — which is what proves the archive is doing
+the work. What remains, and is the reason this is not 100, is a permanent limit
+rather than unfinished work: the very first stage is Apple's own source compiler,
+and nothing short of a fully precompiled shader bundle can hold its result. The
+archive is proven at the graphics-layer level; it has not yet been measured across
+a full run of a real game.
 
 ## Cutscene video
 **98%**
