@@ -92,7 +92,7 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 
 <!--progress-->
 <p align="center">
-  <img src="docs/assets/progress.766d8292.svg" width="100%" alt="Ferrum progress — 96% toward playable gameplay, 98% of the substrate, 2589 checks passing">
+  <img src="docs/assets/progress.28f5f355.svg" width="100%" alt="Ferrum progress — 96% toward playable gameplay, 99% of the substrate, 2589 checks passing">
 </p>
 
 <table>
@@ -142,6 +142,11 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 <td width="12%" align="right"><b>99%</b></td>
 </tr>
 <tr>
+<td width="30%"><a href="docs/progress.md#2-d-drawing-for-menus-and-huds">2-D drawing (menus, HUD)</a></td>
+<td width="58%"><a href="docs/progress.md#2-d-drawing-for-menus-and-huds"><img src="docs/assets/bars/gdi.5780a56c.svg" width="320" height="14" alt="98 percent"></a></td>
+<td width="12%" align="right"><b>98%</b></td>
+</tr>
+<tr>
 <td width="30%"><a href="docs/progress.md#speed">Speed</a></td>
 <td width="58%"><a href="docs/progress.md#speed"><img src="docs/assets/bars/speed.5780a56c.svg" width="320" height="14" alt="98 percent"></a></td>
 <td width="12%" align="right"><b>98%</b></td>
@@ -150,11 +155,6 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 <td width="30%"><a href="docs/progress.md#cutscene-video">Cutscene video</a></td>
 <td width="58%"><a href="docs/progress.md#cutscene-video"><img src="docs/assets/bars/video.5780a56c.svg" width="320" height="14" alt="98 percent"></a></td>
 <td width="12%" align="right"><b>98%</b></td>
-</tr>
-<tr>
-<td width="30%"><a href="docs/progress.md#2-d-drawing-for-menus-and-huds">2-D drawing (menus, HUD)</a></td>
-<td width="58%"><a href="docs/progress.md#2-d-drawing-for-menus-and-huds"><img src="docs/assets/bars/gdi.203960a4.svg" width="320" height="14" alt="97 percent"></a></td>
-<td width="12%" align="right"><b>97%</b></td>
 </tr>
 <tr>
 <td width="30%"><a href="docs/progress.md#controllers">Controllers</a></td>
@@ -168,8 +168,8 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 </tr>
 <tr>
 <td width="30%"><a href="docs/progress.md#older-directx-versions">Older DirectX versions</a></td>
-<td width="58%"><a href="docs/progress.md#older-directx-versions"><img src="docs/assets/bars/d3d9.2215dcb9.svg" width="320" height="14" alt="87 percent"></a></td>
-<td width="12%" align="right"><b>87%</b></td>
+<td width="58%"><a href="docs/progress.md#older-directx-versions"><img src="docs/assets/bars/d3d9.24ecf896.svg" width="320" height="14" alt="90 percent"></a></td>
+<td width="12%" align="right"><b>90%</b></td>
 </tr>
 </table>
 

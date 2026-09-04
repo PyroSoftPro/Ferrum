@@ -162,7 +162,7 @@ menu transitions through the setup screens that had defeated every prior
 attempt.
 
 ## 2-D drawing for menus and HUDs
-**97%**
+**98%**
 
 **Real typefaces, measured across scripts.** One font face became eight, with styles and slants, and text layout was checked across seven writing systems — including honest reporting of which character pairs a face simply does not cover. What is still missing is the thing that matters most: no 2-D game has been driven through this surface from start to finish. The dialog that paints is an installer, not a game. One real gap did close: the small paletted images games use for sprites and board tiles — the compact colour-indexed format almost every 2-D game draws with — now decode correctly through their colour table, proven not on a mock but on a real game's own board tile (Wine's Minesweeper), with the fix switched off leaving the board blank. What keeps this short of finished is a structural one: a classic 2-D Windows game composites its screen with a copy operation the graphics library performs entirely inside the program, so its final picture never passes through the part of this stack that reaches the Mac window — reaching the screen for that kind of game is a separate, larger piece of work.
 
@@ -227,6 +227,7 @@ the point that's inside the L's bounding box but outside the actual L reads
 back "nothing here," proving the shape is real and not just an approximate
 box.
 
+**The small colour-indexed images can now be drawn INTO, not just copied from.** A program can create a 1- or 4-bit paletted image it writes pixels into directly (the storage games use for icons and board tiles), and the driver walks the packed bits correctly. And a Minesweeper-shaped paletted board, drawn tile by tile, was measured arriving at the driver's own per-window surface with all 1,024 of its pixels — the thing that used to never reach it. What is still open: the real Minesweeper composites its board entirely inside the graphics library and never hands it to the driver, so driving that exact binary end to end needs a hook into that library (a separate, larger change), and the on-screen look of the finished board is a human check.
 ## Drawing to the screen
 **99%**
 
@@ -1011,7 +1012,7 @@ game's first-run setup screens by a now-identified quirk of how the test
 harness holds keys down, which is the next named fix.
 
 ## Older DirectX versions
-**87%**
+**90%**
 
 **The two backend gaps that were this bar's remaining work are now closed and proven.** The two things the earlier tests had pinned down as the real holes — a windowed DirectDraw surface whose picture never reached its place on screen, and an 8-bit paletted screen that reported success and wrote black — both now work, checked on actual pixels with a direction (the windowed image lands at the right offset and is black outside it; the paletted screen resolves its indices through the palette, and changing the palette changes the colours). Each is proven the honest way: with the fix removed, the old failure comes back. Two limits are stated plainly rather than smoothed over. First, this is proven in a purpose-built, patched copy of the graphics library used as a test rig — it is not yet folded into the product's default build the way the shader fix is, so it is a proven capability, not yet a shipped one. Second, no older game has actually been played through it: none of the owned games is a DirectDraw title, and that path is also still waiting on the 32-bit program loader. The on-screen appearance of a paletted window, and a true full-screen paletted mode, remain named gaps.
 
@@ -1045,6 +1046,18 @@ fail. It now asks only for what the machine reports.
 
 Not finished: nothing is *drawn* yet — the frame is cleared and presented, with no
 shapes or textures. DirectX 8 and DirectDraw are untouched.
+
+**And the fix now ships in the product's own build, not just the test rig.** The
+graphics library Bourbon ships comes prebuilt from another project and can't be
+patched directly, so Ferrum now vendors its own patched copy through a committed,
+reproducible build recipe — the same pattern used for the Vulkan layer — with the
+two DirectDraw fixes as numbered patches. The recipe was run and the resulting
+library checks out: the same functions as the test build, exactly one more than the
+stock library (the palette entry point the fix needs), and the pixel tests re-pass
+against these default-built files. The one genuinely permanent limit here is now
+named exactly: a true full-screen 8-bit paletted display mode, which neither Vulkan
+nor Metal has any indexed-colour format for — so it is emulated, not native, and
+that is a hardware/API fact rather than unfinished work.
 
 ## How the two headline numbers differ
 
