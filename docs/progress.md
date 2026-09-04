@@ -501,7 +501,7 @@ case (the restart trick above) is the part now handled.
 
 
 ## DirectX 12
-**96%**
+**98%**
 
 **DirectX 12 now reaches feature level 11_1 in the shipping build.** We turned on a capability in our graphics layer that unlocks it, verified it works correctly on a live GPU (not just reported as present), and it's on by default. The next level up, 12_0, needs a newer version of Apple's Metal than the one our graphics layer is built on — so that one is genuinely out of reach for now, not a matter of more work.
 
@@ -616,6 +616,17 @@ the full 12_0 test suite and a real 12_0 game have not yet been run on this new 
 (the test machine was busy), so the feature is built and proven at the component level
 but not yet switched on by default. Separately, the two 12_0 games we own each stop in
 their own startup code, before the graphics layer is even reached.
+**And now a real DirectX 12 device exists on this Mac, at the top feature level.** Not
+just "reachable on paper" — the actual DirectX-12-to-Vulkan runtime, running as a real
+Windows program under the translator, created a genuine level-12_0 graphics device with
+the advanced tiled-memory tier switched on, and reported success. Every DirectX 12 test
+family passes with the new sparse-memory support, and — the part that matters for safety
+— turning that support on breaks nothing for ordinary games: a full regression pass of
+DirectX 11, 9, 8 and non-sparse 12 rendering was 140 for 140. Two honest reasons this is
+98 and not 100: the sparse support for *images* (as opposed to buffers) still needs the
+same tile-level fix, so the feature ships switched off by default until that lands rather
+than risk drawing an image wrong; and it has been proven against the real runtime and its
+own test programs, not yet a purchased 12_0 game.
 
 ## 32-bit games
 **99%**
