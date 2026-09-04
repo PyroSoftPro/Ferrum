@@ -92,7 +92,7 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 
 <!--progress-->
 <p align="center">
-  <img src="docs/assets/progress.3886f43e.svg" width="100%" alt="Ferrum progress — 96% toward playable gameplay, 99% of the substrate, 2589 checks passing">
+  <img src="docs/assets/progress.34ba457f.svg" width="100%" alt="Ferrum progress — 96% toward playable gameplay, 99% of the substrate, 2589 checks passing">
 </p>
 
 <table>
@@ -142,6 +142,11 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 <td width="12%" align="right"><b>99%</b></td>
 </tr>
 <tr>
+<td width="30%"><a href="docs/progress.md#directx-12">DirectX 12</a></td>
+<td width="58%"><a href="docs/progress.md#directx-12"><img src="docs/assets/bars/d3d12.e77e1756.svg" width="320" height="14" alt="99 percent"></a></td>
+<td width="12%" align="right"><b>99%</b></td>
+</tr>
+<tr>
 <td width="30%"><a href="docs/progress.md#32-bit-games">32-bit games</a></td>
 <td width="58%"><a href="docs/progress.md#32-bit-games"><img src="docs/assets/bars/wow64.143cf815.svg" width="320" height="14" alt="99 percent"></a></td>
 <td width="12%" align="right"><b>99%</b></td>
@@ -149,11 +154,6 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 <tr>
 <td width="30%"><a href="docs/progress.md#2-d-drawing-for-menus-and-huds">2-D drawing (menus, HUD)</a></td>
 <td width="58%"><a href="docs/progress.md#2-d-drawing-for-menus-and-huds"><img src="docs/assets/bars/gdi.5780a56c.svg" width="320" height="14" alt="98 percent"></a></td>
-<td width="12%" align="right"><b>98%</b></td>
-</tr>
-<tr>
-<td width="30%"><a href="docs/progress.md#directx-12">DirectX 12</a></td>
-<td width="58%"><a href="docs/progress.md#directx-12"><img src="docs/assets/bars/d3d12.c5d21393.svg" width="320" height="14" alt="98 percent"></a></td>
 <td width="12%" align="right"><b>98%</b></td>
 </tr>
 <tr>

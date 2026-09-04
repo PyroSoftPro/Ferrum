@@ -501,7 +501,7 @@ case (the restart trick above) is the part now handled.
 
 
 ## DirectX 12
-**98%**
+**99%**
 
 **DirectX 12 now reaches feature level 11_1 in the shipping build.** We turned on a capability in our graphics layer that unlocks it, verified it works correctly on a live GPU (not just reported as present), and it's on by default. The next level up, 12_0, needs a newer version of Apple's Metal than the one our graphics layer is built on — so that one is genuinely out of reach for now, not a matter of more work.
 
@@ -627,6 +627,14 @@ DirectX 11, 9, 8 and non-sparse 12 rendering was 140 for 140. Two honest reasons
 same tile-level fix, so the feature ships switched off by default until that lands rather
 than risk drawing an image wrong; and it has been proven against the real runtime and its
 own test programs, not yet a purchased 12_0 game.
+**And the last thing keeping level 12_0 switched off by default turned out not to be real.** We
+had held it opt-in because of an apparent Apple limit — a writable tiled texture seemed to lose GPU
+writes. Re-tested with a single change at a time, that was a mistake in the test itself (it placed
+the memory at a misaligned address); done correctly the write lands and the memory stays genuinely
+sparse. So every sparse path is now correct, the extra workaround we'd started was thrown away as
+unnecessary, and level 12_0 is switched ON by default. What remains before calling it 100: a
+full confirmation pass of that default-on build against ordinary DirectX 11/9/8 games before it's
+promoted to the shipping library, and a purchased 12_0 game to run on it.
 
 ## 32-bit games
 **99%**
