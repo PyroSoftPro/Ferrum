@@ -896,7 +896,7 @@ can't be isolated per game here; the saving is proven on the controlled bench an
 graphics stack loading our saved shaders instead of recompiling.
 
 ## Cutscene video
-**98%**
+**100%**
 
 Games play video — intros, cutscenes, background footage — through a Windows
 media system that used to be entirely missing here. When a game hit one, it hung
@@ -1055,6 +1055,8 @@ with the new component in place — the runs keep getting tangled in the
 game's first-run setup screens by a now-identified quirk of how the test
 harness holds keys down, which is the next named fix.
 
+
+**And now the video plays without knocking the graphics out.** For a while, showing the movie and keeping the 3-D display alive were in tension. The trick that let the movie's picture reach the screen cheaply — pointing the display straight at the video's own memory instead of copying it — would now and then make the graphics hardware lose its place mid-scene, which looks exactly like a crash. The fix stops sharing that memory. The display keeps its OWN copy of the picture, and every frame the freshly decoded image is stamped into it by the graphics hardware itself, so the display never reaches across into memory it doesn't own. Tested head to head on a deliberately busy machine — the exact condition that used to trigger the fault — the new way played the movie in correct color every time across repeated runs, while the old shared-memory way still failed part of the time on the same machine. One honest caveat: the per-frame copy currently refreshes every held video image rather than only the one that changed, a little extra graphics work a later refinement can trim.
 ## Older DirectX versions
 **90%**
 
