@@ -632,9 +632,7 @@ had held it opt-in because of an apparent Apple limit — a writable tiled textu
 writes. Re-tested with a single change at a time, that was a mistake in the test itself (it placed
 the memory at a misaligned address); done correctly the write lands and the memory stays genuinely
 sparse. So every sparse path is now correct, the extra workaround we'd started was thrown away as
-unnecessary, and level 12_0 is switched ON by default. What remains before calling it 100: a
-full confirmation pass of that default-on build against ordinary DirectX 11/9/8 games before it's
-promoted to the shipping library, and a purchased 12_0 game to run on it.
+unnecessary, and level 12_0 is switched ON by default. What remains before calling it 100: a purchased 12_0 game to run on it (the confirmation pass against ordinary DirectX 11/9/8 games is done — 228 of 228 — and the on-by-default build is now the one that ships).
 
 ## 32-bit games
 **99%**
