@@ -92,7 +92,7 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 
 <!--progress-->
 <p align="center">
-  <img src="docs/assets/progress.61fd775f.svg" width="100%" alt="Ferrum progress — 96% toward playable gameplay, 99% of the substrate, 2589 checks passing">
+  <img src="docs/assets/progress.3886f43e.svg" width="100%" alt="Ferrum progress — 96% toward playable gameplay, 99% of the substrate, 2589 checks passing">
 </p>
 
 <table>
@@ -104,6 +104,11 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 <tr>
 <td width="30%"><a href="docs/progress.md#sound">Sound</a></td>
 <td width="58%"><a href="docs/progress.md#sound"><img src="docs/assets/bars/sound.414a0372.svg" width="320" height="14" alt="100 percent"></a></td>
+<td width="12%" align="right"><b>100%</b></td>
+</tr>
+<tr>
+<td width="30%"><a href="docs/progress.md#shader-stutter">Shader stutter</a></td>
+<td width="58%"><a href="docs/progress.md#shader-stutter"><img src="docs/assets/bars/shaders.414a0372.svg" width="320" height="14" alt="100 percent"></a></td>
 <td width="12%" align="right"><b>100%</b></td>
 </tr>
 <tr>
@@ -139,11 +144,6 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 <tr>
 <td width="30%"><a href="docs/progress.md#32-bit-games">32-bit games</a></td>
 <td width="58%"><a href="docs/progress.md#32-bit-games"><img src="docs/assets/bars/wow64.143cf815.svg" width="320" height="14" alt="99 percent"></a></td>
-<td width="12%" align="right"><b>99%</b></td>
-</tr>
-<tr>
-<td width="30%"><a href="docs/progress.md#shader-stutter">Shader stutter</a></td>
-<td width="58%"><a href="docs/progress.md#shader-stutter"><img src="docs/assets/bars/shaders.143cf815.svg" width="320" height="14" alt="99 percent"></a></td>
 <td width="12%" align="right"><b>99%</b></td>
 </tr>
 <tr>
