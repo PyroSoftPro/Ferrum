@@ -779,7 +779,7 @@ assumed, which caught one place the plan handed off for this work had gotten
 wrong before any code was written.
 
 ## Shader stutter
-**97%**
+**99%**
 
 The first time a game shows you a new effect, the graphics translation has to
 build a shader for it — and the game hitches while that happens. It's the single
@@ -838,6 +838,17 @@ rather than unfinished work: the very first stage is Apple's own source compiler
 and nothing short of a fully precompiled shader bundle can hold its result. The
 archive is proven at the graphics-layer level; it has not yet been measured across
 a full run of a real game.
+
+**And now the other, harder half is saved too — the half we called a permanent limit.**
+Turning a shader into GPU code has two stages; the archive above captured the second,
+and the first (Apple's own source compiler) was thought impossible to save except as a
+fully precompiled file. macOS in fact lets a compiled shader be written straight to
+exactly such a file and loaded back in a fresh process with the compile skipped —
+first-run cost for that stage drops to about a seventieth, measured, proven through the
+shipping graphics layer with the feature removed leaving it slow (the honest control).
+Both halves of first-run shader cost are now handled by files we can ship. What is left
+is plumbing, not a limit: folding both caches into the default build and measuring them
+together across a real game on a truly cold machine.
 
 ## Cutscene video
 **98%**
