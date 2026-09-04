@@ -92,7 +92,7 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 
 <!--progress-->
 <p align="center">
-  <img src="docs/assets/progress.46628168.svg" width="100%" alt="Ferrum progress — 96% toward playable gameplay, 98% of the substrate, 2407 checks passing">
+  <img src="docs/assets/progress.57c8febd.svg" width="100%" alt="Ferrum progress — 96% toward playable gameplay, 98% of the substrate, 2589 checks passing">
 </p>
 
 <table>
@@ -173,7 +173,7 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 </tr>
 </table>
 
-<sub>Every row links to <a href="docs/progress.md">what earned that number</a> — in plain English, no code. Orange is the critical path to a game running. <b>2407 automated checks</b> pass; each one fails if its capability is removed.</sub><!--/progress-->
+<sub>Every row links to <a href="docs/progress.md">what earned that number</a> — in plain English, no code. Orange is the critical path to a game running. <b>2589 automated checks</b> pass; each one fails if its capability is removed.</sub><!--/progress-->
 
 Real DXVK runs on this port and creates an **`ID3D11Device` at feature level 11_0**.
 A **GPU-rendered frame reaches a real macOS window** through a genuine
