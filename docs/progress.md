@@ -328,7 +328,7 @@ Not finished: compute shaders and the wider set of pixel formats. The remaining
 next milestone that matters.
 
 ## Speed
-**98%**
+**99%**
 
 **The game renders at rate for a thousand seconds.** A real save, a real scene, roughly 117 frames a second sustained. The dramatic slowdown reported earlier turned out to be the screenshot tool measuring, not the game running. Deliberately credited modestly: that run changed more than one thing at once, so it shows the speed is there without isolating what delivered it — and it is still one game.
 
@@ -365,6 +365,7 @@ GPU wait that nobody satisfies still spins (now free, not absent); and
 the deeper per-instruction translation cost measured earlier is
 unchanged — this was all waiting, not computing.
 
+**And now the smoothness number is from real gameplay, not a menu.** Earlier the frame-timing was measured while the game sat on an animated menu; the Knight was driven into an actual room and held there, confirmed by looking at the pixels (the character and health display on screen, no menu), and the per-frame timing was measured over five minutes of that. It runs at about 94 to 100 frames per second in gameplay — steady, and comfortably faster than it needs to be — with the typical frame taking 10.6 ms. The rougher tail of that measurement was disturbed by an unrelated build running at the same time and is owed a clean re-run; and this is still one game, so a second game measured the same way is what remains.
 ## Sound
 **100%**
 
@@ -500,7 +501,7 @@ case (the restart trick above) is the part now handled.
 
 
 ## DirectX 12
-**94%**
+**96%**
 
 **DirectX 12 now reaches feature level 11_1 in the shipping build.** We turned on a capability in our graphics layer that unlocks it, verified it works correctly on a live GPU (not just reported as present), and it's on by default. The next level up, 12_0, needs a newer version of Apple's Metal than the one our graphics layer is built on — so that one is genuinely out of reach for now, not a matter of more work.
 
@@ -599,6 +600,22 @@ its sampler, and read by a pixel shader — one missing GPU-copy call,
 recovered by reading the real library's own machine code (where a
 "by-symmetry" guess about its layout would have been wrong), with a
 before/after proof: zero correct pixels before, all 64 after.
+
+**The level-12_0 "hardware wall" turned out not to be one — and it is now removed in
+software.** The most advanced Direct3D 12 feature tier needs a form of sparse memory
+that we had recorded as an Apple hardware limit. Tested directly on this Mac, it is
+not: Apple's newest graphics interface (Metal 4, already on the machine) provides the
+exact mechanism, proven by mapping one tile of memory and showing a write lands there
+and reads back as empty from an unmapped tile. Three pieces were built and each
+measured working: the memory mapping itself, the shader feature that reports whether a
+tile is present (it compiles on this Mac's own shader tools), and — the last gap — a
+fix so an unmapped tile genuinely reads as empty instead of leaking data. With all
+three in place, the Direct3D-to-Vulkan translator's own check now answers that level
+12_0 is reachable with nothing blocking. What keeps this from being called finished:
+the full 12_0 test suite and a real 12_0 game have not yet been run on this new path
+(the test machine was busy), so the feature is built and proven at the component level
+but not yet switched on by default. Separately, the two 12_0 games we own each stop in
+their own startup code, before the graphics layer is even reached.
 
 ## 32-bit games
 **99%**
