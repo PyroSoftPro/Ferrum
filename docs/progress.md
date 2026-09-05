@@ -162,7 +162,7 @@ menu transitions through the setup screens that had defeated every prior
 attempt.
 
 ## 2-D drawing for menus and HUDs
-**98%**
+**99%**
 
 **Real typefaces, measured across scripts.** One font face became eight, with styles and slants, and text layout was checked across seven writing systems — including honest reporting of which character pairs a face simply does not cover. What is still missing is the thing that matters most: no 2-D game has been driven through this surface from start to finish. The dialog that paints is an installer, not a game. One real gap did close: the small paletted images games use for sprites and board tiles — the compact colour-indexed format almost every 2-D game draws with — now decode correctly through their colour table, proven not on a mock but on a real game's own board tile (Wine's Minesweeper), with the fix switched off leaving the board blank. What keeps this short of finished is a structural one: a classic 2-D Windows game composites its screen with a copy operation the graphics library performs entirely inside the program, so its final picture never passes through the part of this stack that reaches the Mac window — reaching the screen for that kind of game is a separate, larger piece of work.
 
@@ -228,6 +228,8 @@ back "nothing here," proving the shape is real and not just an approximate
 box.
 
 **The small colour-indexed images can now be drawn INTO, not just copied from.** A program can create a 1- or 4-bit paletted image it writes pixels into directly (the storage games use for icons and board tiles), and the driver walks the packed bits correctly. And a Minesweeper-shaped paletted board, drawn tile by tile, was measured arriving at the driver's own per-window surface with all 1,024 of its pixels — the thing that used to never reach it. What is still open: the real Minesweeper composites its board entirely inside the graphics library and never hands it to the driver, so driving that exact binary end to end needs a hook into that library (a separate, larger change), and the on-screen look of the finished board is a human check.
+
+**And now a whole-frame composited window reaches the screen.** Some programs draw their entire window into an off-screen buffer and then hand the finished picture to Windows in one call (a “layered” window). That hand-off had no support here, so the finished picture was silently dropped and nothing appeared. It works now: the composited picture — solid, colour-keyed, or see-through — is blended onto the window and pushed to the Mac window, proven by reading the real pixels back, with the fix switched off leaving the window blank. Still open: the most general case, where a program draws straight into a window’s own backing bits and flushes, has no matching Windows call to hook in this build, and the on-screen look remains a human check.
 ## Drawing to the screen
 **99%**
 
