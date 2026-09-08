@@ -18,7 +18,7 @@ looked finished and weren't, and were caught exactly that way.
 ---
 
 ## Windows programs run
-**99%**
+**100%**
 
 The foundation: a real Windows program file gets loaded into memory, its
 dependencies resolved, and its code executed.
@@ -32,11 +32,15 @@ every failure look like a hang.
 Loading additional libraries at runtime — the thing every game does to reach
 graphics and audio — works, and the loaded code runs.
 
-Not 100% because a couple of rarely-used facilities are still refused. Nothing
-seen so far needs them.
+This reached 100% when the last facilities a program could still be refused — a
+handful of thread-information queries — were implemented, and the full set was
+shown to be complete: every one a Windows program can actually reach is now
+handled or correctly declined, exactly as real Windows does. (The honest limit of
+that "complete" is a judgement about which queries a program can reach at all, not
+an observed refusal — spelled out in the engineering record.)
 
-**This number went down, from 99%, and that is the honest result of finding
-something.** Windows lets a library reserve a private slot for per-thread data.
+**Along the way this number once went DOWN — from 99% — the honest result of
+finding something, and that dip is worth keeping in the record.** Windows lets a library reserve a private slot for per-thread data.
 Two separate pieces of this system were handing out those slot numbers from their
 own counters, neither aware of the other — so both could give out the same one.
 That is exactly what happens when Hollow Knight loads the runtime its game code

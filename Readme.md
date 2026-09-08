@@ -92,10 +92,15 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 
 <!--progress-->
 <p align="center">
-  <img src="docs/assets/progress.961a649b.svg" width="100%" alt="Ferrum progress — 96% toward playable gameplay, 99% of the substrate, 2624 checks passing">
+  <img src="docs/assets/progress.2bd8aff9.svg" width="100%" alt="Ferrum progress — 96% toward playable gameplay, 99% of the substrate, 2624 checks passing">
 </p>
 
 <table>
+<tr>
+<td width="30%"><a href="docs/progress.md#windows-programs-run">Windows programs run</a></td>
+<td width="58%"><a href="docs/progress.md#windows-programs-run"><img src="docs/assets/bars/programs.414a0372.svg" width="320" height="14" alt="100 percent"></a></td>
+<td width="12%" align="right"><b>100%</b></td>
+</tr>
 <tr>
 <td width="30%"><a href="docs/progress.md#the-vulkan-graphics-bridge">Vulkan graphics bridge</a></td>
 <td width="58%"><a href="docs/progress.md#the-vulkan-graphics-bridge"><img src="docs/assets/bars/vulkan.414a0372.svg" width="320" height="14" alt="100 percent"></a></td>
@@ -115,11 +120,6 @@ This corner of software also runs on drinks — [Wine](https://www.winehq.org/),
 <td width="30%"><a href="docs/progress.md#cutscene-video">Cutscene video</a></td>
 <td width="58%"><a href="docs/progress.md#cutscene-video"><img src="docs/assets/bars/video.414a0372.svg" width="320" height="14" alt="100 percent"></a></td>
 <td width="12%" align="right"><b>100%</b></td>
-</tr>
-<tr>
-<td width="30%"><a href="docs/progress.md#windows-programs-run">Windows programs run</a></td>
-<td width="58%"><a href="docs/progress.md#windows-programs-run"><img src="docs/assets/bars/programs.143cf815.svg" width="320" height="14" alt="99 percent"></a></td>
-<td width="12%" align="right"><b>99%</b></td>
 </tr>
 <tr>
 <td width="30%"><a href="docs/progress.md#game-windows-and-input">Game windows and input</a></td>
