@@ -82,8 +82,13 @@ identified and understood.
 
 ## Not working yet
 
-**No game has been run end to end.** This is the honest headline. The pieces exist;
-they have not yet been driven by a real game from launch to gameplay.
+**No game has been carried end to end.** This is the honest headline. Ferrum boots
+a real title, renders its menus through DXVK and presents frames at the display's
+refresh rate; it does not yet carry a player through a game.
+
+**32-bit programs launch, but no 32-bit game draws a frame.** A 32-bit Windows
+program now launches from Ferrum.app; Portal reaches real draw calls on the GPU and
+has not yet produced a frame.
 
 **General multiprocess Windows behavior isn't complete.** A supervised guest can
 launch another guest in development builds, but handles, inherited objects,
@@ -111,7 +116,7 @@ bars.
 
 Nothing counts as working because it compiled or because a program didn't crash.
 Each capability has a test that reads the numbers the software itself reports, and
-fails if the capability is removed. There are **1,403** of those, and they all pass.
+fails if the capability is removed. There are **2,624** of those, and they all pass.
 
 Where a number in this document went *down*, it went down because something was
 found to be less finished than believed. That's information worth publishing, and
